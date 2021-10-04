@@ -8,8 +8,6 @@
 
 ddist <- function(data = NULL,
                   id = NULL,
-                  #latitude = NULL,
-                  #longitude = NULL,
                   crs = 4326) {
 
   data <- data %>%
@@ -21,7 +19,7 @@ ddist <- function(data = NULL,
     dplyr::distinct(.,
                     id,
                     .keep_all = TRUE) %>%
-    dplyr::select(c(id)) %>%
+    #dplyr::select(c(id)) %>%
     dplyr::mutate(row_id = row_number())
 
 
