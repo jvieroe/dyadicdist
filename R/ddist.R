@@ -20,9 +20,9 @@ ddist <- function(data = NULL,
 
   temp <- data %>%
     dplyr::distinct(.,
-                    data[[id]],
+                    {{id}},
                     .keep_all = TRUE) %>%
-    dplyr::mutate(row_id = row_number())
+    dplyr::mutate(row_id = dplyr::row_number())
 
   dist_mat <- sf::st_distance(temp,
                               temp,
