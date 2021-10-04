@@ -20,15 +20,13 @@ ddist <- function(data = NULL,
 
   temp <- data %>%
     dplyr::distinct(.,
-                    id,
+                    data[[id]],
                     .keep_all = TRUE) %>%
-    #dplyr::select(c(id)) %>%
     dplyr::mutate(row_id = row_number())
 
-
-  dist_mat <- st_distance(temp,
-                          temp,
-                          by_element = FALSE) %>%
+  dist_mat <- sf::st_distance(temp,
+                              temp,
+                              by_element = FALSE) %>%
     base::unclass() %>%
     base::as.data.frame()
 
@@ -38,8 +36,8 @@ ddist <- function(data = NULL,
                         values_to = "distance") %>%
     dplyr::mutate(
       row_id_1 = sort(
-        rep(
-          seq(
+        base::rep(
+          base::seq(
             1:nrow(dist_mat)
           ),
           nrow(dist_mat)
@@ -67,7 +65,9 @@ ddist <- function(data = NULL,
     dplyr::mutate(match_id = base::paste(id_1,
                                          id_2,
                                          sep = "_")) %>%
-    tibble::tibble()
+    tibble::tibble() %>%
+    dplyr::select(-c(row_id_1,
+                     row_id_2))
 
   return(dist_long)
 
