@@ -2,8 +2,6 @@
 #'
 #' This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix
 #' @param data a data.frame or tibble
-#' @param id a column with a numeric indicator uniquely idenfiying points
-#' @param crs a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326
 #' @return ... x
 #' @author Jeppe Vierø
 #' @export
