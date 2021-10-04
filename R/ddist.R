@@ -20,7 +20,7 @@ ddist <- function(data = NULL,
 
   temp <- data %>%
     dplyr::distinct(.,
-                    !!rlang::sym("id"),
+                    !!rlang::sym(id),
                     .keep_all = TRUE) %>%
     dplyr::mutate(row_id = dplyr::row_number())
 
