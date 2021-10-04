@@ -4,7 +4,7 @@
 \alias{ddist}
 \title{Add a DSB style to your graph}
 \usage{
-ddist(data = NULL, id = NULL, latitude = NULL, longitude = NULL, crs = 4326)
+ddist(data = NULL, id = NULL, crs = 4326)
 }
 \arguments{
 \item{...}{x}

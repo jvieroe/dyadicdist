@@ -8,8 +8,8 @@
 
 ddist <- function(data = NULL,
                   id = NULL,
-                  latitude = NULL,
-                  longitude = NULL,
+                  #latitude = NULL,
+                  #longitude = NULL,
                   crs = 4326) {
 
   data <- data %>%
