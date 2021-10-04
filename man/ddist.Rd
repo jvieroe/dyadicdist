@@ -7,7 +7,11 @@
 ddist(data = NULL, id = NULL, crs = 4326)
 }
 \arguments{
-\item{...}{x}
+\item{data}{a data.frame or tibble.}
+
+\item{id}{a column with a numeric indicator uniquely idenfiying points.}
+
+\item{crs}{a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.}
 }
 \value{
 ... y
