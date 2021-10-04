@@ -2,18 +2,22 @@
 % Please edit documentation in R/ddist.R
 \name{ddist}
 \alias{ddist}
-\title{Add a DSB style to your graph}
+\title{Create dyads of points i and j and calculate distances}
 \usage{
 ddist(data = NULL, id = NULL, crs = 4326)
 }
 \arguments{
-\item{...}{x}
+\item{data}{a data.frame or tibble}
+
+\item{id}{a column with a numeric indicator uniquely idenfiying points}
+
+\item{crs}{a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326}
 }
 \value{
-... y
+...
 }
 \description{
-This function etc.
+This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix
 }
 \author{
 Jeppe Vierø
