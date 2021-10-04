@@ -62,12 +62,18 @@ ddist <- function(data = NULL,
                        ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
     dplyr::rename_with(.cols = tidyselect::ends_with(".y"),
                        ~ stringr::str_replace_all(., '\\.y', '_2')) %>%
-    dplyr::mutate(match_id = base::paste(id_1,
-                                         id_2,
-                                         sep = "_")) %>%
-    tibble::tibble() %>%
-    dplyr::select(-c(row_id_1,
-                     row_id_2))
+    dplyr::mutate(id1 := !!rlang::sym(paste0(id,
+                                             "_1")),
+                  id2 := !!rlang::sym(paste0(id,
+                                             "_2"))) %>%
+    dplyr::mutate(
+      match_id = base::paste(id1,
+                             id2,
+                             sep = "_")) %>%
+    dplyr::select(-c(id1, id2,
+                     row_id_1,
+                     row_id_2)) %>%
+    tibble::tibble()
 
   return(dist_long)
 
