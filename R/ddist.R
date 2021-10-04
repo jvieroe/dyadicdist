@@ -11,7 +11,8 @@
 
 ddist <- function(data = NULL,
                   id = NULL,
-                  crs = 4326) {
+                  crs = 4326,
+                  diagonal = TRUE) {
 
   data <- data %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
@@ -69,11 +70,26 @@ ddist <- function(data = NULL,
     dplyr::mutate(
       match_id = base::paste(id1,
                              id2,
-                             sep = "_")) %>%
-    dplyr::select(-c(id1, id2,
-                     row_id_1,
-                     row_id_2)) %>%
-    tibble::tibble()
+                             sep = "_"))
+
+  if (diagonal == TRUE) {
+
+    dist_long <- dist_long %>%
+      dplyr::select(-c(id1, id2,
+                       row_id_1,
+                       row_id_2)) %>%
+      tibble::tibble()
+
+  } else if (diagonal == FALSE) {
+
+    dist_long <- dist_long %>%
+      filter(id1 != id2) %>%
+      dplyr::select(-c(id1, id2,
+                       row_id_1,
+                       row_id_2)) %>%
+      tibble::tibble()
+
+  }
 
   return(dist_long)
 

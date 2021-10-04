@@ -4,7 +4,7 @@
 \alias{ddist}
 \title{Create dyads of points i and j and calculate distances}
 \usage{
-ddist(data = NULL, id = NULL, crs = 4326)
+ddist(data = NULL, id = NULL, crs = 4326, diagonal = TRUE)
 }
 \arguments{
 \item{data}{a data.frame or tibble.}
