@@ -8,6 +8,8 @@
 
 ddist <- function(data = NULL,
                   id = NULL,
+                  name1 = NULL,
+                  name2 = NULL,
                   #latitude = NULL,
                   #longitude = NULL,
                   crs = 4326) {
@@ -56,12 +58,12 @@ ddist <- function(data = NULL,
     dplyr::left_join(.,
                      temp,
                      by = c("row_id_1" = "row_id")) %>%
-    dplyr::rename_with(.cols = c(id, name, found_name),
+    dplyr::rename_with(.cols = c(id, name1, name2),
                        ~ str_c(., "_1")) %>%
     dplyr::left_join(.,
                      temp,
                      by = c("row_id_2" = "row_id")) %>%
-    dplyr::rename_with(.cols = c(id, name, found_name),
+    dplyr::rename_with(.cols = c(id, name1, name2),
                        ~ str_c(., "_2")) %>%
     dplyr::mutate(match_id = base::paste(id_1,
                                          id_2,
