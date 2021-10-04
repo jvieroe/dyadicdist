@@ -7,14 +7,10 @@
 ddist(data = NULL, id = NULL, crs = 4326)
 }
 \arguments{
-\item{data}{a data.frame or tibble.}
-
-\item{id}{a column with a numeric indicator uniquely idenfiying points.}
-
-\item{crs}{a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.}
+\item{...}{x}
 }
 \value{
-... x
+... y
 }
 \description{
 This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix
