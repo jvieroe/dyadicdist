@@ -59,15 +59,14 @@ ddist <- function(data = NULL,
     dplyr::left_join(.,
                      temp,
                      by = c("row_id_2" = "row_id")) %>%
-    rename_with(.cols = tidyselect::ends_with(".x"),
-                ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
-    rename_with(.cols = tidyselect::ends_with(".y"),
-                ~ stringr::str_replace_all(., '\\.y', '_2')) %>%
+    dplyr::rename_with(.cols = tidyselect::ends_with(".x"),
+                       ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
+    dplyr::rename_with(.cols = tidyselect::ends_with(".y"),
+                       ~ stringr::str_replace_all(., '\\.y', '_2')) %>%
     dplyr::mutate(match_id = base::paste(id_1,
                                          id_2,
                                          sep = "_")) %>%
-    dplyr::select(-c(row_id_1,
-              row_id_2))
+    tibble::tibble()
 
   return(dist_long)
 
