@@ -31,7 +31,7 @@ ddist <- function(data = NULL,
     base::unclass() %>%
     base::as.data.frame()
 
-  dist_mat <- dist_mat %>%
+  dist_long <- dist_mat %>%
     tidyr::pivot_longer(cols = everything(),
                         names_to = "temp",
                         values_to = "distance") %>%
