@@ -4,7 +4,7 @@
 #' @param data a data.frame or tibble
 #' @param id a column with a numeric indicator uniquely idenfiying points
 #' @param crs a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326
-#' @return ...
+#' @return ... x
 #' @author Jeppe Vierø
 #' @export
 
