@@ -23,6 +23,10 @@ ddist <- function(data = NULL,
                   new_crs = NULL,
                   diagonal = TRUE) {
 
+  check_crs(data = data,
+            crs_transform = crs_transform,
+            new_crs = new_crs)
+
   check_data(data = data,
              id = id,
              longitude = longitude,
