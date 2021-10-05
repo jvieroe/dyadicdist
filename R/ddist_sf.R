@@ -2,27 +2,20 @@
 #'
 #' This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
 #'
-#' @param data a data.frame or tibble.
+#' @param data an sf data.frame or tibble.
 #' @param id a numeric variable uniquely idenfiying points.
-#' @param crs a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.
-#' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
+#' @param crs_transform a logical value indicating whether to transform the Coordinate Reference System (CRS). Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS.
 #' @param diagonal a logical value indicating whether to keep the diagonal component in the distance matrix with dyads (i,i). Defaults to TRUE
 #' @return ... y
 #' @author Jeppe Vierø
 #' @export
 
-ddist <- function(data = NULL,
-                  id = NULL,
-                  crs = 4326,
-                  crs_transform = FALSE,
-                  new_crs = NULL,
-                  diagonal = TRUE) {
-
-  data <- data %>%
-    dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
-    sf::st_as_sf(coords = c("longitude", "latitude"),
-                 crs = crs)
+ddist_sf <- function(data = NULL,
+                     id = NULL,
+                     crs_transform = FALSE,
+                     new_crs = NULL,
+                     diagonal = TRUE) {
 
   if (crs_transform == TRUE) {
 
