@@ -7,6 +7,8 @@
 ddist(
   data = NULL,
   id = NULL,
+  longitude = "longitude",
+  latitude = "latitude",
   crs = 4326,
   crs_transform = FALSE,
   new_crs = NULL,
@@ -17,6 +19,10 @@ ddist(
 \item{data}{a data.frame or tibble.}
 
 \item{id}{a numeric variable uniquely idenfiying points.}
+
+\item{longitude}{name of the numeric longitude variable. Defaults to "longitude"}
+
+\item{latitude}{name of the numeric latitude variable. Defaults to "latitude"}
 
 \item{crs}{a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.}
 

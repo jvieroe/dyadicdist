@@ -4,6 +4,8 @@
 #'
 #' @param data a data.frame or tibble.
 #' @param id a numeric variable uniquely idenfiying points.
+#' @param longitude name of the numeric longitude variable. Defaults to "longitude"
+#' @param latitude name of the numeric latitude variable. Defaults to "latitude"
 #' @param crs a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS.
@@ -14,10 +16,26 @@
 
 ddist <- function(data = NULL,
                   id = NULL,
+                  longitude = "longitude",
+                  latitude = "latitude",
                   crs = 4326,
                   crs_transform = FALSE,
                   new_crs = NULL,
                   diagonal = TRUE) {
+
+  if (longitude != "longitude") {
+
+    data <- data %>%
+      dplyr::rename(longitude = !!rlang::sym(longitude))
+
+  }
+
+  if (latitude != "latitude") {
+
+    data <- data %>%
+      dplyr::rename(latitude = !!rlang::sym(latitude))
+
+  }
 
   data <- data %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
