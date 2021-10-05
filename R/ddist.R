@@ -23,6 +23,11 @@ ddist <- function(data = NULL,
                   new_crs = NULL,
                   diagonal = TRUE) {
 
+  check_data <- function(data = data,
+                         id = id,
+                         longitude = longitude,
+                         latitude = latitude)
+
   if (longitude != "longitude") {
 
     data <- data %>%
