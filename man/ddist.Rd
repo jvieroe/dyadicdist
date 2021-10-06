@@ -33,7 +33,7 @@ ddist(
 
 \item{diagonal}{a logical value. Keep the diagonal component in the distance matrix with dyads (i,i)? Defaults to TRUE}
 
-\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE.}
+\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept.}
 }
 \value{
 ... y
