@@ -226,7 +226,7 @@ Both of these are optional however.
 ### Let’s compare the outputs\!
 
 The default call should return a `tibble` where the number of dyads is
-equal to `nrow(cities) * nrow(cities)`
+equal to:
 
 ``` r
 nrow(cities)*nrow(cities)
@@ -237,8 +237,7 @@ dyadicdist::ddist(cities,
 #> [1] 10000
 ```
 
-With `diagonal = FALSE` the number of dyads should be equal to
-`nrow(cities) * (nrow(cities)-1)`
+With `diagonal = FALSE` the number of dyads should be equal to:
 
 ``` r
 nrow(cities) * (nrow(cities)-1)
@@ -250,8 +249,7 @@ dyadicdist::ddist(cities,
 #> [1] 9900
 ```
 
-with `duplicates = FALSE` the number of dyads should be equal to
-`(nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)`
+with `duplicates = FALSE` the number of dyads should be equal to:
 
 ``` r
 (nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)
@@ -264,7 +262,7 @@ dyadicdist::ddist(cities,
 ```
 
 With `diagonal = FALSE` and `duplicates = FALSE` the number of dyads
-should be equal to `(nrow(cities)*(nrow(cities)-1)/2)`
+should be equal to:
 
 ``` r
 (nrow(cities) * (nrow(cities)-1)/2)
