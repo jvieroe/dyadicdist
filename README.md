@@ -82,7 +82,7 @@ usa <- usa %>%
                     ymax = 50),
                   crs = st_crs(usa)))
 
-cit_sf <- cities %>% 
+city_sf <- cities %>% 
   st_as_sf(.,
            coords = c("longitude", "latitude"),
            crs = 4326)
@@ -91,13 +91,13 @@ ggplot() +
   geom_sf(data = usa,
           fill = "grey25",
           color = "white") +
-  geom_sf(data = cit_sf,
-          size = 4,
+  geom_sf(data = city_sf,
+          size = 2,
           shape = 21,
           fill = "chartreuse3", color = "NA",
           alpha = .55) +
-  geom_sf(data = cit_sf,
-          size = 4,
+  geom_sf(data = city_sf,
+          size = 2,
           shape = 21,
           fill = "NA", color = "chartreuse3",
           alpha = 1.0) +
