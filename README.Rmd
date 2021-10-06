@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 The purpose of `dyadicdist` is to provide quick and easy calculation of dyadic distances between geo-referenced points.
 
-The main contribution of `dyadicdist::ddist()` is that the output is stored as a long dyadic `tibble` with dimensions `((N * N), 2)` (number of rows and columns vary with specified options) as opposed to a wide `matrix` with dimensions `N * N`.
+The main contribution of `dyadicdist::ddist()` is that the output is stored as a long dyadic `tibble` with dimensions `((N * N), 2)` (number of rows vary with specified `options`) as opposed to a wide `matrix` with dimensions `N * N`.
 
 ## Quick example
 A simple example with no additional illustrates the workings of `dyadicdist::ddist()`. It takes as input a `data.frame` or a `tibble` and returns a `tibble` with dyadic distances for any combination of points `i` and `j` (see more below)
@@ -176,45 +176,41 @@ Let's compare the outputs!
 
 * The default call should return a `tibble` where the number of dyads is equal to `nrow(cities) * nrow(cities)`
 * With `diagonal = FALSE` the number of dyads should be equal to `nrow(cities) * (nrow(cities)-1)`
-* with `duplicates = FALSE` the number of dyads should be equal to `(nrow(cities) * nrow(cities)/2)`
+* with `duplicates = FALSE` the number of dyads should be equal to `(nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)`
 * With `diagonal = FALSE` and `duplicates = FALSE` the number of dyads should be equal to `(nrow(cities) * (nrow(cities)-1)/2)`
 
-```{r, warning=F, message=F}
-# --- calculate desired length of tibble
-# default call
-nrow(cities)*nrow(cities)
-
-# diagonal = FALSE
-nrow(cities) * (nrow(cities)-1)
-
-# duplicates = FALSE
-(nrow(cities)*nrow(cities)/2)
-
-# diagonal = FALSE and duplicates = FALSE
-(nrow(cities) * (nrow(cities)-1)/2)
-```
 
 
 ```{r, warning=F, message=F}
 # --- calculate desired length of tibble
 #  default call
+nrow(cities)*nrow(cities)
 dyadicdist::ddist(cities,
                   id = "id") %>% 
   nrow()
+```
 
+```{r, warning=F, message=F}
 #  diagonal = FALSE
+nrow(cities) * (nrow(cities)-1)
 dyadicdist::ddist(cities,
                   id = "id",
                   diagonal = FALSE) %>% 
   nrow()
+```
 
+```{r, warning=F, message=F}
 #  duplicates = FALSE
+(nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)
 dyadicdist::ddist(cities,
                   id = "id",
                   duplicates = FALSE) %>% 
   nrow()
+```
 
+```{r, warning=F, message=F}
 #  diagonal = FALSE and duplicates = FALSE
+(nrow(cities) * (nrow(cities)-1)/2)
 dyadicdist::ddist(cities,
                   id = "id",
                   diagonal = FALSE,

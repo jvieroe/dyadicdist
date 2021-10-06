@@ -12,8 +12,8 @@ dyadic distances between geo-referenced points.
 
 The main contribution of `dyadicdist::ddist()` is that the output is
 stored as a long dyadic `tibble` with dimensions `((N * N), 2)` (number
-of rows and columns vary with specified options) as opposed to a wide
-`matrix` with dimensions `N * N`.
+of rows vary with specified `options`) as opposed to a wide `matrix`
+with dimensions `N * N`.
 
 ## Quick example
 
@@ -230,7 +230,7 @@ Let’s compare the outputs\!
   - With `diagonal = FALSE` the number of dyads should be equal to
     `nrow(cities) * (nrow(cities)-1)`
   - with `duplicates = FALSE` the number of dyads should be equal to
-    `(nrow(cities) * nrow(cities)/2)`
+    `(nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)`
   - With `diagonal = FALSE` and `duplicates = FALSE` the number of dyads
     should be equal to `(nrow(cities) * (nrow(cities)-1)/2)`
 
@@ -238,40 +238,41 @@ Let’s compare the outputs\!
 
 ``` r
 # --- calculate desired length of tibble
-# default call
+#  default call
 nrow(cities)*nrow(cities)
 #> [1] 10000
-# diagonal = FALSE
-nrow(cities) * (nrow(cities)-1)
-#> [1] 9900
-# duplicates = FALSE
-(nrow(cities) * nrow(cities)/2)
-#> [1] 5000
-# diagonal = FALSE and duplicates = FALSE
-(nrow(cities) * (nrow(cities)-1)/2)
-#> [1] 4950
-```
-
-``` r
-# --- calculate desired length of tibble
-#  default call
 dyadicdist::ddist(cities,
                   id = "id") %>% 
   nrow()
 #> [1] 10000
+```
+
+``` r
 #  diagonal = FALSE
+nrow(cities) * (nrow(cities)-1)
+#> [1] 9900
 dyadicdist::ddist(cities,
                   id = "id",
                   diagonal = FALSE) %>% 
   nrow()
 #> [1] 9900
+```
+
+``` r
 #  duplicates = FALSE
+(nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)
+#> [1] 5050
 dyadicdist::ddist(cities,
                   id = "id",
                   duplicates = FALSE) %>% 
   nrow()
 #> [1] 5050
+```
+
+``` r
 #  diagonal = FALSE and duplicates = FALSE
+(nrow(cities) * (nrow(cities)-1)/2)
+#> [1] 4950
 dyadicdist::ddist(cities,
                   id = "id",
                   diagonal = FALSE,
