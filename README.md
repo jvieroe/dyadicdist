@@ -95,7 +95,9 @@ ggplot() +
           shape = 21,
           fill = "darkred", color = "NA",
           alpha = .6) +
-  theme_minimal()
+  theme_minimal() +
+  theme(panel.background = element_rect(fill = "#0D1117",
+                                        color = "#0D1117"))
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="75%" style="display: block; margin: auto;" />
