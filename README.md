@@ -105,7 +105,7 @@ ggplot() +
         plot.background = element_rect(fill = "#0D1117"))
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 ``` r
 #library(dyadicdist)
@@ -134,7 +134,7 @@ example workflow can be found here:
 
 You can also embed plots, for example:
 
-<img src="man/figures/README-pressure-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="man/figures/README-pressure-1.png" style="display: block; margin: auto;" />
 
 In that case, don’t forget to commit and push the resulting figure
 files, so they display on GitHub and CRAN.
