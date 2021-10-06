@@ -7,8 +7,45 @@
 
 <!-- badges: end -->
 
-The goal of dyadicdist is to quickly calculate distance between
-geographic points and store these as dyads
+The purpose of `dyadicdist` is to provide quick and easy calculation of
+dyadic distances between geo-referenced points.
+
+The main contribution of `dyadicdist::ddist()` is that the output is
+stored as a long dyadic `tibble` with dimensions `((N * N), 2)` (number
+of rows and columns vary with specified options) as opposed to a wide
+`matrix` with dimensions `N * N`.
+
+## Quick example
+
+A simple example with no additional illustrates the workings of
+`dyadicdist::ddist()`:
+
+``` r
+library(dyadicdist)
+library(tidyverse)
+
+df <- tibble::tribble(
+  ~city_name, ~idvar, ~latitude, ~longitude,
+  "copenhagen", 5, 55.68, 12.58,
+  "stockholm", 2, 59.33, 18.07,
+  "oslo", 51, 59.91, 10.75
+)
+
+dyadicdist::ddist(data = df,
+                  id = "idvar")
+#> # A tibble: 9 x 6
+#>   distance city_name_1 idvar_1 city_name_2 idvar_2 match_id
+#>      <dbl> <chr>         <dbl> <chr>         <dbl> <chr>   
+#> 1       0  copenhagen        5 copenhagen        5 5_5     
+#> 2  521455. copenhagen        5 stockholm         2 5_2     
+#> 3  482648. copenhagen        5 oslo             51 5_51    
+#> 4  521455. stockholm         2 copenhagen        5 2_5     
+#> 5       0  stockholm         2 stockholm         2 2_2     
+#> 6  416439. stockholm         2 oslo             51 2_51    
+#> 7  482648. oslo             51 copenhagen        5 51_5    
+#> 8  416439. oslo             51 stockholm         2 51_2    
+#> 9       0  oslo             51 oslo             51 51_51
+```
 
 ## Installation
 
@@ -106,7 +143,7 @@ ggplot() +
         plot.background = element_rect(fill = "#0D1117"))
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 # x
 

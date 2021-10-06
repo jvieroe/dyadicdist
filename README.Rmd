@@ -20,7 +20,28 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of dyadicdist is to quickly calculate distance between geographic points and store these as dyads
+The purpose of `dyadicdist` is to provide quick and easy calculation of dyadic distances between geo-referenced points.
+
+The main contribution of `dyadicdist::ddist()` is that the output is stored as a long dyadic `tibble` with dimensions `((N * N), 2)` (number of rows and columns vary with specified options) as opposed to a wide `matrix` with dimensions `N * N`.
+
+## Quick example
+A simple example with no additional illustrates the workings of `dyadicdist::ddist()`:
+```{r, warning=F, message=F}
+library(dyadicdist)
+library(tidyverse)
+
+df <- tibble::tribble(
+  ~city_name, ~idvar, ~latitude, ~longitude,
+  "copenhagen", 5, 55.68, 12.58,
+  "stockholm", 2, 59.33, 18.07,
+  "oslo", 51, 59.91, 10.75
+)
+
+dyadicdist::ddist(data = df,
+                  id = "idvar")
+
+```
+
 
 ## Installation
 
