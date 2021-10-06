@@ -96,6 +96,11 @@ ggplot() +
           shape = 21,
           fill = "chartreuse3", color = "NA",
           alpha = .65) +
+  geom_sf(data = cit_sf,
+          size = 4,
+          shape = 21,
+          fill = "NA", color = "chartreuse3",
+          alpha = 1.0) +
   theme_minimal() +
   theme(panel.background = element_rect(fill = "#0D1117",
                                         color = "#0D1117"),
