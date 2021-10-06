@@ -12,7 +12,8 @@ ddist(
   crs = 4326,
   crs_transform = FALSE,
   new_crs = NULL,
-  diagonal = TRUE
+  diagonal = TRUE,
+  duplicates = TRUE
 )
 }
 \arguments{
@@ -30,7 +31,9 @@ ddist(
 
 \item{new_crs}{a valid EPSG for a new CRS.}
 
-\item{diagonal}{a logical value indicating whether to keep the diagonal component in the distance matrix with dyads (i,i). Defaults to TRUE}
+\item{diagonal}{a logical value. Keep the diagonal component in the distance matrix with dyads (i,i)? Defaults to TRUE}
+
+\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE.}
 }
 \value{
 ... y

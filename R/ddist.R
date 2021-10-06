@@ -9,7 +9,8 @@
 #' @param crs a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS.
-#' @param diagonal a logical value. Keep the diagonal component in the distance matrix with dyads (i,i). Defaults to TRUE
+#' @param diagonal a logical value. Keep the diagonal component in the distance matrix with dyads (i,i)? Defaults to TRUE
+#' @param duplicates a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE.
 #' @return ... y
 #' @author Jeppe Vierø
 #' @export
@@ -21,7 +22,8 @@ ddist <- function(data = NULL,
                   crs = 4326,
                   crs_transform = FALSE,
                   new_crs = NULL,
-                  diagonal = TRUE) {
+                  diagonal = TRUE,
+                  duplicates = TRUE) {
 
   check_crs(data = data,
             crs_transform = crs_transform,
@@ -114,6 +116,31 @@ ddist <- function(data = NULL,
       match_id = base::paste(id1,
                              id2,
                              sep = "_"))
+
+  if (duplicates == FALSE) {
+
+    dist_long <- dist_long %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(
+        tmp =
+          base::paste(
+            base::sort(
+              c(
+                row_id_1,
+                row_id_2)
+              ),
+            collapse = "_")
+      ) %>%
+      dplyr::distinct(.,
+                      tmp,
+                      .keep_all = T) %>%
+      dplyr::select(-tmp)
+
+  } else if (duplicates == TRUE) {
+
+    dist_long <- dist_long
+
+  }
 
   if (diagonal == TRUE) {
 
