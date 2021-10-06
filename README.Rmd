@@ -172,26 +172,18 @@ Both of these are optional however.
 * Sort out `(i,i)` dyads (the diagonal in a distance matrix) by specifying `diagonal = FALSE`
 * Sort out duplicated dyads by specifying `duplicates = FALSE`
 
-Let's compare the outputs!
+### Let's compare the outputs!
 
-* The default call should return a `tibble` where the number of dyads is equal to `nrow(cities) * nrow(cities)`
-* With `diagonal = FALSE` the number of dyads should be equal to `nrow(cities) * (nrow(cities)-1)`
-* with `duplicates = FALSE` the number of dyads should be equal to `(nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)`
-* With `diagonal = FALSE` and `duplicates = FALSE` the number of dyads should be equal to `(nrow(cities) * (nrow(cities)-1)/2)`
-
-
-
+The default call should return a `tibble` where the number of dyads is equal to `nrow(cities) * nrow(cities)`
 ```{r, warning=F, message=F}
-# --- calculate desired length of tibble
-#  default call
 nrow(cities)*nrow(cities)
 dyadicdist::ddist(cities,
                   id = "id") %>% 
   nrow()
 ```
 
+With `diagonal = FALSE` the number of dyads should be equal to `nrow(cities) * (nrow(cities)-1)`
 ```{r, warning=F, message=F}
-#  diagonal = FALSE
 nrow(cities) * (nrow(cities)-1)
 dyadicdist::ddist(cities,
                   id = "id",
@@ -199,8 +191,8 @@ dyadicdist::ddist(cities,
   nrow()
 ```
 
+with `duplicates = FALSE` the number of dyads should be equal to `(nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)`
 ```{r, warning=F, message=F}
-#  duplicates = FALSE
 (nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)
 dyadicdist::ddist(cities,
                   id = "id",
@@ -208,8 +200,8 @@ dyadicdist::ddist(cities,
   nrow()
 ```
 
+With `diagonal = FALSE` and `duplicates = FALSE` the number of dyads should be equal to `(nrow(cities)*(nrow(cities)-1)/2)`
 ```{r, warning=F, message=F}
-#  diagonal = FALSE and duplicates = FALSE
 (nrow(cities) * (nrow(cities)-1)/2)
 dyadicdist::ddist(cities,
                   id = "id",
