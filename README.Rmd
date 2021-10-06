@@ -86,7 +86,7 @@ cit_sf <- cities %>%
 
 ggplot() +
   geom_sf(data = usa,
-          fill = "grey55",
+          fill = "grey65",
           color = "white") +
   geom_sf(data = cit_sf,
           size = 4,
@@ -100,8 +100,7 @@ ggplot() +
         axis.title = element_blank(),
         panel.grid.major=element_blank(),
         panel.grid.minor=element_blank(),
-        plot.margin=grid::unit(c(0,0,0,0),
-                               "mm"),
+        plot.margin=grid::unit(c(0,0,0,0), "mm"),
         plot.background = element_rect(fill = "#0D1117"))
   
 
