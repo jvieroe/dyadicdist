@@ -89,7 +89,8 @@ cit_sf <- cities %>%
 
 ggplot() +
   geom_sf(data = usa,
-          fill = "grey95") +
+          fill = "grey65",
+          color = "white") +
   geom_sf(data = cit_sf,
           size = 4,
           shape = 21,
