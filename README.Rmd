@@ -37,8 +37,8 @@ df <- tibble::tribble(
   "oslo", 51, 59.91, 10.75
 )
 
-dyadicdist::ddist(data = df,
-                  id = "idvar")
+ddist(data = df,
+      id = "idvar")
 
 ```
 

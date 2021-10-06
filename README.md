@@ -31,8 +31,8 @@ df <- tibble::tribble(
   "oslo", 51, 59.91, 10.75
 )
 
-dyadicdist::ddist(data = df,
-                  id = "idvar")
+ddist(data = df,
+      id = "idvar")
 #> # A tibble: 9 x 6
 #>   distance city_name_1 idvar_1 city_name_2 idvar_2 match_id
 #>      <dbl> <chr>         <dbl> <chr>         <dbl> <chr>   
