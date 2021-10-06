@@ -98,14 +98,8 @@ ggplot() +
           shape = 21,
           fill = "NA", color = "chartreuse3",
           alpha = 1.0) +
-  theme_minimal() +
-  theme(panel.background = element_rect(fill = "#0D1117",
-                                        color = "#0D1117"),
-        axis.text = element_blank(),
-        axis.title = element_blank(),
-        panel.grid.major=element_blank(),
-        panel.grid.minor=element_blank(),
-        plot.margin=grid::unit(c(0,0,0,0), "mm"),
+  theme_void() +
+  theme(panel.background = element_rect(fill = "#0D1117"),
         plot.background = element_rect(fill = "#0D1117"))
   
 
