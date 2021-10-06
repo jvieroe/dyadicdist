@@ -62,7 +62,7 @@ cities
 
 ```
 
-```{r, warning=F, message=F, fig.width=5.65, fig.height=3}
+```{r, warning=F, message=F, fig.width=5.65, fig.height=2.99}
 library(sf)
 library(rnaturalearth)
 library(rgeos)
