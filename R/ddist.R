@@ -9,7 +9,7 @@
 #' @param crs a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS.
-#' @param diagonal a logical value indicating whether to keep the diagonal component in the distance matrix with dyads (i,i). Defaults to TRUE
+#' @param diagonal a logical value. Keep the diagonal component in the distance matrix with dyads (i,i). Defaults to TRUE
 #' @return ... y
 #' @author Jeppe Vierø
 #' @export
