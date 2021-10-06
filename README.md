@@ -274,3 +274,7 @@ dyadicdist::ddist(cities,
   nrow()
 #> [1] 4950
 ```
+
+## CRS transformations
+
+x

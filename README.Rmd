@@ -210,3 +210,7 @@ dyadicdist::ddist(cities,
   nrow()
 
 ```
+
+
+## CRS transformations
+x
