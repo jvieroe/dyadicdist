@@ -97,7 +97,10 @@ ggplot() +
           alpha = .6) +
   theme_minimal() +
   theme(panel.background = element_rect(fill = "#0D1117",
-                                        color = "#0D1117"))
+                                        color = "#0D1117"),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="75%" style="display: block; margin: auto;" />
