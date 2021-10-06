@@ -3,14 +3,14 @@
 #' This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
 #'
 #' @param data a data.frame or tibble.
-#' @param id a numeric variable uniquely idenfiying points.
+#' @param id a variable uniquely idenfiying geospatial points. Can be of type numeric, integer, character, or factor
 #' @param longitude name of the numeric longitude variable. Defaults to "longitude"
 #' @param latitude name of the numeric latitude variable. Defaults to "latitude"
-#' @param crs a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.
+#' @param crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates. Defaults to 4326.
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
-#' @param new_crs a valid EPSG for a new CRS.
-#' @param diagonal a logical value. Keep the diagonal component in the distance matrix with dyads (i,i)? Defaults to TRUE
-#' @param duplicates a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept.
+#' @param new_crs a valid EPSG for a new CRS. See \url{https://epsg.org/home.html}
+#' @param diagonal a logical value. Keep the diagonal component in the distance matrix with dyads (i,i) and distance zero? Defaults to TRUE
+#' @param duplicates a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[dplyr]{rowwise()} and makes the \link[dyadicdist]{ddist()} function considerably more time-consuming
 #' @return ... y
 #' @author Jeppe Vierø
 #' @export

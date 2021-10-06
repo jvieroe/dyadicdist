@@ -19,21 +19,21 @@ ddist(
 \arguments{
 \item{data}{a data.frame or tibble.}
 
-\item{id}{a numeric variable uniquely idenfiying points.}
+\item{id}{a variable uniquely idenfiying geospatial points. Can be of type numeric, integer, character, or factor}
 
 \item{longitude}{name of the numeric longitude variable. Defaults to "longitude"}
 
 \item{latitude}{name of the numeric latitude variable. Defaults to "latitude"}
 
-\item{crs}{a valid EPSG for a valid Coordinate Reference System (CRS). Defaults to 4326.}
+\item{crs}{a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates. Defaults to 4326.}
 
 \item{crs_transform}{a logical value indicating whether to transform the CRS. Defaults to FALSE}
 
-\item{new_crs}{a valid EPSG for a new CRS.}
+\item{new_crs}{a valid EPSG for a new CRS. See \url{https://epsg.org/home.html}}
 
-\item{diagonal}{a logical value. Keep the diagonal component in the distance matrix with dyads (i,i)? Defaults to TRUE}
+\item{diagonal}{a logical value. Keep the diagonal component in the distance matrix with dyads (i,i) and distance zero? Defaults to TRUE}
 
-\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept.}
+\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[dplyr]{rowwise()} and makes the \link[dyadicdist]{ddist()} function considerably more time-consuming}
 }
 \value{
 ... y
