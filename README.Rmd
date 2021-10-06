@@ -37,8 +37,8 @@ df <- tibble::tribble(
   "oslo", 51, 59.91, 10.75
 )
 
-ddist(data = df,
-      id = "idvar")
+dyadicdist::ddist(data = df,
+                  id = "idvar")
 
 ```
 
@@ -52,16 +52,22 @@ if(!require("devtools")) install.packages("devtools")
 library(devtools)
 devtools::install_github("jvieroe/dyadicdist")
 ```
-## Example
+## Functionality
 
-This is a basic example which shows you how to solve a common problem:
+Below, I describe some of the key features and important options of `dyadicdist::ddist()`.
+
+Let's use some data on the 100 largest US cities as a working example!
 
 ```{r getdata, warning=F, message=F}
 library(tidyverse)
 library(magrittr)
 library(janitor)
 library(rvest)
+```
 
+First, get the city data using `rvest`:
+
+```{r, warning=F, message=F}
 city_url <- "https://www.latlong.net/category/cities-236-15.html"
 
 cities <- city_url %>%
@@ -83,7 +89,10 @@ cities
 
 ```
 
+Let's have a look at the data from a more 
+
 ```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
+# Plot the cities
 library(sf)
 library(rnaturalearth)
 library(rgeos)

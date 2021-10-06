@@ -31,8 +31,8 @@ df <- tibble::tribble(
   "oslo", 51, 59.91, 10.75
 )
 
-ddist(data = df,
-      id = "idvar")
+dyadicdist::ddist(data = df,
+                  id = "idvar")
 #> # A tibble: 9 x 6
 #>   distance city_name_1 idvar_1 city_name_2 idvar_2 match_id
 #>      <dbl> <chr>         <dbl> <chr>         <dbl> <chr>   
@@ -58,16 +58,23 @@ library(devtools)
 devtools::install_github("jvieroe/dyadicdist")
 ```
 
-## Example
+## Functionality
 
-This is a basic example which shows you how to solve a common problem:
+Below, I describe some of the key features and important options of
+`dyadicdist::ddist()`.
+
+Let’s use some data on the 100 largest US cities as a working example\!
 
 ``` r
 library(tidyverse)
 library(magrittr)
 library(janitor)
 library(rvest)
+```
 
+First, get the city data using `rvest`:
+
+``` r
 city_url <- "https://www.latlong.net/category/cities-236-15.html"
 
 cities <- city_url %>%
@@ -102,7 +109,10 @@ cities
 #> # ... with 90 more rows
 ```
 
+Let’s have a look at the data from a more
+
 ``` r
+# Plot the cities
 library(sf)
 library(rnaturalearth)
 library(rgeos)
@@ -143,7 +153,7 @@ ggplot() +
         plot.background = element_rect(fill = "#0D1117"))
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="85%" style="display: block; margin: auto;" />
 
 # x
 
