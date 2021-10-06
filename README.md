@@ -108,7 +108,7 @@ ggplot() +
         plot.background = element_rect(fill = "#0D1117"))
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
 
 ``` r
 #library(dyadicdist)
