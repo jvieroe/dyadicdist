@@ -105,6 +105,7 @@ ggplot() +
 
 ```
 
+# x
 
 ```{r example}
 #library(dyadicdist)

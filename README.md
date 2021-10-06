@@ -108,6 +108,8 @@ ggplot() +
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
 
+# x
+
 ``` r
 #library(dyadicdist)
 ## basic example code
