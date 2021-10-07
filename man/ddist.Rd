@@ -36,7 +36,7 @@ ddist(
 \item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[rowwise()]{dplyr} and makes the \link[ddist()]{dyadicdist} function considerably more time-consuming}
 }
 \value{
-a \link[tibble]{tibble} with dyads and dyadic distances
+a long \link[tibble]{tibble} with dyads and dyadic distances
 }
 \description{
 This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
