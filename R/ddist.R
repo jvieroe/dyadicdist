@@ -20,7 +20,7 @@
 #' "stockholm", 2, 59.33, 18.07,
 #' "oslo", 51, 59.91, 10.75
 #' )
-#' dyadicdist::ddist(data = df, id = "idvar")
+#' ddist(data = df, id = "idvar")
 #' @author Jeppe Vierø
 #' @export
 
