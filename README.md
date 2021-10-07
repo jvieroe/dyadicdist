@@ -212,7 +212,7 @@ dyadicdist::ddist(cities_new,
 ## Output specification
 
 By default, `ddist()` returns the full list of dyadic distances between
-any points `i` and `j`, including cases where `j = i`.
+any points `i` and `j`, including `j = i`.
 
 In total, this amount to `nrow(data) * nrow(data)` dyads and includes by
 default:
