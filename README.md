@@ -15,6 +15,11 @@ stored as a long dyadic `tibble` with dimensions `((N * N), 2)` (number
 of rows vary with specified `options`) as opposed to a wide `matrix`
 with dimensions `N * N`.
 
+This is a very early development version of `dyadicdist`. Additional
+functions and improved functionality will be added in the immediate
+future. Please don’t hesitate to let me know of any errors you might
+come across.
+
 ## Quick example
 
 A simple example with no additional illustrates the workings of
@@ -117,11 +122,11 @@ Let’s have a look at the data from a more obvious point of view: the
 cities’ geographic location\!
 
 ``` r
-# Plot the cities
 library(sf)
 library(rnaturalearth)
 library(rgeos)
 
+# get map data on  the US
 usa <- rnaturalearth::ne_countries() %>% 
   sf::st_as_sf() %>% 
   filter(admin == "United States of America")
@@ -149,7 +154,7 @@ ggplot() +
           fill = "chartreuse3", color = "NA",
           alpha = .55) +
   geom_sf(data = city_sf,
-          size = 2,
+          size = 2.5,
           shape = 21,
           fill = "NA", color = "chartreuse3",
           alpha = 1.0) +
@@ -210,71 +215,88 @@ dyadicdist::ddist(cities_new,
 
 ## Output specification
 
-As a default, `ddist()` returns the full list of dyadic distances
-between any points `i` and `j`. This includes
+By default, `ddist()` returns the full list of dyadic distances between
+any points `i` and `j`, including cases where `j = i`.
+
+In total, this amount to `nrow(data) * nrow(data)` dyads and includes by
+default:
 
   - dyads between any observation and itself, i.e. dyads of type `(i,i)`
     (see example above)
   - duplicated dyads, i.e. both `(i,j)` and `(j,i)`
 
-Both of these are optional however.
+Both of these inclusions are optional, however.
 
   - Sort out `(i,i)` dyads (the diagonal in a distance matrix) by
     specifying `diagonal = FALSE`
+      - returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads
   - Sort out duplicated dyads by specifying `duplicates = FALSE`
-
-### Let’s compare the outputs\!
-
-The default call should return a `tibble` where the number of dyads is
-equal to:
-
-``` r
-nrow(cities)*nrow(cities)
-#> [1] 10000
-dyadicdist::ddist(cities,
-                  id = "id") %>% 
-  nrow()
-#> [1] 10000
-```
-
-With `diagonal = FALSE` the number of dyads should be equal to:
-
-``` r
-nrow(cities) * (nrow(cities)-1)
-#> [1] 9900
-dyadicdist::ddist(cities,
-                  id = "id",
-                  diagonal = FALSE) %>% 
-  nrow()
-#> [1] 9900
-```
-
-with `duplicates = FALSE` the number of dyads should be equal to:
-
-``` r
-(nrow(cities) * (nrow(cities)-1)/2)+nrow(cities)
-#> [1] 5050
-dyadicdist::ddist(cities,
-                  id = "id",
-                  duplicates = FALSE) %>% 
-  nrow()
-#> [1] 5050
-```
-
-With `diagonal = FALSE` and `duplicates = FALSE` the number of dyads
-should be equal to:
-
-``` r
-(nrow(cities) * (nrow(cities)-1)/2)
-#> [1] 4950
-dyadicdist::ddist(cities,
-                  id = "id",
-                  diagonal = FALSE,
-                  duplicates = FALSE) %>% 
-  nrow()
-#> [1] 4950
-```
+      - returns a `tibble` with `(nrow(data) *
+        (nrow(data)-1)/2)+nrow(data)` dyads
+  - Sort out both by specifying `diagonal = FALSE` **and** `duplicates =
+    FALSE`
+      - returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads
 
 ## CRS transformations
 
-x
+By default `ddist()` assumes unprojected coordinates in basic
+latitude/longitude format (EPSG code `4326`) when converting the raw
+data provided in the `data` argument to a spatial feature. This is
+consistent with the default when converting latitude/longitude data to
+spatial features in the `sf` package (see `sf::st_as_sf()`). You can
+apply a different CRS by providing a valid EPSG code of type `numeric`
+with the `crs` argument.
+
+Additionally, `ddist()` allows you to transform the CRS before
+calculating dyadic distances using the `crs_transform` and `new_crs`
+arguments:
+
+``` r
+dyadicdist::ddist(cities,
+                  id = "id",
+                  crs_transform = T,
+                  new_crs = 3359)
+#> # A tibble: 10,000 x 10
+#>    distance city_1      state_1 country_1  id_1 city_2   state_2 country_2  id_2
+#>       <dbl> <chr>       <chr>   <chr>     <int> <chr>    <chr>   <chr>     <int>
+#>  1       0  Plattsburgh " NY"   " USA"        1 Plattsb~ " NY"   " USA"        1
+#>  2 1259899. Plattsburgh " NY"   " USA"        1 Peekski~ " NY"   " USA"        2
+#>  3  832853. Plattsburgh " NY"   " USA"        1 Oneida   " NY"   " USA"        3
+#>  4 1391816. Plattsburgh " NY"   " USA"        1 New Roc~ " NY"   " USA"        4
+#>  5 1394855. Plattsburgh " NY"   " USA"        1 Mount V~ " NY"   " USA"        5
+#>  6 1223515. Plattsburgh " NY"   " USA"        1 Middlet~ " NY"   " USA"        6
+#>  7 1505968. Plattsburgh " NY"   " USA"        1 Lockport " NY"   " USA"        7
+#>  8 1593647. Plattsburgh " NY"   " USA"        1 Lackawa~ " NY"   " USA"        8
+#>  9 1029562. Plattsburgh " NY"   " USA"        1 Kingston " NY"   " USA"        9
+#> 10  668938. Plattsburgh " NY"   " USA"        1 Johnsto~ " NY"   " USA"       10
+#> # ... with 9,990 more rows, and 1 more variable: match_id <chr>
+```
+
+Note that the choice of CRS may impact your results considerably. For
+more information on choosing an appropriate CRS, see
+[here](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/),
+[here](https://docs.qgis.org/3.4/en/docs/gentle_gis_introduction/coordinate_reference_systems.html),
+[here](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf),
+and
+[here](http://www.geo.hunter.cuny.edu/~jochen/gtech201/lectures/lec6concepts/map%20coordinate%20systems/how%20to%20choose%20a%20projection.htm)
+
+# Acknowledgements
+
+  - The R Core Team for developing and maintaining the language
+  - The authors of the amazing `sf` package. `sf` has greatly reduced
+    barriers to entry for anyone working with spatial data in `R` and
+    those who wish to do so
+      - Edzer Pebesma ([edzer](https://github.com/edzer))
+      - Roger Bivand ([rsbivand](https://github.com/rsbivand))
+      - Etienne Racine ([etiennebr](https://github.com/etiennebr))
+      - Michael Sumner ([mdsumner](https://github.com/mdsumner))
+      - Ian Cook ([ianmcook](https://github.com/ianmcook))
+      - Tim Keitt ([thk686](https://github.com/thk686))
+      - Robin Lovelace
+        ([Robinlovelace](https://github.com/Robinlovelace))
+      - Hadley Wickham ([hadley](https://github.com/hadley))
+      - Jeroen Ooms ([jeroen](https://github.com/jeroen))
+      - Kirill Müller ([krlmlr](https://github.com/krlmlr))
+      - Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85))
+      - Dan Baston ([dbaston](https://github.com/dbaston))
+      - Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot))
