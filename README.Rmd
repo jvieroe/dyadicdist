@@ -61,16 +61,14 @@ Below, I describe some of the key features and important options of `dyadicdist:
 
 Let's use some data on the 100 largest US cities as a working example!
 
-```{r getdata, warning=F, message=F}
+First, get the city data using `rvest`:
+
+```{r, warning=F, message=F}
 library(tidyverse)
 library(magrittr)
 library(janitor)
 library(rvest)
-```
 
-First, get the city data using `rvest`:
-
-```{r, warning=F, message=F}
 city_url <- "https://www.latlong.net/category/cities-236-15.html"
 
 cities <- city_url %>%
@@ -94,7 +92,7 @@ cities
 
 ```
 
-Let's have a look at the data from a more obvious point of view: the cities' geographic location!
+Let's have a look at the data from a more obvious point of view: the cities' geographic location in the US!
 
 ```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
 library(sf)
@@ -141,7 +139,7 @@ ggplot() +
 ```
 
 ## Basic functionality
-`dyadicdist::ddist()` has certain key inputs. It takes a `data.frame` or `tibble` with specified latitude and longitude variables as input. Furthermore, it requires the specification of a unique id variable which can be either `numeric`, `integer`, `factor`, or `character`.
+`dyadicdist::ddist()` has __two key inputs__. It requires a `data.frame` or `tibble` with specified latitude and longitude variables. Furthermore, it requires the specification of a unique id variable which can be either `numeric`, `integer`, `factor`, or `character`.
 
 ```{r, warning=F, message=F}
 dyadicdist::ddist(cities,
