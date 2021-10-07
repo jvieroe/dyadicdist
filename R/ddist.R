@@ -10,8 +10,8 @@
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS. See \url{https://epsg.org/home.html}
 #' @param diagonal a logical value. Keep the diagonal component in the distance matrix with dyads (i,i) and distance zero? Defaults to TRUE
-#' @param duplicates a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[dplyr]{rowwise()} and makes the \link[dyadicdist]{ddist()} function considerably more time-consuming
-#' @return ... y
+#' @param duplicates a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[rowwise()]{dplyr} and makes the \link[ddist()]{dyadicdist} function considerably more time-consuming
+#' @return ... a tibble
 #' @author Jeppe Vierø
 #' @export
 

@@ -33,10 +33,10 @@ ddist(
 
 \item{diagonal}{a logical value. Keep the diagonal component in the distance matrix with dyads (i,i) and distance zero? Defaults to TRUE}
 
-\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[dplyr]{rowwise()} and makes the \link[dyadicdist]{ddist()} function considerably more time-consuming}
+\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[rowwise()]{dplyr} and makes the \link[ddist()]{dyadicdist} function considerably more time-consuming}
 }
 \value{
-... y
+... a tibble
 }
 \description{
 This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
