@@ -41,6 +41,16 @@ a long \link[tibble]{tibble} with dyads and dyadic distances
 \description{
 This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
 }
+\examples{
+library(tibble)
+df <- tibble::tribble(
+~city_name, ~idvar, ~latitude, ~longitude,
+"copenhagen", 5, 55.68, 12.58,
+"stockholm", 2, 59.33, 18.07,
+"oslo", 51, 59.91, 10.75
+)
+dyadicdist::ddist(data = df, id = "idvar")
+}
 \author{
 Jeppe Vierø
 }
