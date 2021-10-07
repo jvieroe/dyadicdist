@@ -33,7 +33,7 @@ ddist(
 
 \item{diagonal}{a logical value. Keep the diagonal component in the distance matrix with dyads (i,i) and distance zero? Defaults to TRUE}
 
-\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[rowwise()]{dplyr} and makes the \link[ddist()]{dyadicdist} function considerably more time-consuming}
+\item{duplicates}{a logical value. Keep "identical" dyads (i,j) and (j,i)? Defaults to TRUE. If set to FALSE, only one observation per dyad is kept. Note that this uses \link[rowwise]{dplyr} and makes the \link[ddist]{dyadicdist} function considerably more time-consuming}
 }
 \value{
 a long \link[tibble]{tibble} with dyads and dyadic distances
