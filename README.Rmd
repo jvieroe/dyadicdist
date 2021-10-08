@@ -65,7 +65,7 @@ usa <- dyadicdist::usa
 
 ```
 
-Let's have a look at the cities' geographic location in the US!
+Let's have a look at the cities' geographic location in the US:
 
 ```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
 library(sf)
