@@ -65,77 +65,20 @@ devtools::install_github("jvieroe/dyadicdist")
 
 ## Working example: US cities
 
-Below, I describe some of the key features and important options of
-`dyadicdist::ddist()`.
-
-Let’s use some data on the 100 largest US cities as a working example\!
-
-First, get the city data using `rvest`:
+Below, I describe some of the key features of `dyadicdis`. Let’s use
+some data on the 100 largest US cities as a working example\!
 
 ``` r
-library(tidyverse)
-library(magrittr)
-library(janitor)
-library(rvest)
-
-city_url <- "https://www.latlong.net/category/cities-236-15.html"
-
-cities <- city_url %>%
-   read_html() %>%
-   html_nodes("table")
-
-cities <- rbind(html_table(cities[[1]])) %>% 
-  janitor::clean_names()
-
-cities <- cities %>% 
-  mutate(city = sapply(strsplit(as.character(cities$place_name),","), "[", 1),
-         state = sapply(strsplit(as.character(cities$place_name),","), "[", 2),
-         country = sapply(strsplit(as.character(cities$place_name),","), "[", 3)) %>% 
-  select(-place_name)
-
-cities <- cities %>% 
-  mutate(id = row_number())
-
-# Inspect it!
-cities
-#> # A tibble: 100 x 6
-#>    latitude longitude city         state country    id
-#>       <dbl>     <dbl> <chr>        <chr> <chr>   <int>
-#>  1     44.7     -73.5 Plattsburgh  " NY" " USA"      1
-#>  2     41.3     -73.9 Peekskill    " NY" " USA"      2
-#>  3     43.1     -75.7 Oneida       " NY" " USA"      3
-#>  4     40.9     -73.8 New Rochelle " NY" " USA"      4
-#>  5     40.9     -73.8 Mount Vernon " NY" " USA"      5
-#>  6     41.5     -74.4 Middletown   " NY" " USA"      6
-#>  7     43.2     -78.7 Lockport     " NY" " USA"      7
-#>  8     42.8     -78.8 Lackawanna   " NY" " USA"      8
-#>  9     41.9     -74.0 Kingston     " NY" " USA"      9
-#> 10     43.0     -74.4 Johnstown    " NY" " USA"     10
-#> # ... with 90 more rows
+cities <- dyadicdist::cities
+usa <- dyadicdist::usa
 ```
 
-Let’s have a look at the data from a more obvious point of view: the
-cities’ geographic location in the US\!
+Let’s have a look at the cities’ geographic location in the US\!
 
 ``` r
 library(sf)
-library(rnaturalearth)
-library(rgeos)
 
-# get map data on  the US
-usa <- rnaturalearth::ne_countries() %>% 
-  sf::st_as_sf() %>% 
-  filter(admin == "United States of America")
-
-usa <- usa %>% 
-  st_crop(.,
-          st_bbox(c(xmin = -128,
-                    xmax = -57,
-                    ymin = 20,
-                    ymax = 50),
-                  crs = st_crs(usa)))
-
-city_sf <- cities %>% 
+city_sf <- cities %>%
   st_as_sf(.,
            coords = c("longitude", "latitude"),
            crs = 4326)
@@ -172,18 +115,18 @@ can be either `numeric`, `integer`, `factor`, or `character`.
 dyadicdist::ddist(cities,
                   id = "id")
 #> # A tibble: 10,000 x 10
-#>    distance city_1      state_1 country_1  id_1 city_2   state_2 country_2  id_2
-#>       <dbl> <chr>       <chr>   <chr>     <int> <chr>    <chr>   <chr>     <int>
-#>  1       0  Plattsburgh " NY"   " USA"        1 Plattsb~ " NY"   " USA"        1
-#>  2  380730. Plattsburgh " NY"   " USA"        1 Peekski~ " NY"   " USA"        2
-#>  3  250647. Plattsburgh " NY"   " USA"        1 Oneida   " NY"   " USA"        3
-#>  4  420792. Plattsburgh " NY"   " USA"        1 New Roc~ " NY"   " USA"        4
-#>  5  421712. Plattsburgh " NY"   " USA"        1 Mount V~ " NY"   " USA"        5
-#>  6  369616. Plattsburgh " NY"   " USA"        1 Middlet~ " NY"   " USA"        6
-#>  7  452578. Plattsburgh " NY"   " USA"        1 Lockport " NY"   " USA"        7
-#>  8  479240. Plattsburgh " NY"   " USA"        1 Lackawa~ " NY"   " USA"        8
-#>  9  310860. Plattsburgh " NY"   " USA"        1 Kingston " NY"   " USA"        9
-#> 10  201598. Plattsburgh " NY"   " USA"        1 Johnsto~ " NY"   " USA"       10
+#>    distance city_1     state_1 country_1  id_1 city_2    state_2 country_2  id_2
+#>       <dbl> <chr>      <chr>   <chr>     <int> <chr>     <chr>   <chr>     <int>
+#>  1       0  Rensselaer NY      USA         456 Renssela~ NY      USA         456
+#>  2  229607. Rensselaer NY      USA         456 Plattsbu~ NY      USA         367
+#>  3  151125. Rensselaer NY      USA         456 Peekskill NY      USA         405
+#>  4  164483. Rensselaer NY      USA         456 Oneida    NY      USA          77
+#>  5  191483. Rensselaer NY      USA         456 New Roch~ NY      USA          84
+#>  6  192269. Rensselaer NY      USA         456 Mount Ve~ NY      USA         268
+#>  7  144255. Rensselaer NY      USA         456 Middleto~ NY      USA         348
+#>  8  408370. Rensselaer NY      USA         456 Lockport  NY      USA         396
+#>  9  416629. Rensselaer NY      USA         456 Lackawan~ NY      USA         235
+#> 10   82166. Rensselaer NY      USA         456 Kingston  NY      USA         297
 #> # ... with 9,990 more rows, and 1 more variable: match_id <chr>
 ```
 
@@ -202,10 +145,10 @@ dyadicdist::ddist(cities_new,
                   longitude = "lon") %>% 
   head(2)
 #> # A tibble: 2 x 10
-#>   distance city_1      state_1 country_1  id_1 city_2    state_2 country_2  id_2
-#>      <dbl> <chr>       <chr>   <chr>     <int> <chr>     <chr>   <chr>     <int>
-#> 1       0  Plattsburgh " NY"   " USA"        1 Plattsbu~ " NY"   " USA"        1
-#> 2  380730. Plattsburgh " NY"   " USA"        1 Peekskill " NY"   " USA"        2
+#>   distance city_1     state_1 country_1  id_1 city_2     state_2 country_2  id_2
+#>      <dbl> <chr>      <chr>   <chr>     <int> <chr>      <chr>   <chr>     <int>
+#> 1       0  Rensselaer NY      USA         456 Rensselaer NY      USA         456
+#> 2  229607. Rensselaer NY      USA         456 Plattsbur~ NY      USA         367
 #> # ... with 1 more variable: match_id <chr>
 ```
 
@@ -253,18 +196,18 @@ dyadicdist::ddist(cities,
                   crs_transform = T,
                   new_crs = 3359)
 #> # A tibble: 10,000 x 10
-#>    distance city_1      state_1 country_1  id_1 city_2   state_2 country_2  id_2
-#>       <dbl> <chr>       <chr>   <chr>     <int> <chr>    <chr>   <chr>     <int>
-#>  1       0  Plattsburgh " NY"   " USA"        1 Plattsb~ " NY"   " USA"        1
-#>  2 1259899. Plattsburgh " NY"   " USA"        1 Peekski~ " NY"   " USA"        2
-#>  3  832853. Plattsburgh " NY"   " USA"        1 Oneida   " NY"   " USA"        3
-#>  4 1391816. Plattsburgh " NY"   " USA"        1 New Roc~ " NY"   " USA"        4
-#>  5 1394855. Plattsburgh " NY"   " USA"        1 Mount V~ " NY"   " USA"        5
-#>  6 1223515. Plattsburgh " NY"   " USA"        1 Middlet~ " NY"   " USA"        6
-#>  7 1505968. Plattsburgh " NY"   " USA"        1 Lockport " NY"   " USA"        7
-#>  8 1593647. Plattsburgh " NY"   " USA"        1 Lackawa~ " NY"   " USA"        8
-#>  9 1029562. Plattsburgh " NY"   " USA"        1 Kingston " NY"   " USA"        9
-#> 10  668938. Plattsburgh " NY"   " USA"        1 Johnsto~ " NY"   " USA"       10
+#>    distance city_1     state_1 country_1  id_1 city_2    state_2 country_2  id_2
+#>       <dbl> <chr>      <chr>   <chr>     <int> <chr>     <chr>   <chr>     <int>
+#>  1       0  Rensselaer NY      USA         456 Renssela~ NY      USA         456
+#>  2  761157. Rensselaer NY      USA         456 Plattsbu~ NY      USA         367
+#>  3  498748. Rensselaer NY      USA         456 Peekskill NY      USA         405
+#>  4  545801. Rensselaer NY      USA         456 Oneida    NY      USA          77
+#>  5  631659. Rensselaer NY      USA         456 New Roch~ NY      USA          84
+#>  6  634250. Rensselaer NY      USA         456 Mount Ve~ NY      USA         268
+#>  7  476414. Rensselaer NY      USA         456 Middleto~ NY      USA         348
+#>  8 1355615. Rensselaer NY      USA         456 Lockport  NY      USA         396
+#>  9 1382516. Rensselaer NY      USA         456 Lackawan~ NY      USA         235
+#> 10  271427. Rensselaer NY      USA         456 Kingston  NY      USA         297
 #> # ... with 9,990 more rows, and 1 more variable: match_id <chr>
 ```
 
@@ -296,3 +239,7 @@ and
       - Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85))
       - Dan Baston ([dbaston](https://github.com/dbaston))
       - Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot))
+  - [Natural Earth](https://www.naturalearthdata.com/) for map data for
+    the working example
+  - [LatLong.net](https://www.latlong.net/category/cities-236-15.html)
+    for city data for the working example

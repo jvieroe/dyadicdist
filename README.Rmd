@@ -57,19 +57,23 @@ devtools::install_github("jvieroe/dyadicdist")
 ```
 ## Working example: US cities
 
-Below, I describe some of the key features and important options of `dyadicdist::ddist()`.
-
-Let's use some data on the 100 largest US cities as a working example!
-
-
-Let's have a look at the data from a more obvious point of view: the cities' geographic location in the US!
+Below, I describe some of the key features of `dyadicdis`. Let's use some data on the 100 largest US cities as a working example!
 
 ```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
+cities <- dyadicdist::cities
+usa <- dyadicdist::usa
+
+```
+
+Let's have a look at the cities' geographic location in the US!
+
+```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
+library(sf)
+
 city_sf <- cities %>%
   st_as_sf(.,
            coords = c("longitude", "latitude"),
            crs = 4326)
-
 
 ggplot() +
   geom_sf(data = usa,
@@ -166,4 +170,6 @@ Note that the choice of CRS may impact your results considerably. For more infor
     + Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85))
     + Dan Baston ([dbaston](https://github.com/dbaston))
     + Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot))
+* [Natural Earth](https://www.naturalearthdata.com/) for map data for the working example
+* [LatLong.net](https://www.latlong.net/category/cities-236-15.html) for city data for the working example
 
