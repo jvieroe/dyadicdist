@@ -65,27 +65,11 @@ Let's use some data on the 100 largest US cities as a working example!
 Let's have a look at the data from a more obvious point of view: the cities' geographic location in the US!
 
 ```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
-library(sf)
-library(rnaturalearth)
-library(rgeos)
-
-# get map data on  the US
-usa <- rnaturalearth::ne_countries() %>% 
-  sf::st_as_sf() %>% 
-  filter(admin == "United States of America")
-
-usa <- usa %>% 
-  st_crop(.,
-          st_bbox(c(xmin = -128,
-                    xmax = -57,
-                    ymin = 20,
-                    ymax = 50),
-                  crs = st_crs(usa)))
-
-city_sf <- cities %>% 
+city_sf <- cities %>%
   st_as_sf(.,
            coords = c("longitude", "latitude"),
            crs = 4326)
+
 
 ggplot() +
   geom_sf(data = usa,
