@@ -61,36 +61,6 @@ Below, I describe some of the key features and important options of `dyadicdist:
 
 Let's use some data on the 100 largest US cities as a working example!
 
-First, get the city data using `rvest`:
-
-```{r, warning=F, message=F}
-library(tidyverse)
-library(magrittr)
-library(janitor)
-library(rvest)
-
-city_url <- "https://www.latlong.net/category/cities-236-15.html"
-
-cities <- city_url %>%
-   read_html() %>%
-   html_nodes("table")
-
-cities <- rbind(html_table(cities[[1]])) %>% 
-  janitor::clean_names()
-
-cities <- cities %>% 
-  mutate(city = sapply(strsplit(as.character(cities$place_name),","), "[", 1),
-         state = sapply(strsplit(as.character(cities$place_name),","), "[", 2),
-         country = sapply(strsplit(as.character(cities$place_name),","), "[", 3)) %>% 
-  select(-place_name)
-
-cities <- cities %>% 
-  mutate(id = row_number())
-
-# Inspect it!
-cities
-
-```
 
 Let's have a look at the data from a more obvious point of view: the cities' geographic location in the US!
 
