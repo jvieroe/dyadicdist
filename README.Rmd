@@ -27,7 +27,7 @@ The main contribution of `dyadicdist::ddist()` is that the output is stored as a
 This is a very early development version of `dyadicdist`. Additional functions and improved functionality will be added in the immediate future. Please don't hesitate to let me know of any errors you might come across.
 
 ## Quick example
-A simple example with no additional illustrates the workings of `ddist()`. It takes as input a `data.frame` or a `tibble` and returns a `tibble` with dyadic distances for any combination of points `i` and `j` (see more below)
+A simple example with no additional illustrates the workings of `ddist()`. It takes as input a `data.frame` or a `tibble` and returns a `tibble` with dyadic distances for any combination of points i and j (see more below)
 
 ```{r, warning=F, message=F}
 library(tidyverse)
@@ -120,16 +120,16 @@ ddist(cities_new,
 ```
 
 ## Output specification
-By default, `ddist()` returns the full list of dyadic distances between any points `i` and `j`, including `j = i`. 
+By default, `ddist()` returns the full list of dyadic distances between any points i and j, including j = i. 
 
 In total, this amount to `nrow(data) * nrow(data)` dyads and includes by default:
 
-* dyads between any observation and itself, i.e. dyads of type `(i,i)` (see example above)
-* duplicated dyads, i.e. both `(i,j)` and `(j,i)`
+* dyads between any observation and itself, i.e. dyads of type (i,i) (see example above)
+* duplicated dyads, i.e. both (i,j) and (j,i)
 
 Both of these inclusions are optional, however. 
 
-* Sort out `(i,i)` dyads (the diagonal in a distance matrix) by specifying `diagonal = FALSE`
+* Sort out (i,i) dyads (the diagonal in a distance matrix) by specifying `diagonal = FALSE`
     + returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads
 * Sort out duplicated dyads by specifying `duplicates = FALSE`
     + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)+nrow(data)` dyads

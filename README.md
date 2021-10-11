@@ -22,7 +22,7 @@ come across.
 
 A simple example with no additional illustrates the workings of
 `ddist()`. It takes as input a `data.frame` or a `tibble` and returns a
-`tibble` with dyadic distances for any combination of points `i` and `j`
+`tibble` with dyadic distances for any combination of points i and j
 (see more below)
 
 ``` r
@@ -155,18 +155,18 @@ ddist(cities_new,
 ## Output specification
 
 By default, `ddist()` returns the full list of dyadic distances between
-any points `i` and `j`, including `j = i`.
+any points i and j, including j = i.
 
 In total, this amount to `nrow(data) * nrow(data)` dyads and includes by
 default:
 
-  - dyads between any observation and itself, i.e. dyads of type `(i,i)`
+  - dyads between any observation and itself, i.e. dyads of type (i,i)
     (see example above)
-  - duplicated dyads, i.e. both `(i,j)` and `(j,i)`
+  - duplicated dyads, i.e. both (i,j) and (j,i)
 
 Both of these inclusions are optional, however.
 
-  - Sort out `(i,i)` dyads (the diagonal in a distance matrix) by
+  - Sort out (i,i) dyads (the diagonal in a distance matrix) by
     specifying `diagonal = FALSE`
       - returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads
   - Sort out duplicated dyads by specifying `duplicates = FALSE`
