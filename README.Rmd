@@ -27,11 +27,11 @@ The main contribution of `dyadicdist::ddist()` is that the output is stored as a
 This is a very early development version of `dyadicdist`. Additional functions and improved functionality will be added in the immediate future. Please don't hesitate to let me know of any errors you might come across.
 
 ## Quick example
-A simple example with no additional illustrates the workings of `dyadicdist::ddist()`. It takes as input a `data.frame` or a `tibble` and returns a `tibble` with dyadic distances for any combination of points `i` and `j` (see more below)
+A simple example with no additional illustrates the workings of `ddist()`. It takes as input a `data.frame` or a `tibble` and returns a `tibble` with dyadic distances for any combination of points `i` and `j` (see more below)
 
 ```{r, warning=F, message=F}
-library(dyadicdist)
 library(tidyverse)
+library(dyadicdist)
 
 df <- tibble::tribble(
   ~city_name, ~idvar, ~latitude, ~longitude,
@@ -40,8 +40,8 @@ df <- tibble::tribble(
   "oslo", 51, 59.91, 10.75
 )
 
-dyadicdist::ddist(data = df,
-                  id = "idvar")
+ddist(data = df,
+      id = "idvar")
 
 ```
 
@@ -57,7 +57,7 @@ devtools::install_github("jvieroe/dyadicdist")
 ```
 ## Working example: US cities
 
-Below, I describe some of the key features of `dyadicdis`. Let's use some data on the 100 largest US cities as a working example!
+Below, I describe some of the key features of `dyadicdist`. Let's use some data on the 100 largest US cities as a working example!
 
 ```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
 cities <- dyadicdist::cities
@@ -97,11 +97,11 @@ ggplot() +
 ```
 
 ## Basic functionality
-`dyadicdist::ddist()` has __two key inputs__. It requires a `data.frame` or `tibble` with specified latitude and longitude variables. Furthermore, it requires the specification of a unique id variable which can be either `numeric`, `integer`, `factor`, or `character`.
+`ddist()` has __two key inputs__. It requires a `data.frame` or `tibble` with specified latitude and longitude variables. Furthermore, it requires the specification of a unique id variable which can be either `numeric`, `integer`, `factor`, or `character`.
 
 ```{r, warning=F, message=F}
-dyadicdist::ddist(cities,
-                  id = "id")
+ddist(cities,
+      id = "id")
 
 ```
 As a default, latitude/longitude are specified as `"latitude"` and `"longitude"`, respectively, and don't need manual inputs. If necessary their variable names can be specified in the `ddist()` call:
@@ -111,10 +111,10 @@ cities_new <- cities %>%
   rename(lat = latitude,
          lon = longitude)
 
-dyadicdist::ddist(cities_new,
-                  id = "id",
-                  latitude = "lat",
-                  longitude = "lon") %>% 
+ddist(cities_new,
+      id = "id",
+      latitude = "lat",
+      longitude = "lon") %>% 
   head(2)
 
 ```
@@ -143,10 +143,10 @@ By default `ddist()` assumes unprojected coordinates in basic latitude/longitude
 Additionally, `ddist()` allows you to transform the CRS before calculating dyadic distances using the `crs_transform` and `new_crs` arguments:
 
 ```{r, warning=F, message=F}
-dyadicdist::ddist(cities,
-                  id = "id",
-                  crs_transform = T,
-                  new_crs = 3359)
+ddist(cities,
+      id = "id",
+      crs_transform = T,
+      new_crs = 3359)
 
 ```
 
@@ -170,6 +170,5 @@ Note that the choice of CRS may impact your results considerably. For more infor
     + Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85))
     + Dan Baston ([dbaston](https://github.com/dbaston))
     + Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot))
-* [Natural Earth](https://www.naturalearthdata.com/) for map data for the working example
-* [LatLong.net](https://www.latlong.net/category/cities-236-15.html) for city data for the working example
-
+* [Natural Earth](https://www.naturalearthdata.com/) for the `dyadicdist::usa` data
+* [LatLong.net](https://www.latlong.net/category/cities-236-15.html) for the `dyadicdist::cities` data

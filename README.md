@@ -21,13 +21,13 @@ come across.
 ## Quick example
 
 A simple example with no additional illustrates the workings of
-`dyadicdist::ddist()`. It takes as input a `data.frame` or a `tibble`
-and returns a `tibble` with dyadic distances for any combination of
-points `i` and `j` (see more below)
+`ddist()`. It takes as input a `data.frame` or a `tibble` and returns a
+`tibble` with dyadic distances for any combination of points `i` and `j`
+(see more below)
 
 ``` r
-library(dyadicdist)
 library(tidyverse)
+library(dyadicdist)
 
 df <- tibble::tribble(
   ~city_name, ~idvar, ~latitude, ~longitude,
@@ -36,8 +36,8 @@ df <- tibble::tribble(
   "oslo", 51, 59.91, 10.75
 )
 
-dyadicdist::ddist(data = df,
-                  id = "idvar")
+ddist(data = df,
+      id = "idvar")
 #> # A tibble: 9 x 6
 #>   distance city_name_1 idvar_1 city_name_2 idvar_2 match_id
 #>      <dbl> <chr>         <dbl> <chr>         <dbl> <chr>   
@@ -65,7 +65,7 @@ devtools::install_github("jvieroe/dyadicdist")
 
 ## Working example: US cities
 
-Below, I describe some of the key features of `dyadicdis`. Let’s use
+Below, I describe some of the key features of `dyadicdist`. Let’s use
 some data on the 100 largest US cities as a working example\!
 
 ``` r
@@ -106,14 +106,14 @@ ggplot() +
 
 ## Basic functionality
 
-`dyadicdist::ddist()` has **two key inputs**. It requires a `data.frame`
-or `tibble` with specified latitude and longitude variables.
-Furthermore, it requires the specification of a unique id variable which
-can be either `numeric`, `integer`, `factor`, or `character`.
+`ddist()` has **two key inputs**. It requires a `data.frame` or `tibble`
+with specified latitude and longitude variables. Furthermore, it
+requires the specification of a unique id variable which can be either
+`numeric`, `integer`, `factor`, or `character`.
 
 ``` r
-dyadicdist::ddist(cities,
-                  id = "id")
+ddist(cities,
+      id = "id")
 #> # A tibble: 10,000 x 10
 #>    distance city_1     state_1 country_1  id_1 city_2    state_2 country_2  id_2
 #>       <dbl> <chr>      <chr>   <chr>     <int> <chr>     <chr>   <chr>     <int>
@@ -139,10 +139,10 @@ cities_new <- cities %>%
   rename(lat = latitude,
          lon = longitude)
 
-dyadicdist::ddist(cities_new,
-                  id = "id",
-                  latitude = "lat",
-                  longitude = "lon") %>% 
+ddist(cities_new,
+      id = "id",
+      latitude = "lat",
+      longitude = "lon") %>% 
   head(2)
 #> # A tibble: 2 x 10
 #>   distance city_1     state_1 country_1  id_1 city_2     state_2 country_2  id_2
@@ -191,10 +191,10 @@ calculating dyadic distances using the `crs_transform` and `new_crs`
 arguments:
 
 ``` r
-dyadicdist::ddist(cities,
-                  id = "id",
-                  crs_transform = T,
-                  new_crs = 3359)
+ddist(cities,
+      id = "id",
+      crs_transform = T,
+      new_crs = 3359)
 #> # A tibble: 10,000 x 10
 #>    distance city_1     state_1 country_1  id_1 city_2    state_2 country_2  id_2
 #>       <dbl> <chr>      <chr>   <chr>     <int> <chr>     <chr>   <chr>     <int>
@@ -239,7 +239,7 @@ and
       - Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85))
       - Dan Baston ([dbaston](https://github.com/dbaston))
       - Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot))
-  - [Natural Earth](https://www.naturalearthdata.com/) for map data for
-    the working example
+  - [Natural Earth](https://www.naturalearthdata.com/) for the
+    `dyadicdist::usa` data
   - [LatLong.net](https://www.latlong.net/category/cities-236-15.html)
-    for city data for the working example
+    for the `dyadicdist::cities` data
