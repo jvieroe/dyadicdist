@@ -2,11 +2,8 @@
 #'
 #' This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
 #'
-#' @param data an object of class `data.frame` or `tibble`.
+#' @param data an object of class `sf` (`"sf" "data.frame"` or `"sf" "tbl_df" "tbl" "data.frame"`)
 #' @param id a variable uniquely idenfiying geospatial points. Can be of type numeric, integer, character, or factor
-#' @param longitude name of the numeric longitude variable. Defaults to "longitude"
-#' @param latitude name of the numeric latitude variable. Defaults to "latitude"
-#' @param crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates. Defaults to 4326.
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS. See `rgdal::make_EPSG()` or \url{https://epsg.org/home.html}
 #' @param diagonal a logical value. Keep the diagonal component in the distance matrix with dyads (i,i) and distance zero? Defaults to TRUE
@@ -19,48 +16,24 @@
 #' "copenhagen", 5, 55.68, 12.58,
 #' "stockholm", 2, 59.33, 18.07,
 #' "oslo", 51, 59.91, 10.75
-#' )
+#' ) %>% st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
 #' ddist(data = df, id = "idvar")
 #' @author Jeppe Vierø
 #' @export
 
-ddist <- function(data = NULL,
-                  id = NULL,
-                  longitude = "longitude",
-                  latitude = "latitude",
-                  crs = 4326,
-                  crs_transform = FALSE,
-                  new_crs = NULL,
-                  diagonal = TRUE,
-                  duplicates = TRUE) {
+ddist_sf <- function(data = NULL,
+                     id = NULL,
+                     crs_transform = FALSE,
+                     new_crs = NULL,
+                     diagonal = TRUE,
+                     duplicates = TRUE) {
 
   check_crs(data = data,
             crs_transform = crs_transform,
             new_crs = new_crs)
 
-  check_data(data = data,
-             id = id,
-             longitude = longitude,
-             latitude = latitude)
-
-  if (longitude != "longitude") {
-
-    data <- data %>%
-      dplyr::rename(longitude = !!rlang::sym(longitude))
-
-  }
-
-  if (latitude != "latitude") {
-
-    data <- data %>%
-      dplyr::rename(latitude = !!rlang::sym(latitude))
-
-  }
-
-  data <- data %>%
-    dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
-    sf::st_as_sf(coords = c("longitude", "latitude"),
-                 crs = crs)
+  check_data_sf(data = data,
+                id = id)
 
   if (crs_transform == TRUE) {
 
@@ -88,7 +61,7 @@ ddist <- function(data = NULL,
 
   dist_mat <- dist_mat %>%
     dplyr::mutate(across(all_of(names(.)),
-                         ~ base::unclass(.x)))
+                        ~ base::unclass(.x)))
 
   dist_long <- dist_mat %>%
     tidyr::pivot_longer(cols = everything(),
@@ -143,7 +116,7 @@ ddist <- function(data = NULL,
               c(
                 row_id_1,
                 row_id_2)
-              ),
+            ),
             collapse = "_")
       ) %>%
       dplyr::distinct(.,
