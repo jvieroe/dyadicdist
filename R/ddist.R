@@ -82,8 +82,13 @@ ddist <- function(data = NULL,
   dist_mat <- sf::st_distance(temp,
                               temp,
                               by_element = FALSE) %>%
-    base::unclass() %>%
     base::as.data.frame()
+
+  length_units <- units(dist_mat[1,1])$numerator
+
+  dist_mat <- dist_mat %>%
+    mutate(across(all_of(names(.)),
+                  ~ base::unclass(.x)))
 
   dist_long <- dist_mat %>%
     tidyr::pivot_longer(cols = everything(),
@@ -100,7 +105,8 @@ ddist <- function(data = NULL,
       )
     ) %>%
     dplyr::mutate(row_id_2 = readr::parse_number(temp)) %>%
-    dplyr::select(-temp)
+    dplyr::select(-temp) %>%
+    dplyr::mutate(length_units = length_units)
 
   temp <- temp %>%
     tibble::tibble() %>%
