@@ -10,13 +10,13 @@
 The purpose of `dyadicdist` is to provide quick and easy calculation of
 dyadic distances between geo-referenced points.
 
-The main contribution of `dyadicdist::ddist()` is that the output is
-stored as a long dyadic `tibble` as opposed to a wide `matrix`.
+The main contribution of `dyadicdist::ddist()` and
+`dyadicdist::ddist_sf()` is that the output is stored as a long dyadic
+`tibble` as opposed to a wide `matrix`.
 
-This is a very early development version of `dyadicdist`. Additional
-functions and improved functionality will be added in the immediate
-future. Please don’t hesitate to let me know of any errors you might
-come across.
+This is a very early development version of `dyadicdist`. Please don’t
+hesitate to let me know of any errors and/or deficiencies you might come
+across.
 
 ## Quick example
 
