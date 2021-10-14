@@ -62,7 +62,7 @@ check_crs <- function(data,
     stop("New CRS is not numeric")
   }
 
-  if(!new_crs %in% rgdal::make_EPSG()$code)  {
+  if(crs_transform == TRUE && !new_crs %in% c(rgdal::make_EPSG()$code))  {
     stop("New CRS is not valid, see rgdal::make_EPSG()")
   }
 
@@ -145,7 +145,7 @@ check_crs_sf <- function(data,
     stop("New CRS is not numeric")
   }
 
-  if(!new_crs %in% rgdal::make_EPSG()$code)  {
+  if(crs_transform == TRUE && !new_crs %in% c(rgdal::make_EPSG()$code))  {
     stop("New CRS is not valid, see rgdal::make_EPSG()")
   }
 
