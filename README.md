@@ -63,10 +63,10 @@ library(devtools)
 devtools::install_github("jvieroe/dyadicdist")
 ```
 
-## Working example: US cities
+## Working example: `ddist()`
 
 Below, I describe some of the key features of `dyadicdist`. Let’s use
-some data on the 100 largest US cities as a working example\!
+some data on the 100 largest US cities as a working example:
 
 ``` r
 cities <- dyadicdist::cities
@@ -212,6 +212,8 @@ ddist(cities,
 #> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
 #> #   match_id <chr>
 ```
+
+For a list of supported CRS transformations, see `rgdal::make_EPSG()`.
 
 Note that the choice of CRS may impact your results considerably. For
 more information on choosing an appropriate CRS, see
