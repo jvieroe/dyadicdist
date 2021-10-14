@@ -14,9 +14,8 @@ The main contribution of `dyadicdist::ddist()` and
 `dyadicdist::ddist_sf()` is that the output is stored as a long dyadic
 `tibble` as opposed to a wide `matrix`.
 
-This is a very early development version of `dyadicdist`. Please don’t
-hesitate to let me know of any errors and/or deficiencies you might come
-across.
+This is a very early development version. Please don’t hesitate to let
+me know of any errors and/or deficiencies you might come across.
 
 ## Quick example
 
