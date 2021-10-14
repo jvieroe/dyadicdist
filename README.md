@@ -38,18 +38,18 @@ df <- tibble::tribble(
 
 ddist(data = df,
       id = "idvar")
-#> # A tibble: 9 x 6
-#>   distance city_name_1 idvar_1 city_name_2 idvar_2 match_id
-#>      <dbl> <chr>         <dbl> <chr>         <dbl> <chr>   
-#> 1       0  copenhagen        5 copenhagen        5 5_5     
-#> 2  521455. copenhagen        5 stockholm         2 5_2     
-#> 3  482648. copenhagen        5 oslo             51 5_51    
-#> 4  521455. stockholm         2 copenhagen        5 2_5     
-#> 5       0  stockholm         2 stockholm         2 2_2     
-#> 6  416439. stockholm         2 oslo             51 2_51    
-#> 7  482648. oslo             51 copenhagen        5 51_5    
-#> 8  416439. oslo             51 stockholm         2 51_2    
-#> 9       0  oslo             51 oslo             51 51_51
+#> # A tibble: 9 x 7
+#>   distance distance_units city_name_1 idvar_1 city_name_2 idvar_2 match_id
+#>      <dbl> <chr>          <chr>         <dbl> <chr>         <dbl> <chr>   
+#> 1       0  m              copenhagen        5 copenhagen        5 5_5     
+#> 2  521455. m              copenhagen        5 stockholm         2 5_2     
+#> 3  482648. m              copenhagen        5 oslo             51 5_51    
+#> 4  521455. m              stockholm         2 copenhagen        5 2_5     
+#> 5       0  m              stockholm         2 stockholm         2 2_2     
+#> 6  416439. m              stockholm         2 oslo             51 2_51    
+#> 7  482648. m              oslo             51 copenhagen        5 51_5    
+#> 8  416439. m              oslo             51 stockholm         2 51_2    
+#> 9       0  m              oslo             51 oslo             51 51_51
 ```
 
 ## Installation
@@ -114,20 +114,21 @@ requires the specification of a unique id variable which can be either
 ``` r
 ddist(cities,
       id = "id")
-#> # A tibble: 10,000 x 10
-#>    distance city_1     state_1 country_1  id_1 city_2    state_2 country_2  id_2
-#>       <dbl> <chr>      <chr>   <chr>     <int> <chr>     <chr>   <chr>     <int>
-#>  1       0  Rensselaer NY      USA         456 Renssela~ NY      USA         456
-#>  2  229607. Rensselaer NY      USA         456 Plattsbu~ NY      USA         367
-#>  3  151125. Rensselaer NY      USA         456 Peekskill NY      USA         405
-#>  4  164483. Rensselaer NY      USA         456 Oneida    NY      USA          77
-#>  5  191483. Rensselaer NY      USA         456 New Roch~ NY      USA          84
-#>  6  192269. Rensselaer NY      USA         456 Mount Ve~ NY      USA         268
-#>  7  144255. Rensselaer NY      USA         456 Middleto~ NY      USA         348
-#>  8  408370. Rensselaer NY      USA         456 Lockport  NY      USA         396
-#>  9  416629. Rensselaer NY      USA         456 Lackawan~ NY      USA         235
-#> 10   82166. Rensselaer NY      USA         456 Kingston  NY      USA         297
-#> # ... with 9,990 more rows, and 1 more variable: match_id <chr>
+#> # A tibble: 10,000 x 11
+#>    distance distance_units city_1     state_1 country_1  id_1 city_2     state_2
+#>       <dbl> <chr>          <chr>      <chr>   <chr>     <int> <chr>      <chr>  
+#>  1       0  m              Rensselaer NY      USA         456 Rensselaer NY     
+#>  2  229607. m              Rensselaer NY      USA         456 Plattsbur~ NY     
+#>  3  151125. m              Rensselaer NY      USA         456 Peekskill  NY     
+#>  4  164483. m              Rensselaer NY      USA         456 Oneida     NY     
+#>  5  191483. m              Rensselaer NY      USA         456 New Roche~ NY     
+#>  6  192269. m              Rensselaer NY      USA         456 Mount Ver~ NY     
+#>  7  144255. m              Rensselaer NY      USA         456 Middletown NY     
+#>  8  408370. m              Rensselaer NY      USA         456 Lockport   NY     
+#>  9  416629. m              Rensselaer NY      USA         456 Lackawanna NY     
+#> 10   82166. m              Rensselaer NY      USA         456 Kingston   NY     
+#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
+#> #   match_id <chr>
 ```
 
 As a default, latitude/longitude are specified as `"latitude"` and
@@ -144,12 +145,12 @@ ddist(cities_new,
       latitude = "lat",
       longitude = "lon") %>% 
   head(2)
-#> # A tibble: 2 x 10
-#>   distance city_1     state_1 country_1  id_1 city_2     state_2 country_2  id_2
-#>      <dbl> <chr>      <chr>   <chr>     <int> <chr>      <chr>   <chr>     <int>
-#> 1       0  Rensselaer NY      USA         456 Rensselaer NY      USA         456
-#> 2  229607. Rensselaer NY      USA         456 Plattsbur~ NY      USA         367
-#> # ... with 1 more variable: match_id <chr>
+#> # A tibble: 2 x 11
+#>   distance distance_units city_1     state_1 country_1  id_1 city_2      state_2
+#>      <dbl> <chr>          <chr>      <chr>   <chr>     <int> <chr>       <chr>  
+#> 1       0  m              Rensselaer NY      USA         456 Rensselaer  NY     
+#> 2  229607. m              Rensselaer NY      USA         456 Plattsburgh NY     
+#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
 ## Output specification
@@ -195,20 +196,21 @@ ddist(cities,
       id = "id",
       crs_transform = T,
       new_crs = 3359)
-#> # A tibble: 10,000 x 10
-#>    distance city_1     state_1 country_1  id_1 city_2    state_2 country_2  id_2
-#>       <dbl> <chr>      <chr>   <chr>     <int> <chr>     <chr>   <chr>     <int>
-#>  1       0  Rensselaer NY      USA         456 Renssela~ NY      USA         456
-#>  2  761157. Rensselaer NY      USA         456 Plattsbu~ NY      USA         367
-#>  3  498748. Rensselaer NY      USA         456 Peekskill NY      USA         405
-#>  4  545801. Rensselaer NY      USA         456 Oneida    NY      USA          77
-#>  5  631659. Rensselaer NY      USA         456 New Roch~ NY      USA          84
-#>  6  634250. Rensselaer NY      USA         456 Mount Ve~ NY      USA         268
-#>  7  476414. Rensselaer NY      USA         456 Middleto~ NY      USA         348
-#>  8 1355615. Rensselaer NY      USA         456 Lockport  NY      USA         396
-#>  9 1382516. Rensselaer NY      USA         456 Lackawan~ NY      USA         235
-#> 10  271427. Rensselaer NY      USA         456 Kingston  NY      USA         297
-#> # ... with 9,990 more rows, and 1 more variable: match_id <chr>
+#> # A tibble: 10,000 x 11
+#>    distance distance_units city_1     state_1 country_1  id_1 city_2     state_2
+#>       <dbl> <chr>          <chr>      <chr>   <chr>     <int> <chr>      <chr>  
+#>  1       0  US_survey_foot Rensselaer NY      USA         456 Rensselaer NY     
+#>  2  761157. US_survey_foot Rensselaer NY      USA         456 Plattsbur~ NY     
+#>  3  498748. US_survey_foot Rensselaer NY      USA         456 Peekskill  NY     
+#>  4  545801. US_survey_foot Rensselaer NY      USA         456 Oneida     NY     
+#>  5  631659. US_survey_foot Rensselaer NY      USA         456 New Roche~ NY     
+#>  6  634250. US_survey_foot Rensselaer NY      USA         456 Mount Ver~ NY     
+#>  7  476414. US_survey_foot Rensselaer NY      USA         456 Middletown NY     
+#>  8 1355615. US_survey_foot Rensselaer NY      USA         456 Lockport   NY     
+#>  9 1382516. US_survey_foot Rensselaer NY      USA         456 Lackawanna NY     
+#> 10  271427. US_survey_foot Rensselaer NY      USA         456 Kingston   NY     
+#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
+#> #   match_id <chr>
 ```
 
 Note that the choice of CRS may impact your results considerably. For
@@ -218,6 +220,39 @@ more information on choosing an appropriate CRS, see
 [here](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf),
 and
 [here](http://www.geo.hunter.cuny.edu/~jochen/gtech201/lectures/lec6concepts/map%20coordinate%20systems/how%20to%20choose%20a%20projection.htm)
+
+## Spatial input data with `ddist_sf()`
+
+To measure dyadic distances with an object of class `sf` use
+`ddist_sf()`:
+
+``` r
+cities %>%
+  st_as_sf(.,
+           coords = c("longitude", "latitude"),
+           crs = 4326) %>% 
+  ddist_sf(.,
+           id = "id")
+#> # A tibble: 10,000 x 11
+#>    distance distance_units city_1     state_1 country_1  id_1 city_2     state_2
+#>       <dbl> <chr>          <chr>      <chr>   <chr>     <int> <chr>      <chr>  
+#>  1       0  m              Rensselaer NY      USA         456 Rensselaer NY     
+#>  2  229607. m              Rensselaer NY      USA         456 Plattsbur~ NY     
+#>  3  151125. m              Rensselaer NY      USA         456 Peekskill  NY     
+#>  4  164483. m              Rensselaer NY      USA         456 Oneida     NY     
+#>  5  191483. m              Rensselaer NY      USA         456 New Roche~ NY     
+#>  6  192269. m              Rensselaer NY      USA         456 Mount Ver~ NY     
+#>  7  144255. m              Rensselaer NY      USA         456 Middletown NY     
+#>  8  408370. m              Rensselaer NY      USA         456 Lockport   NY     
+#>  9  416629. m              Rensselaer NY      USA         456 Lackawanna NY     
+#> 10   82166. m              Rensselaer NY      USA         456 Kingston   NY     
+#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
+#> #   match_id <chr>
+```
+
+With the exception of `crs`, `longitude`, and `latitude` (all of which
+are inherently provided in an object of class `sf`), `ddist_sf()` takes
+the same optional arguments as `ddist()`.
 
 # Acknowledgements
 

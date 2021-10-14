@@ -153,6 +153,20 @@ ddist(cities,
 Note that the choice of CRS may impact your results considerably. For more information on choosing an appropriate CRS, see [here](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/), [here](https://docs.qgis.org/3.4/en/docs/gentle_gis_introduction/coordinate_reference_systems.html), [here](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf), and [here](http://www.geo.hunter.cuny.edu/~jochen/gtech201/lectures/lec6concepts/map%20coordinate%20systems/how%20to%20choose%20a%20projection.htm)
 
 
+## Spatial input data with `ddist_sf()`
+To measure dyadic distances with an object of class `sf` use `ddist_sf()`:
+
+```{r, warning=F, message=F}
+cities %>%
+  st_as_sf(.,
+           coords = c("longitude", "latitude"),
+           crs = 4326) %>% 
+  ddist_sf(.,
+           id = "id")
+
+```
+With the exception of `crs`, `longitude`, and `latitude` (all of which are inherently provided in an object of class `sf`), `ddist_sf()` takes the same optional arguments as `ddist()`.
+
 # Acknowledgements
 
 * The R Core Team for developing and maintaining the language
