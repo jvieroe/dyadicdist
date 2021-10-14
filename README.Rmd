@@ -79,7 +79,7 @@ ggplot() +
   geom_sf(data = usa,
           fill = "grey25", color = "white") +
   geom_sf(data = city_sf,
-          size = 2, shape = 21, alpha = .55,
+          size = 2.5, shape = 21, alpha = .55,
           fill = "chartreuse3", color = "NA") +
   geom_sf(data = city_sf,
           size = 2.5, shape = 21, alpha = 1.0,
