@@ -19,6 +19,11 @@
 #' ) %>% st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
 #' ddist(data = df, id = "idvar")
 #' @author Jeppe Vierø
+#' @import dplyr
+#' @import sf
+#' @import tidyr
+#' @import tibble
+#' @import rgdal
 #' @export
 
 ddist_sf <- function(data = NULL,
@@ -141,7 +146,7 @@ ddist_sf <- function(data = NULL,
   } else if (diagonal == FALSE) {
 
     dist_long <- dist_long %>%
-      filter(id1 != id2) %>%
+      dplyr::filter(id1 != id2) %>%
       dplyr::select(-c(id1, id2,
                        row_id_1,
                        row_id_2)) %>%
