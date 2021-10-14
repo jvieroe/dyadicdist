@@ -106,7 +106,7 @@ ddist <- function(data = NULL,
     ) %>%
     dplyr::mutate(row_id_2 = readr::parse_number(temp)) %>%
     dplyr::select(-temp) %>%
-    dplyr::mutate(length_units = length_units)
+    dplyr::mutate(distance_units = length_units)
 
   temp <- temp %>%
     tibble::tibble() %>%
