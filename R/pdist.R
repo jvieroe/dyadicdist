@@ -19,7 +19,7 @@
 #' "stockholm", 2, 59.33, 18.07,
 #' "oslo", 51, 59.91, 10.75
 #' )
-#' ddist(data = df, id = "idvar")
+#' pdist(data = df, id = "idvar")
 #' @author Jeppe Vierø
 #' @import dplyr sf tidyr tibble rgdal readr stringr rlang tidyselect
 #' @export

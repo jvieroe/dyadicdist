@@ -16,8 +16,8 @@
 #' "copenhagen", 5, 55.68, 12.58,
 #' "stockholm", 2, 59.33, 18.07,
 #' "oslo", 51, 59.91, 10.75
-#' ) %>% st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
-#' ddist(data = df, id = "idvar")
+#' ) %>% sf::st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+#' ddist_sf(data = df, id = "idvar")
 #' @author Jeppe Vierø
 #' @import dplyr sf tidyr tibble rgdal readr stringr rlang tidyselect
 #' @export
