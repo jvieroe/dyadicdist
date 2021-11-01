@@ -67,7 +67,7 @@ usa <- dyadicdist::usa
 
 Let's have a look at the cities' geographic location in the US:
 
-```{r, warning=F, message=F}
+```{r, warning=F, message=F, fig.width = 8, fig.height = 4.25}
 library(sf)
 
 city_sf <- cities %>%
@@ -88,7 +88,7 @@ ggplot() +
   theme(panel.background = element_rect(fill = "#0D1117"),
         plot.background = element_rect(fill = "#0D1117"))
 
-  
+
 
 ```
 
