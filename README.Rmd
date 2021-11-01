@@ -60,33 +60,33 @@ devtools::install_github("jvieroe/dyadicdist")
 Below, I describe some of the key features of `dyadicdist`. Let's use some data on the 100 largest US cities as a working example:
 
 ```{r, warning=F, message=F}
-# cities <- dyadicdist::cities
-# usa <- dyadicdist::usa
+cities <- dyadicdist::cities
+usa <- dyadicdist::usa
 
 ```
 
 Let's have a look at the cities' geographic location in the US:
 
 ```{r, warning=F, message=F}
-# library(sf)
-# 
-# city_sf <- cities %>%
-#   st_as_sf(.,
-#            coords = c("longitude", "latitude"),
-#            crs = 4326)
-# 
-# ggplot() +
-#   geom_sf(data = usa,
-#           fill = "grey25", color = "white") +
-#   geom_sf(data = city_sf,
-#           size = 2.5, shape = 21, alpha = .55,
-#           fill = "chartreuse3", color = "NA") +
-#   geom_sf(data = city_sf,
-#           size = 2.5, shape = 21, alpha = 1.0,
-#           fill = "NA", color = "chartreuse3") +
-#   theme_void() +
-#   theme(panel.background = element_rect(fill = "#0D1117"),
-#         plot.background = element_rect(fill = "#0D1117"))
+library(sf)
+
+city_sf <- cities %>%
+  st_as_sf(.,
+           coords = c("longitude", "latitude"),
+           crs = 4326)
+
+ggplot() +
+  geom_sf(data = usa,
+          fill = "grey25", color = "white") +
+  geom_sf(data = city_sf,
+          size = 2.5, shape = 21, alpha = .55,
+          fill = "chartreuse3", color = "NA") +
+  geom_sf(data = city_sf,
+          size = 2.5, shape = 21, alpha = 1.0,
+          fill = "NA", color = "chartreuse3") +
+  theme_void() +
+  theme(panel.background = element_rect(fill = "#0D1117"),
+        plot.background = element_rect(fill = "#0D1117"))
 
   
 
@@ -96,22 +96,22 @@ Let's have a look at the cities' geographic location in the US:
 `ddist()` has __two key inputs__. It requires a `data.frame` or `tibble` with specified latitude and longitude variables. Furthermore, it requires the specification of a unique id variable which can be either `numeric`, `integer`, `factor`, or `character`.
 
 ```{r, warning=F, message=F}
-# ddist(cities,
-#       id = "id")
+ddist(cities,
+      id = "id")
 
 ```
 As a default, latitude/longitude are specified as `"latitude"` and `"longitude"`, respectively, and don't need manual inputs. If necessary their variable names can be specified in the `ddist()` call:
 
 ```{r, warning=F, message=F}
-# cities_new <- cities %>% 
-#   rename(lat = latitude,
-#          lon = longitude)
-# 
-# ddist(cities_new,
-#       id = "id",
-#       latitude = "lat",
-#       longitude = "lon") %>% 
-#   head(2)
+cities_new <- cities %>%
+  rename(lat = latitude,
+         lon = longitude)
+
+ddist(cities_new,
+      id = "id",
+      latitude = "lat",
+      longitude = "lon") %>%
+  head(2)
 
 ```
 
@@ -139,10 +139,10 @@ By default `ddist()` assumes unprojected coordinates in basic latitude/longitude
 Additionally, `ddist()` allows you to transform the CRS before calculating dyadic distances using the `crs_transform` and `new_crs` arguments:
 
 ```{r, warning=F, message=F}
-# ddist(cities,
-#       id = "id",
-#       crs_transform = T,
-#       new_crs = 3359)
+ddist(cities,
+      id = "id",
+      crs_transform = T,
+      new_crs = 3359)
 
 ```
 
@@ -155,12 +155,12 @@ Note that the choice of CRS may impact your results considerably. For more infor
 To measure dyadic distances with an object of class `sf` use `ddist_sf()`:
 
 ```{r, warning=F, message=F}
-# cities %>%
-#   st_as_sf(.,
-#            coords = c("longitude", "latitude"),
-#            crs = 4326) %>% 
-#   ddist_sf(.,
-#            id = "id")
+cities %>%
+  st_as_sf(.,
+           coords = c("longitude", "latitude"),
+           crs = 4326) %>%
+  ddist_sf(.,
+           id = "id")
 
 ```
 With the exception of `crs`, `longitude`, and `latitude` (all of which are inherently provided in an object of class `sf`), `ddist_sf()` takes the same optional arguments as `ddist()`.
