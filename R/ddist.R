@@ -106,12 +106,12 @@ ddist <- function(data = NULL,
       )
     ) %>%
     dplyr::mutate(row_id_2 = readr::parse_number(temp)) %>%
-    dplyr::select(-temp) %>%
+    dplyr::select(-.data$temp) %>%
     dplyr::mutate(distance_units = length_units)
 
   temp <- temp %>%
     tibble::tibble() %>%
-    dplyr::select(-geometry)
+    dplyr::select(-.data$geometry)
 
   dist_long <- dist_long %>%
     dplyr::left_join(.,
@@ -129,8 +129,8 @@ ddist <- function(data = NULL,
                   id2 := !!rlang::sym(paste0(id,
                                              "_2"))) %>%
     dplyr::mutate(
-      match_id = base::paste(id1,
-                             id2,
+      match_id = base::paste(.data$id1,
+                             .data$id2,
                              sep = "_"))
 
   if (duplicates == FALSE) {
@@ -148,7 +148,7 @@ ddist <- function(data = NULL,
             collapse = "_")
       ) %>%
       dplyr::distinct(.,
-                      tmp,
+                      .data$tmp,
                       .keep_all = T) %>%
       dplyr::select(-.data$tmp)
 
@@ -169,7 +169,7 @@ ddist <- function(data = NULL,
   } else if (diagonal == FALSE) {
 
     dist_long <- dist_long %>%
-      dplyr::filter(id1 != id2) %>%
+      dplyr::filter(.data$id1 != .data$id2) %>%
       dplyr::select(-c(.data$id1, .data$id2,
                        .data$row_id_1,
                        .data$row_id_2)) %>%
