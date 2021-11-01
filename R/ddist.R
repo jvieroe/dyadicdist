@@ -142,8 +142,8 @@ ddist <- function(data = NULL,
           base::paste(
             base::sort(
               c(
-                row_id_1,
-                row_id_2)
+                .data$row_id_1,
+                .data$row_id_2)
               ),
             collapse = "_")
       ) %>%
@@ -161,18 +161,18 @@ ddist <- function(data = NULL,
   if (diagonal == TRUE) {
 
     dist_long <- dist_long %>%
-      dplyr::select(-c(id1, id2,
-                       row_id_1,
-                       row_id_2)) %>%
+      dplyr::select(-c(.data$id1, .data$id2,
+                       .data$row_id_1,
+                       .data$row_id_2)) %>%
       tibble::tibble()
 
   } else if (diagonal == FALSE) {
 
     dist_long <- dist_long %>%
       dplyr::filter(id1 != id2) %>%
-      dplyr::select(-c(id1, id2,
-                       row_id_1,
-                       row_id_2)) %>%
+      dplyr::select(-c(.data$id1, .data$id2,
+                       .data$row_id_1,
+                       .data$row_id_2)) %>%
       tibble::tibble()
 
   }
