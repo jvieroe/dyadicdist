@@ -37,7 +37,7 @@ cities <- cities %>%
   mutate(state = ifelse(state == "South Dakota", "SD", state))
 
 
-usethis::use_data(cities, overwrite = TRUE)
+usethis::use_data(cities, overwrite = TRUE, internal = TRUE)
 
 
 
@@ -63,4 +63,4 @@ usa <- usa %>%
   select(sovereignt) %>%
   rename(country_name = sovereignt)
 
-usethis::use_data(usa, overwrite = TRUE)
+usethis::use_data(usa, overwrite = TRUE, internal = TRUE)
