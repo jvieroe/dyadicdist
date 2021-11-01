@@ -21,7 +21,7 @@
 #' )
 #' ddist(data = df, id = "idvar")
 #' @author Jeppe Vierø
-#' @import dplyr sf tidyr tibble rgdal readr
+#' @import dplyr sf tidyr tibble rgdal readr stringr rlang tidyselect
 #' @export
 
 pdist <- function(x = NULL,
