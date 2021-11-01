@@ -150,7 +150,7 @@ ddist <- function(data = NULL,
       dplyr::distinct(.,
                       tmp,
                       .keep_all = T) %>%
-      dplyr::select(-tmp)
+      dplyr::select(-.data$tmp)
 
   } else if (duplicates == TRUE) {
 
