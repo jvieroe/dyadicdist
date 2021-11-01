@@ -19,11 +19,7 @@
 #' ) %>% st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
 #' ddist(data = df, id = "idvar")
 #' @author Jeppe Vierø
-#' @import dplyr
-#' @import sf
-#' @import tidyr
-#' @import tibble
-#' @import rgdal
+#' @import dplyr sf tidyr tibble rgdal
 #' @export
 
 ddist_sf <- function(data = NULL,
@@ -73,7 +69,7 @@ ddist_sf <- function(data = NULL,
                         names_to = "temp",
                         values_to = "distance") %>%
     dplyr::mutate(
-      row_id_1 = sort(
+      row_id_1 = base::sort(
         base::rep(
           base::seq(
             1:nrow(dist_mat)

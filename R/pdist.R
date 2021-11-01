@@ -21,11 +21,7 @@
 #' )
 #' ddist(data = df, id = "idvar")
 #' @author Jeppe Vierø
-#' @import dplyr
-#' @import sf
-#' @import tidyr
-#' @import tibble
-#' @import rgdal
+#' @import dplyr sf tidyr tibble rgdal
 #' @export
 
 pdist <- function(x = NULL,
@@ -107,7 +103,7 @@ pdist <- function(x = NULL,
                         names_to = "temp",
                         values_to = "distance") %>%
     dplyr::mutate(
-      row_id_1 = sort(
+      row_id_1 = base::sort(
         base::rep(
           base::seq(
             1:nrow(dist_mat)
