@@ -59,7 +59,7 @@ devtools::install_github("jvieroe/dyadicdist")
 
 Below, I describe some of the key features of `dyadicdist`. Let's use some data on the 100 largest US cities as a working example:
 
-```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
+```{r, warning=F, message=F}
 cities <- dyadicdist::cities
 usa <- dyadicdist::usa
 
@@ -67,7 +67,7 @@ usa <- dyadicdist::usa
 
 Let's have a look at the cities' geographic location in the US:
 
-```{r, warning=F, message=F, fig.width=5.65, fig.height=3.0}
+```{r, warning=F, message=F}
 library(sf)
 
 city_sf <- cities %>%

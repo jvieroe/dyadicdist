@@ -22,7 +22,7 @@
 #' )
 #' ddist(data = df, id = "idvar")
 #' @author Jeppe Vierø
-#' @import dplyr sf tidyr tibble rgdal
+#' @import dplyr sf tidyr tibble rgdal readr
 #' @export
 
 ddist <- function(data = NULL,

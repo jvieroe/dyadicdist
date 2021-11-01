@@ -19,7 +19,7 @@
 #' ) %>% st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
 #' ddist(data = df, id = "idvar")
 #' @author Jeppe Vierø
-#' @import dplyr sf tidyr tibble rgdal
+#' @import dplyr sf tidyr tibble rgdal readr
 #' @export
 
 ddist_sf <- function(data = NULL,
