@@ -37,8 +37,7 @@ usethis::use_data(cities, overwrite = TRUE, internal = FALSE)
 
 
 ## code to prepare `us` dataset goes here
-library(sf)
-library(rgeos)
+
 
 # get map data on  the US
 usa <- rnaturalearth::ne_countries() %>%
