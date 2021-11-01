@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+[![CodeFactor](https://www.codefactor.io/repository/github/jvieroe/dyadicdist/badge)](https://www.codefactor.io/repository/github/jvieroe/dyadicdist)
+
 # dyadicdist
 
 <!-- badges: start -->

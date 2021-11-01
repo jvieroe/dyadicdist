@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+[![CodeFactor](https://www.codefactor.io/repository/github/jvieroe/dyadicdist/badge)](https://www.codefactor.io/repository/github/jvieroe/dyadicdist)
+
 # dyadicdist
 
 <!-- badges: start -->
