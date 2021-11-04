@@ -123,16 +123,16 @@ ddist(cities,
 #> # A tibble: 10,000 x 11
 #>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
 #>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
-#>  1       0  m              Schenectady NY      USA         431 Schenect~ NY     
-#>  2   31869. m              Schenectady NY      USA         431 Saratoga~ NY     
-#>  3  204716. m              Schenectady NY      USA         431 Rye       NY     
-#>  4  133700. m              Schenectady NY      USA         431 Rome      NY     
-#>  5   24559. m              Schenectady NY      USA         431 Renssela~ NY     
-#>  6  213131. m              Schenectady NY      USA         431 Plattsbu~ NY     
-#>  7  169132. m              Schenectady NY      USA         431 Peekskill NY     
-#>  8  144114. m              Schenectady NY      USA         431 Oneida    NY     
-#>  9  210578. m              Schenectady NY      USA         431 New Roch~ NY     
-#> 10  211070. m              Schenectady NY      USA         431 Mount Ve~ NY     
+#>  1       0  m              Schenectady NY      USA         275 Schenect~ NY     
+#>  2   31869. m              Schenectady NY      USA         275 Saratoga~ NY     
+#>  3  204716. m              Schenectady NY      USA         275 Rye       NY     
+#>  4  133700. m              Schenectady NY      USA         275 Rome      NY     
+#>  5   24559. m              Schenectady NY      USA         275 Renssela~ NY     
+#>  6  213131. m              Schenectady NY      USA         275 Plattsbu~ NY     
+#>  7  169132. m              Schenectady NY      USA         275 Peekskill NY     
+#>  8  144114. m              Schenectady NY      USA         275 Oneida    NY     
+#>  9  210578. m              Schenectady NY      USA         275 New Roch~ NY     
+#> 10  211070. m              Schenectady NY      USA         275 Mount Ve~ NY     
 #> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
 #> #   match_id <chr>
 ```
@@ -154,8 +154,8 @@ ddist(cities_new,
 #> # A tibble: 2 x 11
 #>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
 #>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
-#> 1       0  m              Schenectady NY      USA         431 Schenecta~ NY     
-#> 2   31869. m              Schenectady NY      USA         431 Saratoga ~ NY     
+#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
 #> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
@@ -205,16 +205,16 @@ ddist(cities,
 #> # A tibble: 10,000 x 11
 #>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
 #>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
-#>  1       0  US_survey_foot Schenectady NY      USA         431 Schenect~ NY     
-#>  2  105468. US_survey_foot Schenectady NY      USA         431 Saratoga~ NY     
-#>  3  675517. US_survey_foot Schenectady NY      USA         431 Rye       NY     
-#>  4  443781. US_survey_foot Schenectady NY      USA         431 Rome      NY     
-#>  5   81318. US_survey_foot Schenectady NY      USA         431 Renssela~ NY     
-#>  6  706757. US_survey_foot Schenectady NY      USA         431 Plattsbu~ NY     
-#>  7  558267. US_survey_foot Schenectady NY      USA         431 Peekskill NY     
-#>  8  478389. US_survey_foot Schenectady NY      USA         431 Oneida    NY     
-#>  9  694798. US_survey_foot Schenectady NY      USA         431 New Roch~ NY     
-#> 10  696411. US_survey_foot Schenectady NY      USA         431 Mount Ve~ NY     
+#>  1       0  US_survey_foot Schenectady NY      USA         275 Schenect~ NY     
+#>  2  105468. US_survey_foot Schenectady NY      USA         275 Saratoga~ NY     
+#>  3  675517. US_survey_foot Schenectady NY      USA         275 Rye       NY     
+#>  4  443781. US_survey_foot Schenectady NY      USA         275 Rome      NY     
+#>  5   81318. US_survey_foot Schenectady NY      USA         275 Renssela~ NY     
+#>  6  706757. US_survey_foot Schenectady NY      USA         275 Plattsbu~ NY     
+#>  7  558267. US_survey_foot Schenectady NY      USA         275 Peekskill NY     
+#>  8  478389. US_survey_foot Schenectady NY      USA         275 Oneida    NY     
+#>  9  694798. US_survey_foot Schenectady NY      USA         275 New Roch~ NY     
+#> 10  696411. US_survey_foot Schenectady NY      USA         275 Mount Ve~ NY     
 #> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
 #> #   match_id <chr>
 ```
@@ -244,16 +244,16 @@ cities %>%
 #> # A tibble: 10,000 x 11
 #>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
 #>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
-#>  1       0  m              Schenectady NY      USA         431 Schenect~ NY     
-#>  2   31869. m              Schenectady NY      USA         431 Saratoga~ NY     
-#>  3  204716. m              Schenectady NY      USA         431 Rye       NY     
-#>  4  133700. m              Schenectady NY      USA         431 Rome      NY     
-#>  5   24559. m              Schenectady NY      USA         431 Renssela~ NY     
-#>  6  213131. m              Schenectady NY      USA         431 Plattsbu~ NY     
-#>  7  169132. m              Schenectady NY      USA         431 Peekskill NY     
-#>  8  144114. m              Schenectady NY      USA         431 Oneida    NY     
-#>  9  210578. m              Schenectady NY      USA         431 New Roch~ NY     
-#> 10  211070. m              Schenectady NY      USA         431 Mount Ve~ NY     
+#>  1       0  m              Schenectady NY      USA         275 Schenect~ NY     
+#>  2   31869. m              Schenectady NY      USA         275 Saratoga~ NY     
+#>  3  204716. m              Schenectady NY      USA         275 Rye       NY     
+#>  4  133700. m              Schenectady NY      USA         275 Rome      NY     
+#>  5   24559. m              Schenectady NY      USA         275 Renssela~ NY     
+#>  6  213131. m              Schenectady NY      USA         275 Plattsbu~ NY     
+#>  7  169132. m              Schenectady NY      USA         275 Peekskill NY     
+#>  8  144114. m              Schenectady NY      USA         275 Oneida    NY     
+#>  9  210578. m              Schenectady NY      USA         275 New Roch~ NY     
+#> 10  211070. m              Schenectady NY      USA         275 Mount Ve~ NY     
 #> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
 #> #   match_id <chr>
 ```
