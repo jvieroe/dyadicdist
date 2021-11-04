@@ -5,12 +5,19 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/jvieroe/dyadicdist/workflows/R-CMD-check/badge.svg)](https://github.com/jvieroe/dyadicdist/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/jvieroe/dyadicdist/badge)](https://www.codefactor.io/repository/github/jvieroe/dyadicdist)
+[![Github All
+Releases](https://img.shields.io/github/downloads/jvieroe/dyadicdist/total.svg)]()
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License: GPL
 (\>= 3)](https://img.shields.io/badge/license-GPL%20\(%3E=%203\)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20\(%3E=%203\))
+[![](https://img.shields.io/github/last-commit/jvieroe/dyadicdist.svg)](https://github.com/jvieroe/dyadicdist/commits/main)
+
+Master branch status:
+[![R-CMD-check](https://github.com/jvieroe/dyadicdist/workflows/R-CMD-check/badge.svg)](https://github.com/jvieroe/dyadicdist/actions)
 <!-- badges: end -->
+
+# Introduction
 
 The purpose of `dyadicdist` is to provide quick and easy calculation of
 dyadic distances between geo-referenced points.
