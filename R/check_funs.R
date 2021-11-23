@@ -119,35 +119,35 @@ check_data_sf <- function(data,
     stop("Inputdata contains invalid geometries")
   }
 
-  if (st_bbox(data)[1] > 180) {
+  if (sf::st_bbox(data)[1] > 180) {
     stop("Inputdata contains invalid longitude coordinates, one or more values > 180")
   }
 
-  if (st_bbox(data)[1] < -180) {
+  if (sf::st_bbox(data)[1] < -180) {
     stop("Inputdata contains invalid longitude coordinates, one or more values < -180")
   }
 
-  if (st_bbox(data)[2] > 90) {
+  if (sf::st_bbox(data)[2] > 90) {
     stop("Inputdata contains invalid latitude coordinates, one or more values > 90")
   }
 
-  if (st_bbox(data)[2] < -90) {
+  if (sf::st_bbox(data)[2] < -90) {
     stop("Inputdata contains invalid latitude coordinates, one or more values < -90")
   }
 
-  if (st_bbox(data)[3] > 180) {
+  if (sf::st_bbox(data)[3] > 180) {
     stop("Inputdata contains invalid longitude coordinates, one or more values > 180")
   }
 
-  if (st_bbox(data)[3] < -180) {
+  if (sf::st_bbox(data)[3] < -180) {
     stop("Inputdata contains invalid longitude coordinates, one or more values < -180")
   }
 
-  if (st_bbox(data)[4] > 90) {
+  if (sf::st_bbox(data)[4] > 90) {
     stop("Inputdata contains invalid latitude coordinates, one or more values > 90")
   }
 
-  if (st_bbox(data)[4] < -90) {
+  if (sf::st_bbox(data)[4] < -90) {
     stop("Inputdata contains invalid latitude coordinates, one or more values < -90")
   }
 
