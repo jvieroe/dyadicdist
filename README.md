@@ -82,7 +82,6 @@ some data on the 100 largest US cities as a working example:
 
 ``` r
 cities <- dyadicdist::cities
-usa <- dyadicdist::usa
 ```
 
 `ddist()` has **two key inputs**. It requires a `data.frame` or `tibble`
@@ -258,7 +257,5 @@ the same optional arguments as `ddist()`.
     <!-- + Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85)) -->
     <!-- + Dan Baston ([dbaston](https://github.com/dbaston)) -->
     <!-- + Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot)) -->
--   [Natural Earth](https://www.naturalearthdata.com/) for the
-    `dyadicdist::usa` data
 -   [LatLong.net](https://www.latlong.net/category/cities-236-15.html)
     for the `dyadicdist::cities` data
