@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License: GPL (>= 3)](https://img.shields.io/badge/license-GPL (>= 3)-blue.svg)](https://cran.r-project.org/web/licenses/GPL (>= 3))
 [![](https://img.shields.io/github/last-commit/jvieroe/dyadicdist.svg)](https://github.com/jvieroe/dyadicdist/commits/main)
-[![Travis build status](https://travis-ci.org/jvieroe/dyadicdist.svg?branch=main)](https://travis-ci.org/jvieroe/dyadicdist)
+<!-- [![Travis build status](https://travis-ci.org/jvieroe/dyadicdist.svg?branch=main)](https://travis-ci.org/jvieroe/dyadicdist) -->
 
 Master branch status: [![R-CMD-check](https://github.com/jvieroe/dyadicdist/workflows/R-CMD-check/badge.svg)](https://github.com/jvieroe/dyadicdist/actions)
 <!-- badges: end -->
@@ -180,18 +180,18 @@ With the exception of `crs`, `longitude`, and `latitude` (all of which are inher
 
 * The R Core Team for developing and maintaining the language
 * The authors of the amazing `sf` package. `sf` has greatly reduced barriers to entry for anyone working with spatial data in `R` and those who wish to do so 
-    + Edzer Pebesma ([edzer](https://github.com/edzer))
-    + Roger Bivand ([rsbivand](https://github.com/rsbivand))
-    + Etienne Racine ([etiennebr](https://github.com/etiennebr))
-    + Michael Sumner ([mdsumner](https://github.com/mdsumner))
-    + Ian Cook ([ianmcook](https://github.com/ianmcook))
-    + Tim Keitt ([thk686](https://github.com/thk686))
-    + Robin Lovelace ([Robinlovelace](https://github.com/Robinlovelace))
-    + Hadley Wickham ([hadley](https://github.com/hadley))
-    + Jeroen Ooms ([jeroen](https://github.com/jeroen))
-    + Kirill Müller ([krlmlr](https://github.com/krlmlr))
-    + Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85))
-    + Dan Baston ([dbaston](https://github.com/dbaston))
-    + Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot))
+    <!-- + Edzer Pebesma ([edzer](https://github.com/edzer)) -->
+    <!-- + Roger Bivand ([rsbivand](https://github.com/rsbivand)) -->
+    <!-- + Etienne Racine ([etiennebr](https://github.com/etiennebr)) -->
+    <!-- + Michael Sumner ([mdsumner](https://github.com/mdsumner)) -->
+    <!-- + Ian Cook ([ianmcook](https://github.com/ianmcook)) -->
+    <!-- + Tim Keitt ([thk686](https://github.com/thk686)) -->
+    <!-- + Robin Lovelace ([Robinlovelace](https://github.com/Robinlovelace)) -->
+    <!-- + Hadley Wickham ([hadley](https://github.com/hadley)) -->
+    <!-- + Jeroen Ooms ([jeroen](https://github.com/jeroen)) -->
+    <!-- + Kirill Müller ([krlmlr](https://github.com/krlmlr)) -->
+    <!-- + Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85)) -->
+    <!-- + Dan Baston ([dbaston](https://github.com/dbaston)) -->
+    <!-- + Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot)) -->
 * [Natural Earth](https://www.naturalearthdata.com/) for the `dyadicdist::usa` data
 * [LatLong.net](https://www.latlong.net/category/cities-236-15.html) for the `dyadicdist::cities` data

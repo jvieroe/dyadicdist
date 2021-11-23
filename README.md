@@ -9,11 +9,10 @@
 [![Github All
 Releases](https://img.shields.io/github/downloads/jvieroe/dyadicdist/total.svg)]()
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![License: GPL
-(\>= 3)](https://img.shields.io/badge/license-GPL%20\(%3E=%203\)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20\(%3E=%203\))
+[![License: GPL (>=
+3)](https://img.shields.io/badge/license-GPL%20(%3E=%203)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20(%3E=%203))
 [![](https://img.shields.io/github/last-commit/jvieroe/dyadicdist.svg)](https://github.com/jvieroe/dyadicdist/commits/main)
-[![Travis build
-status](https://travis-ci.org/jvieroe/dyadicdist.svg?branch=main)](https://travis-ci.org/jvieroe/dyadicdist)
+<!-- [![Travis build status](https://travis-ci.org/jvieroe/dyadicdist.svg?branch=main)](https://travis-ci.org/jvieroe/dyadicdist) -->
 
 Master branch status:
 [![R-CMD-check](https://github.com/jvieroe/dyadicdist/workflows/R-CMD-check/badge.svg)](https://github.com/jvieroe/dyadicdist/actions)
@@ -169,21 +168,21 @@ any points i and j, including j = i.
 In total, this amount to `nrow(data) * nrow(data)` dyads and includes by
 default:
 
-  - dyads between any observation and itself, i.e. dyads of type (i,i)
+-   dyads between any observation and itself, i.e. dyads of type (i,i)
     (see example above)
-  - duplicated dyads, i.e. both (i,j) and (j,i)
+-   duplicated dyads, i.e. both (i,j) and (j,i)
 
 Both of these inclusions are optional, however.
 
-  - Sort out (i,i) dyads (the diagonal in a distance matrix) by
+-   Sort out (i,i) dyads (the diagonal in a distance matrix) by
     specifying `diagonal = FALSE`
-      - returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads
-  - Sort out duplicated dyads by specifying `duplicates = FALSE`
-      - returns a `tibble` with `(nrow(data) *
-        (nrow(data)-1)/2)+nrow(data)` dyads
-  - Sort out both by specifying `diagonal = FALSE` **and** `duplicates =
-    FALSE`
-      - returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads
+    -   returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads
+-   Sort out duplicated dyads by specifying `duplicates = FALSE`
+    -   returns a `tibble` with
+        `(nrow(data) * (nrow(data)-1)/2)+nrow(data)` dyads
+-   Sort out both by specifying `diagonal = FALSE` **and**
+    `duplicates = FALSE`
+    -   returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads
 
 ## CRS transformations
 
@@ -266,25 +265,24 @@ the same optional arguments as `ddist()`.
 
 # Acknowledgements
 
-  - The R Core Team for developing and maintaining the language
-  - The authors of the amazing `sf` package. `sf` has greatly reduced
+-   The R Core Team for developing and maintaining the language
+-   The authors of the amazing `sf` package. `sf` has greatly reduced
     barriers to entry for anyone working with spatial data in `R` and
     those who wish to do so
-      - Edzer Pebesma ([edzer](https://github.com/edzer))
-      - Roger Bivand ([rsbivand](https://github.com/rsbivand))
-      - Etienne Racine ([etiennebr](https://github.com/etiennebr))
-      - Michael Sumner ([mdsumner](https://github.com/mdsumner))
-      - Ian Cook ([ianmcook](https://github.com/ianmcook))
-      - Tim Keitt ([thk686](https://github.com/thk686))
-      - Robin Lovelace
-        ([Robinlovelace](https://github.com/Robinlovelace))
-      - Hadley Wickham ([hadley](https://github.com/hadley))
-      - Jeroen Ooms ([jeroen](https://github.com/jeroen))
-      - Kirill Müller ([krlmlr](https://github.com/krlmlr))
-      - Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85))
-      - Dan Baston ([dbaston](https://github.com/dbaston))
-      - Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot))
-  - [Natural Earth](https://www.naturalearthdata.com/) for the
+    <!-- + Edzer Pebesma ([edzer](https://github.com/edzer)) -->
+    <!-- + Roger Bivand ([rsbivand](https://github.com/rsbivand)) -->
+    <!-- + Etienne Racine ([etiennebr](https://github.com/etiennebr)) -->
+    <!-- + Michael Sumner ([mdsumner](https://github.com/mdsumner)) -->
+    <!-- + Ian Cook ([ianmcook](https://github.com/ianmcook)) -->
+    <!-- + Tim Keitt ([thk686](https://github.com/thk686)) -->
+    <!-- + Robin Lovelace ([Robinlovelace](https://github.com/Robinlovelace)) -->
+    <!-- + Hadley Wickham ([hadley](https://github.com/hadley)) -->
+    <!-- + Jeroen Ooms ([jeroen](https://github.com/jeroen)) -->
+    <!-- + Kirill Müller ([krlmlr](https://github.com/krlmlr)) -->
+    <!-- + Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85)) -->
+    <!-- + Dan Baston ([dbaston](https://github.com/dbaston)) -->
+    <!-- + Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot)) -->
+-   [Natural Earth](https://www.naturalearthdata.com/) for the
     `dyadicdist::usa` data
-  - [LatLong.net](https://www.latlong.net/category/cities-236-15.html)
+-   [LatLong.net](https://www.latlong.net/category/cities-236-15.html)
     for the `dyadicdist::cities` data
