@@ -73,6 +73,10 @@ devtools::install_github("jvieroe/dyadicdist")
 Below, I describe some of the key features of `dyadicdist`. Let's use some data on the 100 largest US cities as a working example:
 
 ```{r, warning=F, message=F}
+library(dyadicdist)
+library(tidyverse)
+library(magrittr)
+
 cities <- dyadicdist::cities
 
 ```

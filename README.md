@@ -81,6 +81,10 @@ Below, I describe some of the key features of `dyadicdist`. Let’s use
 some data on the 100 largest US cities as a working example:
 
 ``` r
+library(dyadicdist)
+library(tidyverse)
+library(magrittr)
+
 cities <- dyadicdist::cities
 ```
 
