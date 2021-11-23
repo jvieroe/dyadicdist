@@ -1,13 +1,13 @@
 Package: dyadicdist
-Title: What the Package Does (One Line, Title Case)
+Title: Easy Calculation of Dyadic Geodesic Distances
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Jeppe",
+           family = "Vierø",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "jvieroe@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: dyadicdist allows you to calculcate geodesic distances between dyads of observations in a fast and straight-forward fashion
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
@@ -16,4 +16,4 @@ RoxygenNote: 7.1.2
 Depends: 
     R (>= 2.10)
 Imports: 
-    magrittr, dplyr, sf, tidyr, tibble, rgdal, readr, stringr, rlang, tidyselect
+    magrittr (>= 2.0.1), dplyr (>= 1.0.7), sf (>= 1.0.3), tidyr (>= 1.1.4), tibble (>= 3.1.5), rgdal (>= 1.5.27), readr (>= 2.0.2), stringr (>= 1.4.0), rlang (>= 0.4.12), tidyselect (>= 1.1.1)
