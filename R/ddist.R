@@ -77,8 +77,7 @@ ddist <- function(data = NULL,
   }
 
   temp <- data %>%
-    dplyr::distinct(.,
-                    !!rlang::sym(id),
+    dplyr::distinct(!!rlang::sym(id),
                     .keep_all = TRUE) %>%
     dplyr::mutate(row_id = dplyr::row_number())
 
@@ -116,11 +115,9 @@ ddist <- function(data = NULL,
     dplyr::select(-.data$geometry)
 
   dist_long <- dist_long %>%
-    dplyr::left_join(.,
-                     temp,
+    dplyr::left_join(temp,
                      by = c("row_id_1" = "row_id")) %>%
-    dplyr::left_join(.,
-                     temp,
+    dplyr::left_join(temp,
                      by = c("row_id_2" = "row_id")) %>%
     dplyr::rename_with(.cols = tidyselect::ends_with(".x"),
                        ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
@@ -149,8 +146,7 @@ ddist <- function(data = NULL,
               ),
             collapse = "_")
       ) %>%
-      dplyr::distinct(.,
-                      .data$tmp,
+      dplyr::distinct(.data$tmp,
                       .keep_all = T) %>%
       dplyr::select(-.data$tmp)
 
