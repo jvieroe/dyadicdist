@@ -75,7 +75,7 @@ library(devtools)
 devtools::install_github("jvieroe/dyadicdist")
 ```
 
-# Usage
+# Usage: `ddist()`
 
 Below, I describe some of the key features of `dyadicdist`. Let’s use
 some data on the 100 largest US cities as a working example:
