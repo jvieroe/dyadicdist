@@ -48,6 +48,28 @@ check_data <- function(data,
 }
 
 
+#' @noRd
+check_coords_ddist <- function(data) {
+
+  if(base::max(data$longitude) > 180) {
+    stop("Inputdata contains invalid longitude coordinates, one or more values > 180")
+  }
+
+  if(base::min(data$longitude) < -180) {
+    stop("Inputdata contains invalid longitude coordinates, one or more values < -180")
+  }
+
+  if(base::max(data$latitude) > 90) {
+    stop("Inputdata contains invalid latitude coordinates, one or more values > 90")
+  }
+
+  if(base::min(data$latitude) < -90) {
+    stop("Inputdata contains invalid latitude coordinates, one or more values < -90")
+  }
+
+}
+
+
 
 #' @noRd
 check_crs <- function(data,
