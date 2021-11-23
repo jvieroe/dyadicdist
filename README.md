@@ -75,7 +75,7 @@ library(devtools)
 devtools::install_github("jvieroe/dyadicdist")
 ```
 
-## Working example: `ddist()`
+## Usage
 
 Below, I describe some of the key features of `dyadicdist`. Let’s use
 some data on the 100 largest US cities as a working example:
@@ -84,34 +84,6 @@ some data on the 100 largest US cities as a working example:
 cities <- dyadicdist::cities
 usa <- dyadicdist::usa
 ```
-
-Let’s have a look at the cities’ geographic location in the US:
-
-``` r
-library(sf)
-
-city_sf <- cities %>%
-  st_as_sf(.,
-           coords = c("longitude", "latitude"),
-           crs = 4326)
-
-ggplot() +
-  geom_sf(data = usa,
-          fill = "grey25", color = "white") +
-  geom_sf(data = city_sf,
-          size = 2.5, shape = 21, alpha = .55,
-          fill = "chartreuse3", color = "NA") +
-  geom_sf(data = city_sf,
-          size = 2.5, shape = 21, alpha = 1.0,
-          fill = "NA", color = "chartreuse3") +
-  theme_void() +
-  theme(panel.background = element_rect(fill = "#0D1117"),
-        plot.background = element_rect(fill = "#0D1117"))
-```
-
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="85%" style="display: block; margin: auto;" />
-
-## Basic functionality
 
 `ddist()` has **two key inputs**. It requires a `data.frame` or `tibble`
 with specified latitude and longitude variables. Furthermore, it
@@ -143,20 +115,22 @@ As a default, latitude/longitude are specified as `"latitude"` and
 their variable names can be specified in the `ddist()` call:
 
 ``` r
-cities_new <- cities %>%
+cities %>%
   rename(lat = latitude,
-         lon = longitude)
-
-ddist(cities_new,
-      id = "id",
-      latitude = "lat",
-      longitude = "lon") %>%
-  head(2)
-#> # A tibble: 2 x 11
+         lon = longitude) %>% 
+  ddist(.,
+        id = "id",
+        latitude = "lat",
+        longitude = "lon") %>%
+  head(5)
+#> # A tibble: 5 x 11
 #>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
 #>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
 #> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
 #> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
+#> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
+#> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
+#> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
 #> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
@@ -236,6 +210,8 @@ To measure dyadic distances with an object of class `sf` use
 `ddist_sf()`:
 
 ``` r
+library(sf)
+
 cities %>%
   st_as_sf(.,
            coords = c("longitude", "latitude"),
