@@ -74,7 +74,6 @@ Below, I describe some of the key features of `dyadicdist`. Let's use some data 
 
 ```{r, warning=F, message=F}
 cities <- dyadicdist::cities
-usa <- dyadicdist::usa
 
 ```
 
@@ -168,5 +167,4 @@ With the exception of `crs`, `longitude`, and `latitude` (all of which are inher
     <!-- + Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85)) -->
     <!-- + Dan Baston ([dbaston](https://github.com/dbaston)) -->
     <!-- + Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot)) -->
-* [Natural Earth](https://www.naturalearthdata.com/) for the `dyadicdist::usa` data
 * [LatLong.net](https://www.latlong.net/category/cities-236-15.html) for the `dyadicdist::cities` data

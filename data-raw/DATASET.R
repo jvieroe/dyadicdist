@@ -38,24 +38,3 @@ usethis::use_data(cities, overwrite = TRUE, internal = FALSE)
 
 ## code to prepare `us` dataset goes here
 
-
-# get map data on  the US
-usa <- rnaturalearth::ne_countries() %>%
-  sf::st_as_sf() %>%
-  dplyr::filter(admin == "United States of America")
-
-usa <- usa %>%
-  sf::st_crop(.,
-              sf::st_bbox(c(xmin = -128,
-                            xmax = -57,
-                            ymin = 20,
-                            ymax = 50),
-                          crs = sf::st_crs(usa)))
-
-usa <- usa %>%
-  dplyr::select(sovereignt) %>%
-  dplyr::rename(country_name = sovereignt)
-
-usethis::use_data(usa, overwrite = TRUE, internal = FALSE)
-
-
