@@ -12,16 +12,17 @@
 ddist_xy <- function(x = NULL,
                      y = NULL) {
 
-  check_crs_xy(x = x,
-               y = y,
-               crs_transform = crs_transform,
+  check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)
 
   check_data(x = x,
              y = y,
-             id = id,
-             longitude = longitude,
-             latitude = latitude)
+             id_x = id_x,
+             id_y = id_y,
+             x_longitude = x_longitude,
+             x_latitude = x_latitude,
+             y_longitude = y_longitude,
+             y_latitude = y_latitude)
 
   if (longitude != "longitude") {
 
