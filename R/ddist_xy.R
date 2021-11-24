@@ -125,7 +125,7 @@ ddist_xy <- function(x = NULL,
                         names_to = "temp",
                         values_to = "distance") %>%
     dplyr::mutate(
-      x_id = base::sort(
+      row_id_1 = base::sort(
         base::rep(
           base::seq(
             1:nrow(x)
@@ -134,74 +134,59 @@ ddist_xy <- function(x = NULL,
         )
       )
     ) %>%
-    dplyr::mutate(y_id = readr::parse_number(.data$temp)) %>%
+    dplyr::mutate(row_id_2 = readr::parse_number(.data$temp)) %>%
     dplyr::select(-.data$temp) %>%
     dplyr::mutate(distance_units = length_units)
 
-  temp <- temp %>%
+  x_temp <- x_temp %>%
+    tibble::tibble() %>%
+    dplyr::select(-.data$geometry)
+
+  y_temp <- y_temp %>%
     tibble::tibble() %>%
     dplyr::select(-.data$geometry)
 
   dist_long <- dist_long %>%
-    dplyr::left_join(temp,
+    dplyr::left_join(x_temp,
                      by = c("row_id_1" = "row_id")) %>%
-    dplyr::left_join(temp,
+    dplyr::left_join(y_temp,
                      by = c("row_id_2" = "row_id")) %>%
     dplyr::rename_with(.cols = tidyselect::ends_with(".x"),
                        ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
     dplyr::rename_with(.cols = tidyselect::ends_with(".y"),
                        ~ stringr::str_replace_all(., '\\.y', '_2')) %>%
-    dplyr::mutate(id1 := !!rlang::sym(paste0(id,
+    dplyr::mutate(id1 := !!rlang::sym(paste0(x_id,
                                              "_1")),
-                  id2 := !!rlang::sym(paste0(id,
+                  id2 := !!rlang::sym(paste0(y_id,
                                              "_2"))) %>%
     dplyr::mutate(
       match_id = base::paste(.data$id1,
                              .data$id2,
                              sep = "_"))
 
-  if (duplicates == FALSE) {
-
-    dist_long <- dist_long %>%
-      dplyr::rowwise() %>%
-      dplyr::mutate(
-        tmp =
-          base::paste(
-            base::sort(
-              c(
-                .data$row_id_1,
-                .data$row_id_2)
-            ),
-            collapse = "_")
-      ) %>%
-      dplyr::distinct(.data$tmp,
-                      .keep_all = T) %>%
-      dplyr::select(-.data$tmp)
-
-  } else if (duplicates == TRUE) {
-
-    dist_long <- dist_long
-
-  }
-
-  if (diagonal == TRUE) {
-
-    dist_long <- dist_long %>%
-      dplyr::select(-c(.data$id1, .data$id2,
-                       .data$row_id_1,
-                       .data$row_id_2)) %>%
-      tibble::tibble()
-
-  } else if (diagonal == FALSE) {
-
-    dist_long <- dist_long %>%
-      dplyr::filter(.data$id1 != .data$id2) %>%
-      dplyr::select(-c(.data$id1, .data$id2,
-                       .data$row_id_1,
-                       .data$row_id_2)) %>%
-      tibble::tibble()
-
-  }
+  # if (duplicates == FALSE) {
+  #
+  #   dist_long <- dist_long %>%
+  #     dplyr::rowwise() %>%
+  #     dplyr::mutate(
+  #       tmp =
+  #         base::paste(
+  #           base::sort(
+  #             c(
+  #               .data$row_id_1,
+  #               .data$row_id_2)
+  #           ),
+  #           collapse = "_")
+  #     ) %>%
+  #     dplyr::distinct(.data$tmp,
+  #                     .keep_all = T) %>%
+  #     dplyr::select(-.data$tmp)
+  #
+  # } else if (duplicates == TRUE) {
+  #
+  #   dist_long <- dist_long
+  #
+  # }
 
   return(dist_long)
 
