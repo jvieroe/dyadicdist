@@ -98,13 +98,19 @@ ddist_xy <- function(x = NULL,
   check_equal_crs(x = x,
                   y = y)
 
-  temp <- data %>%
-    dplyr::distinct(!!rlang::sym(id),
+
+  x_temp <- x %>%
+    dplyr::distinct(!!rlang::sym(x_id),
                     .keep_all = TRUE) %>%
     dplyr::mutate(row_id = dplyr::row_number())
 
-  dist_mat <- sf::st_distance(temp,
-                              temp,
+  y_temp <- y %>%
+    dplyr::distinct(!!rlang::sym(y_id),
+                    .keep_all = TRUE) %>%
+    dplyr::mutate(row_id = dplyr::row_number())
+
+  dist_mat <- sf::st_distance(x_temp,
+                              y_temp,
                               by_element = FALSE) %>%
     base::as.data.frame()
 
@@ -119,16 +125,16 @@ ddist_xy <- function(x = NULL,
                         names_to = "temp",
                         values_to = "distance") %>%
     dplyr::mutate(
-      row_id_1 = base::sort(
+      x_id = base::sort(
         base::rep(
           base::seq(
-            1:nrow(dist_mat)
+            1:nrow(x)
           ),
-          nrow(dist_mat)
+          nrow(y)
         )
       )
     ) %>%
-    dplyr::mutate(row_id_2 = readr::parse_number(temp)) %>%
+    dplyr::mutate(y_id = readr::parse_number(.data$temp)) %>%
     dplyr::select(-.data$temp) %>%
     dplyr::mutate(distance_units = length_units)
 
