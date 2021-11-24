@@ -72,8 +72,7 @@ check_coords_ddist <- function(data) {
 
 
 #' @noRd
-check_crs <- function(data,
-                      crs_transform,
+check_crs <- function(crs_transform,
                       new_crs) {
 
   if(crs_transform == TRUE && is.null(new_crs)) {
