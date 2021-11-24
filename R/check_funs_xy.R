@@ -98,7 +98,8 @@ check_data_xy <- function(x,
 
 
 #' @noRd
-check_coords_ddist_xy <- function(data) {
+check_coords_ddist_xy <- function(x,
+                                  y) {
 
   # -- x
   if(base::max(x$x_longitude) > 180) {

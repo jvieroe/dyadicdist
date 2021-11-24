@@ -38,14 +38,14 @@ ddist_xy <- function(x = NULL,
   check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)
 
-  check_data(x = x,
-             y = y,
-             x_id = x_id,
-             y_id = y_id,
-             x_longitude = x_longitude,
-             x_latitude = x_latitude,
-             y_longitude = y_longitude,
-             y_latitude = y_latitude)
+  check_data_xy(x = x,
+                y = y,
+                x_id = x_id,
+                y_id = y_id,
+                x_longitude = x_longitude,
+                x_latitude = x_latitude,
+                y_longitude = y_longitude,
+                y_latitude = y_latitude)
 
 
   # -- x
