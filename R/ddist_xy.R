@@ -13,10 +13,15 @@ ddist_xy <- function(x = NULL,
                      y = NULL,
                      x_id = NULL,
                      y_id = NULL,
+                     x_crs = 4326,
+                     y_crs = 4326,
                      x_longitude = longitude,
                      x_latitude = latitude,
                      y_longitude = longitude,
                      y_latitude = latitude) {
+
+  check_crs_orig_xy(x_crs = x_crs,
+                    y_crs = y_crs)
 
   check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)
@@ -68,23 +73,30 @@ ddist_xy <- function(x = NULL,
   x <- x %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
     sf::st_as_sf(coords = c("longitude", "latitude"),
-                 crs = crs)
+                 crs = x_crs)
 
   y <- y %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
     sf::st_as_sf(coords = c("longitude", "latitude"),
-                 crs = crs)
+                 crs = y_crs)
 
   if (crs_transform == TRUE) {
 
-    data <- data %>%
+    x <- x %>%
+      sf::st_transform(crs = new_crs)
+
+    y <- y %>%
       sf::st_transform(crs = new_crs)
 
   } else {
 
-    data <- data
+    x <- x
+    y <- y
 
   }
+
+  check_equal_crs(x = x,
+                  y = y)
 
   temp <- data %>%
     dplyr::distinct(!!rlang::sym(id),

@@ -138,6 +138,28 @@ check_coords_ddist_xy <- function(data) {
 
 
 #' @noRd
+check_crs_orig_xy <- function(x_crs,
+                              y_crs) {
+
+  if(!is.numeric(x_crs)){
+    stop("Provided y_crs is not numeric")
+  }
+
+  if(!is.numeric(y_crs)){
+    stop("Provided x_crs is not numeric")
+  }
+
+  if(!x_crs %in% c(rgdal::make_EPSG()$code))  {
+    stop("Provided x_crs is not valid, see rgdal::make_EPSG()")
+  }
+
+  if(!y_crs %in% c(rgdal::make_EPSG()$code))  {
+    stop("Provided y_crs is not valid, see rgdal::make_EPSG()")
+  }
+
+}
+
+#' @noRd
 check_crs_xy <- function(crs_transform,
                          new_crs) {
 
@@ -154,3 +176,16 @@ check_crs_xy <- function(crs_transform,
   }
 
 }
+
+
+#' @noRd
+check_equal_crs <- function(x,
+                            y) {
+
+  if(readr::parse_number(sf::st_crs(x)[[1]]) != readr::parse_number(sf::st_crs(y)[[1]])){
+    stop("Data 'x' and 'y' have different CRS'. Transform using crs_transform and new_crs")
+  }
+
+}
+
+
