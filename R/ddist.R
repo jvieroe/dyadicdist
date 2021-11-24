@@ -107,7 +107,7 @@ ddist <- function(data = NULL,
         )
       )
     ) %>%
-    dplyr::mutate(row_id_2 = readr::parse_number(temp)) %>%
+    dplyr::mutate(row_id_2 = readr::parse_number(.data$temp)) %>%
     dplyr::select(-.data$temp) %>%
     dplyr::mutate(distance_units = length_units)
 
