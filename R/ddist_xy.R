@@ -4,6 +4,16 @@
 #'
 #' @param x an object of class `data.frame` or `tibble`.
 #' @param y an object of class `data.frame` or `tibble`.
+#' @param x_id a variable uniquely idenfiying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
+#' @param y_id a variable uniquely idenfiying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
+#' @param x_longitude name of the numeric longitude variable in data `x`. Defaults to "longitude"
+#' @param x_latitude name of the numeric latitude variable in data `x`. Defaults to "latitude"
+#' @param y_longitude name of the numeric longitude variable in data `y`. Defaults to "longitude"
+#' @param y_latitude name of the numeric latitude variable in data `y`. Defaults to "latitude"
+#' @param x_crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `x`. Defaults to 4326.
+#' @param y_crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `y`. Defaults to 4326.
+#' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
+#' @param new_crs a valid EPSG for a new CRS. See `rgdal::make_EPSG()` or \url{https://epsg.org/home.html}
 #' @return a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
 #' @author Jeppe Vierø
 #' @import dplyr sf tidyr tibble rgdal readr stringr rlang tidyselect
@@ -13,12 +23,14 @@ ddist_xy <- function(x = NULL,
                      y = NULL,
                      x_id = NULL,
                      y_id = NULL,
-                     x_crs = 4326,
-                     y_crs = 4326,
                      x_longitude = longitude,
                      x_latitude = latitude,
                      y_longitude = longitude,
-                     y_latitude = latitude) {
+                     y_latitude = latitude,
+                     x_crs = 4326,
+                     y_crs = 4326,
+                     crs_transform = FALSE,
+                     new_crs = NULL) {
 
   check_crs_orig_xy(x_crs = x_crs,
                     y_crs = y_crs)
