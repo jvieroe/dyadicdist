@@ -70,6 +70,19 @@ check_coords_ddist <- function(data) {
 }
 
 
+#' @noRd
+check_crs_orig <- function(crs) {
+
+  if(!is.numeric(crs)){
+    stop("Provided CRS is not numeric")
+  }
+
+  if(!crs %in% c(rgdal::make_EPSG()$code))  {
+    stop("Provided CRS is not valid, see rgdal::make_EPSG()")
+  }
+
+}
+
 
 #' @noRd
 check_crs <- function(crs_transform,

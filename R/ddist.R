@@ -35,6 +35,8 @@ ddist <- function(data = NULL,
                   diagonal = TRUE,
                   duplicates = TRUE) {
 
+  check_crs_orig(crs = crs)
+
   check_crs(crs_transform = crs_transform,
             new_crs = new_crs)
 
