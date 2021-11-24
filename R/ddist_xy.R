@@ -30,21 +30,40 @@ ddist_xy <- function(x = NULL,
              y_longitude = y_longitude,
              y_latitude = y_latitude)
 
-  if (longitude != "longitude") {
 
-    data <- data %>%
+  # -- x
+  if (x_longitude != "longitude") {
+
+    x <- x %>%
       dplyr::rename(longitude = !!rlang::sym(longitude))
 
   }
 
-  if (latitude != "latitude") {
+  if (x_latitude != "latitude") {
 
-    data <- data %>%
+    x <- x %>%
       dplyr::rename(latitude = !!rlang::sym(latitude))
 
   }
 
-  check_coords_ddist(data = data)
+
+  # -- y
+  if (y_longitude != "longitude") {
+
+    y <- y %>%
+      dplyr::rename(longitude = !!rlang::sym(longitude))
+
+  }
+
+  if (y_latitude != "latitude") {
+
+    y <- y %>%
+      dplyr::rename(latitude = !!rlang::sym(latitude))
+
+  }
+
+  check_coords_ddist_xy(x = x,
+                        y = y)
 
   data <- data %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%

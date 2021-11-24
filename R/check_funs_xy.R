@@ -118,7 +118,7 @@ check_coords_ddist_xy <- function(data) {
   }
 
   # -- y
-  if(base::may(y$y_longitude) > 180) {
+  if(base::max(y$y_longitude) > 180) {
     stop("Inputdata 'y' contains invalid y_longitude coordinates, one or more values > 180")
   }
 
@@ -126,7 +126,7 @@ check_coords_ddist_xy <- function(data) {
     stop("Inputdata 'y' contains invalid y_longitude coordinates, one or more values < -180")
   }
 
-  if(base::may(y$y_latitude) > 90) {
+  if(base::max(y$y_latitude) > 90) {
     stop("Inputdata 'y' contains invalid y_latitude coordinates, one or more values > 90")
   }
 
