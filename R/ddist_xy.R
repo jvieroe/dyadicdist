@@ -176,29 +176,11 @@ ddist_xy <- function(x = NULL,
                              .data$id2,
                              sep = "_"))
 
-  # if (duplicates == FALSE) {
-  #
-  #   dist_long <- dist_long %>%
-  #     dplyr::rowwise() %>%
-  #     dplyr::mutate(
-  #       tmp =
-  #         base::paste(
-  #           base::sort(
-  #             c(
-  #               .data$row_id_1,
-  #               .data$row_id_2)
-  #           ),
-  #           collapse = "_")
-  #     ) %>%
-  #     dplyr::distinct(.data$tmp,
-  #                     .keep_all = T) %>%
-  #     dplyr::select(-.data$tmp)
-  #
-  # } else if (duplicates == TRUE) {
-  #
-  #   dist_long <- dist_long
-  #
-  # }
+  dist_long <- dist_long %>%
+    dplyr::select(-c(.data$row_id_1,
+                     .data$row_id_2,
+                     .data$id1,
+                     .data$id2))
 
   return(dist_long)
 
