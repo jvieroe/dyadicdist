@@ -3,6 +3,7 @@
 export("%>%")
 export(ddist)
 export(ddist_sf)
+export(ddist_xy)
 import(dplyr)
 import(readr)
 import(rgdal)
