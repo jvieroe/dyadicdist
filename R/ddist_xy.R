@@ -10,15 +10,21 @@
 #' @export
 
 ddist_xy <- function(x = NULL,
-                     y = NULL) {
+                     y = NULL,
+                     x_id = NULL,
+                     y_id = NULL,
+                     x_longitude = longitude,
+                     x_latitude = latitude,
+                     y_longitude = longitude,
+                     y_latitude = latitude) {
 
   check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)
 
   check_data(x = x,
              y = y,
-             id_x = id_x,
-             id_y = id_y,
+             x_id = x_id,
+             y_id = y_id,
              x_longitude = x_longitude,
              x_latitude = x_latitude,
              y_longitude = y_longitude,
