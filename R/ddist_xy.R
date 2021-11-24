@@ -35,14 +35,14 @@ ddist_xy <- function(x = NULL,
   if (x_longitude != "longitude") {
 
     x <- x %>%
-      dplyr::rename(longitude = !!rlang::sym(longitude))
+      dplyr::rename(longitude = !!rlang::sym(x_longitude))
 
   }
 
   if (x_latitude != "latitude") {
 
     x <- x %>%
-      dplyr::rename(latitude = !!rlang::sym(latitude))
+      dplyr::rename(latitude = !!rlang::sym(x_latitude))
 
   }
 
@@ -51,21 +51,26 @@ ddist_xy <- function(x = NULL,
   if (y_longitude != "longitude") {
 
     y <- y %>%
-      dplyr::rename(longitude = !!rlang::sym(longitude))
+      dplyr::rename(longitude = !!rlang::sym(y_longitude))
 
   }
 
   if (y_latitude != "latitude") {
 
     y <- y %>%
-      dplyr::rename(latitude = !!rlang::sym(latitude))
+      dplyr::rename(latitude = !!rlang::sym(y_latitude))
 
   }
 
   check_coords_ddist_xy(x = x,
                         y = y)
 
-  data <- data %>%
+  x <- x %>%
+    dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
+    sf::st_as_sf(coords = c("longitude", "latitude"),
+                 crs = crs)
+
+  y <- y %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
     sf::st_as_sf(coords = c("longitude", "latitude"),
                  crs = crs)
