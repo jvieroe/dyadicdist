@@ -66,7 +66,7 @@ devtools::install_github("jvieroe/dyadicdist")
 ```
 
 
-# Usage: `ddist()`
+# Usage
 
 Below, I describe some of the key features of `dyadicdist`. Let's use some data on the 100 largest US cities as a working example:
 
@@ -79,7 +79,9 @@ cities <- dyadicdist::cities
 
 ```
 
-`ddist()` has __two key inputs__. It requires a `data.frame` or `tibble` with specified latitude and longitude variables. Furthermore, it requires the specification of a unique id variable which can be either `numeric`, `integer`, `factor`, or `character`.
+
+## `ddist()`
+`ddist()` takes as input a `data.frame` or a `tibble` and returns a `tibble` with dyadic distances for any combination of points i and j (see more below). Beyond the `data` argument it requires specified latitude and longitude variables as well as a unique id variable, which can be either `numeric`, `integer`, `factor`, or `character`.
 
 ```{r, warning=F, message=F}
 ddist(cities,
@@ -100,8 +102,25 @@ cities %>%
 
 ```
 
-## Output specification
-By default, `ddist()` returns the full list of dyadic distances between any points i and j, including j = i. 
+## `ddist_sf()`: spatial input data
+To measure dyadic distances with an object of class `sf` use `ddist_sf()`:
+
+```{r, warning=F, message=F}
+library(sf)
+
+cities %>%
+  st_as_sf(.,
+           coords = c("longitude", "latitude"),
+           crs = 4326) %>%
+  ddist_sf(.,
+           id = "id")
+
+```
+With the exception of `crs`, `longitude`, and `latitude` (all of which are inherently provided in an object of class `sf`), `ddist_sf()` takes the same optional arguments as `ddist()`.
+
+
+## Output specification for `ddist()` and `ddist_sf()`
+By default, `ddist()` and `ddist_sf()` return the full list of dyadic distances between any points i and j, including j = i. 
 
 In total, this amount to `nrow(data) * nrow(data)` dyads and includes by default:
 
@@ -117,6 +136,11 @@ Both of these inclusions are optional, however.
 * Sort out both by specifying `diagonal = FALSE` __and__ `duplicates = FALSE`
     + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads
 
+
+
+## `ddist_xy()`
+
+## `ddist_xy_sf()`
 
 ## CRS transformations
 By default `ddist()` assumes unprojected coordinates in basic latitude/longitude format (EPSG code `4326`) when converting the raw data provided in the `data` argument to a spatial feature. This is consistent with the default when converting latitude/longitude data to spatial features in the `sf` package (see `sf::st_as_sf()`). You can apply a different CRS by providing a valid EPSG code of type `numeric` with the `crs` argument.
@@ -136,21 +160,7 @@ For a list of supported CRS transformations, see `rgdal::make_EPSG()`.
 Note that the choice of CRS may impact your results considerably. For more information on choosing an appropriate CRS, see [here](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/), [here](https://docs.qgis.org/3.4/en/docs/gentle_gis_introduction/coordinate_reference_systems.html), [here](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf), and [here](http://www.geo.hunter.cuny.edu/~jochen/gtech201/lectures/lec6concepts/map%20coordinate%20systems/how%20to%20choose%20a%20projection.htm)
 
 
-## Spatial input data with `ddist_sf()`
-To measure dyadic distances with an object of class `sf` use `ddist_sf()`:
 
-```{r, warning=F, message=F}
-library(sf)
-
-cities %>%
-  st_as_sf(.,
-           coords = c("longitude", "latitude"),
-           crs = 4326) %>%
-  ddist_sf(.,
-           id = "id")
-
-```
-With the exception of `crs`, `longitude`, and `latitude` (all of which are inherently provided in an object of class `sf`), `ddist_sf()` takes the same optional arguments as `ddist()`.
 
 # Acknowledgements
 

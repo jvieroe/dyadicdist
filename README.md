@@ -71,7 +71,7 @@ library(devtools)
 devtools::install_github("jvieroe/dyadicdist")
 ```
 
-# Usage: `ddist()`
+# Usage
 
 Below, I describe some of the key features of `dyadicdist`. Let’s use
 some data on the 100 largest US cities as a working example:
@@ -84,10 +84,13 @@ library(magrittr)
 cities <- dyadicdist::cities
 ```
 
-`ddist()` has **two key inputs**. It requires a `data.frame` or `tibble`
-with specified latitude and longitude variables. Furthermore, it
-requires the specification of a unique id variable which can be either
-`numeric`, `integer`, `factor`, or `character`.
+## `ddist()`
+
+`ddist()` takes as input a `data.frame` or a `tibble` and returns a
+`tibble` with dyadic distances for any combination of points i and j
+(see more below). Beyond the `data` argument it requires specified
+latitude and longitude variables as well as a unique id variable, which
+can be either `numeric`, `integer`, `factor`, or `character`.
 
 ``` r
 ddist(cities,
@@ -133,10 +136,45 @@ cities %>%
 #> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
-## Output specification
+## `ddist_sf()`: spatial input data
 
-By default, `ddist()` returns the full list of dyadic distances between
-any points i and j, including j = i.
+To measure dyadic distances with an object of class `sf` use
+`ddist_sf()`:
+
+``` r
+library(sf)
+
+cities %>%
+  st_as_sf(.,
+           coords = c("longitude", "latitude"),
+           crs = 4326) %>%
+  ddist_sf(.,
+           id = "id")
+#> # A tibble: 10,000 x 11
+#>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
+#>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
+#>  1       0  m              Schenectady NY      USA         275 Schenect~ NY     
+#>  2   31869. m              Schenectady NY      USA         275 Saratoga~ NY     
+#>  3  204716. m              Schenectady NY      USA         275 Rye       NY     
+#>  4  133700. m              Schenectady NY      USA         275 Rome      NY     
+#>  5   24559. m              Schenectady NY      USA         275 Renssela~ NY     
+#>  6  213131. m              Schenectady NY      USA         275 Plattsbu~ NY     
+#>  7  169132. m              Schenectady NY      USA         275 Peekskill NY     
+#>  8  144114. m              Schenectady NY      USA         275 Oneida    NY     
+#>  9  210578. m              Schenectady NY      USA         275 New Roch~ NY     
+#> 10  211070. m              Schenectady NY      USA         275 Mount Ve~ NY     
+#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
+#> #   match_id <chr>
+```
+
+With the exception of `crs`, `longitude`, and `latitude` (all of which
+are inherently provided in an object of class `sf`), `ddist_sf()` takes
+the same optional arguments as `ddist()`.
+
+## Output specification for `ddist()` and `ddist_sf()`
+
+By default, `ddist()` and `ddist_sf()` return the full list of dyadic
+distances between any points i and j, including j = i.
 
 In total, this amount to `nrow(data) * nrow(data)` dyads and includes by
 default:
@@ -156,6 +194,10 @@ Both of these inclusions are optional, however.
 -   Sort out both by specifying `diagonal = FALSE` **and**
     `duplicates = FALSE`
     -   returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads
+
+## `ddist_xy()`
+
+## `ddist_xy_sf()`
 
 ## CRS transformations
 
@@ -202,41 +244,6 @@ more information on choosing an appropriate CRS, see
 [here](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf),
 and
 [here](http://www.geo.hunter.cuny.edu/~jochen/gtech201/lectures/lec6concepts/map%20coordinate%20systems/how%20to%20choose%20a%20projection.htm)
-
-## Spatial input data with `ddist_sf()`
-
-To measure dyadic distances with an object of class `sf` use
-`ddist_sf()`:
-
-``` r
-library(sf)
-
-cities %>%
-  st_as_sf(.,
-           coords = c("longitude", "latitude"),
-           crs = 4326) %>%
-  ddist_sf(.,
-           id = "id")
-#> # A tibble: 10,000 x 11
-#>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
-#>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
-#>  1       0  m              Schenectady NY      USA         275 Schenect~ NY     
-#>  2   31869. m              Schenectady NY      USA         275 Saratoga~ NY     
-#>  3  204716. m              Schenectady NY      USA         275 Rye       NY     
-#>  4  133700. m              Schenectady NY      USA         275 Rome      NY     
-#>  5   24559. m              Schenectady NY      USA         275 Renssela~ NY     
-#>  6  213131. m              Schenectady NY      USA         275 Plattsbu~ NY     
-#>  7  169132. m              Schenectady NY      USA         275 Peekskill NY     
-#>  8  144114. m              Schenectady NY      USA         275 Oneida    NY     
-#>  9  210578. m              Schenectady NY      USA         275 New Roch~ NY     
-#> 10  211070. m              Schenectady NY      USA         275 Mount Ve~ NY     
-#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
-#> #   match_id <chr>
-```
-
-With the exception of `crs`, `longitude`, and `latitude` (all of which
-are inherently provided in an object of class `sf`), `ddist_sf()` takes
-the same optional arguments as `ddist()`.
 
 # Acknowledgements
 
