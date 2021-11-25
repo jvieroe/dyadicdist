@@ -1,6 +1,6 @@
 #' Calculate dyadic distances between points `i` and `j` from separate spatial datasets
 #'
-#' This function calculates the geodesic distance between any dyads (pairs of points `i` and `j`) from datasets `x` and `y` and stores the result in a long tibble
+#' This function calculates the geodesic distance between any dyads (pairs of points `i` and `j`) from spatial datasets `x` and `y` and stores the result in a long tibble
 #'
 #' @param x an object of class `sf` (`"sf" "data.frame"` or `"sf" "tbl_df" "tbl" "data.frame"`)
 #' @param y an object of class `sf` (`"sf" "data.frame"` or `"sf" "tbl_df" "tbl" "data.frame"`)

@@ -30,7 +30,7 @@ ddist_xy_sf(
 a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
 }
 \description{
-This function calculates the geodesic distance between any dyads (pairs of points \code{i} and \code{j}) from datasets \code{x} and \code{y} and stores the result in a long tibble
+This function calculates the geodesic distance between any dyads (pairs of points \code{i} and \code{j}) from spatial datasets \code{x} and \code{y} and stores the result in a long tibble
 }
 \author{
 Jeppe Vierø
