@@ -23,12 +23,6 @@ ddist_xy_sf <- function(x = NULL,
                         y = NULL,
                         x_id = NULL,
                         y_id = NULL,
-                        x_longitude = longitude,
-                        x_latitude = latitude,
-                        y_longitude = longitude,
-                        y_latitude = latitude,
-                        x_crs = 4326,
-                        y_crs = 4326,
                         crs_transform = FALSE,
                         new_crs = NULL) {
 
