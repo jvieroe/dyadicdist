@@ -7,14 +7,14 @@
 ddist_xy(
   x = NULL,
   y = NULL,
-  x_id = NULL,
-  y_id = NULL,
-  x_longitude = longitude,
-  x_latitude = latitude,
-  y_longitude = longitude,
-  y_latitude = latitude,
-  x_crs = 4326,
-  y_crs = 4326,
+  id_x = NULL,
+  id_y = NULL,
+  longitude_x = "longitude",
+  latitude_x = "latitude",
+  longitude_y = "longitude",
+  latitude_y = "latitude",
+  crs_x = 4326,
+  crs_y = 4326,
   crs_transform = FALSE,
   new_crs = NULL
 )
@@ -24,21 +24,21 @@ ddist_xy(
 
 \item{y}{an object of class \code{data.frame} or \code{tibble}.}
 
-\item{x_id}{a variable uniquely idenfiying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
+\item{id_x}{a variable uniquely idenfiying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
 
-\item{y_id}{a variable uniquely idenfiying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
+\item{id_y}{a variable uniquely idenfiying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
 
-\item{x_longitude}{name of the numeric longitude variable in data \code{x}. Defaults to "longitude"}
+\item{longitude_x}{name of the numeric longitude variable in data \code{x}. Defaults to "longitude"}
 
-\item{x_latitude}{name of the numeric latitude variable in data \code{x}. Defaults to "latitude"}
+\item{latitude_x}{name of the numeric latitude variable in data \code{x}. Defaults to "latitude"}
 
-\item{y_longitude}{name of the numeric longitude variable in data \code{y}. Defaults to "longitude"}
+\item{longitude_y}{name of the numeric longitude variable in data \code{y}. Defaults to "longitude"}
 
-\item{y_latitude}{name of the numeric latitude variable in data \code{y}. Defaults to "latitude"}
+\item{latitude_y}{name of the numeric latitude variable in data \code{y}. Defaults to "latitude"}
 
-\item{x_crs}{a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data \code{x}. Defaults to 4326.}
+\item{crs_x}{a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data \code{x}. Defaults to 4326.}
 
-\item{y_crs}{a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data \code{y}. Defaults to 4326.}
+\item{crs_y}{a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data \code{y}. Defaults to 4326.}
 
 \item{crs_transform}{a logical value indicating whether to transform the CRS. Defaults to FALSE}
 

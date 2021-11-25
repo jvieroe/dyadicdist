@@ -7,8 +7,8 @@
 ddist_xy_sf(
   x = NULL,
   y = NULL,
-  x_id = NULL,
-  y_id = NULL,
+  id_x = NULL,
+  id_y = NULL,
   crs_transform = FALSE,
   new_crs = NULL
 )
@@ -18,9 +18,9 @@ ddist_xy_sf(
 
 \item{y}{an object of class \code{data.frame} or \code{tibble}.}
 
-\item{x_id}{a variable uniquely idenfiying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
+\item{id_x}{a variable uniquely idenfiying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
 
-\item{y_id}{a variable uniquely idenfiying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
+\item{id_y}{a variable uniquely idenfiying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
 
 \item{crs_transform}{a logical value indicating whether to transform the CRS. Defaults to FALSE}
 
