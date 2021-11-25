@@ -167,8 +167,7 @@ check_data_sf <- function(data,
 
 
 #' @noRd
-check_crs_sf <- function(data,
-                         crs_transform,
+check_crs_sf <- function(crs_transform,
                          new_crs) {
 
   if(crs_transform == TRUE && is.null(new_crs)) {

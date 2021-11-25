@@ -1,6 +1,6 @@
-#' Create dyads of points i and j and calculate distances
+#' Calculate dyadic distances between points `i` and `j` in a spatial dataset
 #'
-#' This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
+#' This function calculates the geodesic distance between any dyads (pairs of points `i` and `j`) in a spatial dataset and stores the result in a long tibble
 #'
 #' @param data an object of class `sf` (`"sf" "data.frame"` or `"sf" "tbl_df" "tbl" "data.frame"`)
 #' @param id a variable uniquely idenfiying geospatial points. Can be of type numeric, integer, character, or factor
@@ -29,8 +29,7 @@ ddist_sf <- function(data = NULL,
                      diagonal = TRUE,
                      duplicates = TRUE) {
 
-  check_crs_sf(data = data,
-               crs_transform = crs_transform,
+  check_crs_sf(crs_transform = crs_transform,
                new_crs = new_crs)
 
   check_data_sf(data = data,
@@ -61,7 +60,7 @@ ddist_sf <- function(data = NULL,
 
   dist_mat <- dist_mat %>%
     dplyr::mutate(across(all_of(names(.)),
-                        ~ base::unclass(.x)))
+                         ~ base::unclass(.x)))
 
   dist_long <- dist_mat %>%
     tidyr::pivot_longer(cols = everything(),

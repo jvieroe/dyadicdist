@@ -2,7 +2,7 @@
 % Please edit documentation in R/ddist_sf.R
 \name{ddist_sf}
 \alias{ddist_sf}
-\title{Create dyads of points i and j and calculate distances}
+\title{Calculate dyadic distances between points \code{i} and \code{j} in a spatial dataset}
 \usage{
 ddist_sf(
   data = NULL,
@@ -30,7 +30,7 @@ ddist_sf(
 a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
 }
 \description{
-This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
+This function calculates the geodesic distance between any dyads (pairs of points \code{i} and \code{j}) in a spatial dataset and stores the result in a long tibble
 }
 \examples{
 library(tibble)
