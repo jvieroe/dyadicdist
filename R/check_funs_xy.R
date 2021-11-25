@@ -2,12 +2,12 @@
 #' @noRd
 check_data_xy <- function(x,
                           y,
-                          x_id,
-                          y_id,
-                          x_longitude,
-                          x_latitude,
-                          y_longitude,
-                          y_latitude) {
+                          id_x,
+                          id_y,
+                          longitude_x,
+                          latitude_x,
+                          longitude_y,
+                          latitude_y) {
 
   if (!is.data.frame(x)) {
     stop("Inputdata 'x' must be a data.frame or similar.")
@@ -17,81 +17,81 @@ check_data_xy <- function(x,
     stop("Inputdata 'y' must be a data.frame or similar.")
   }
 
-  if(is.null(x_id)) { # is.data.frame(data) &&
-    stop("No x_id variable provided")
+  if(is.null(id_x)) { # is.data.frame(data) &&
+    stop("No id_x variable provided")
   }
 
-  if(is.null(y_id)) { # is.data.frame(data) &&
-    stop("No y_id variable provided")
+  if(is.null(id_y)) { # is.data.frame(data) &&
+    stop("No id_y variable provided")
   }
 
-  if(!x_id %in% names(x)) {
+  if(!id_x %in% names(x)) {
     stop("The provided id variable is not present in data 'x'.")
   }
 
-  if(!y_id %in% names(y)) {
+  if(!id_y %in% names(y)) {
     stop("The provided id variable is not present in data 'y'.")
   }
 
 
-  if(any(duplicated(x[[x_id]]))) {
-    stop("ID (x_id) does not uniquely identify rows, duplicates exist")
+  if(any(duplicated(x[[id_x]]))) {
+    stop("ID (id_x) does not uniquely identify rows, duplicates exist")
   }
 
-  if(any(duplicated(y[[y_id]]))) {
-    stop("ID (y_id) does not uniquely identify rows, duplicates exist")
+  if(any(duplicated(y[[id_y]]))) {
+    stop("ID (id_y) does not uniquely identify rows, duplicates exist")
   }
 
   # -- x
 
-  if(!x_longitude %in% names(x)) {
+  if(!longitude_x %in% names(x)) {
     stop("The provided longitude variable is not present in data 'x'.")
   }
 
-  if(!is.numeric(x[[x_longitude]])) {
-    stop("The provided x_longitude variable is not numeric")
+  if(!is.numeric(x[[longitude_x]])) {
+    stop("The provided longitude_x variable is not numeric")
   }
 
-  if(any(is.na(x[[x_longitude]]))) {
-    stop("The provided x_longitude variable contains NAs")
+  if(any(is.na(x[[longitude_x]]))) {
+    stop("The provided longitude_x variable contains NAs")
   }
 
-  if(!x_latitude %in% names(x)) {
-    stop("The provided x_latitude variable is not present in data.")
+  if(!latitude_x %in% names(x)) {
+    stop("The provided latitude_x variable is not present in data.")
   }
 
-  if(!is.numeric(x[[x_latitude]])) {
-    stop("The provided x_latitude variable is not numeric")
+  if(!is.numeric(x[[latitude_x]])) {
+    stop("The provided latitude_x variable is not numeric")
   }
 
-  if(any(is.na(x[[x_latitude]]))) {
-    stop("The provided x_latitude variable contains NAs")
+  if(any(is.na(x[[latitude_x]]))) {
+    stop("The provided latitude_x variable contains NAs")
   }
 
   # -- y
 
-  if(!y_longitude %in% names(y)) {
+  if(!longitude_y %in% names(y)) {
     stop("The provided longitude variable is not present in data 'y'.")
   }
 
-  if(!is.numeric(y[[y_longitude]])) {
-    stop("The provided y_longitude variable is not numeric")
+  if(!is.numeric(y[[longitude_y]])) {
+    stop("The provided longitude_y variable is not numeric")
   }
 
-  if(any(is.na(y[[y_longitude]]))) {
-    stop("The provided y_longitude variable contains NAs")
+  if(any(is.na(y[[longitude_y]]))) {
+    stop("The provided longitude_y variable contains NAs")
   }
 
-  if(!y_latitude %in% names(y)) {
-    stop("The provided y_latitude variable is not present in data.")
+  if(!latitude_y %in% names(y)) {
+    stop("The provided latitude_y variable is not present in data.")
   }
 
-  if(!is.numeric(y[[y_latitude]])) {
-    stop("The provided y_latitude variable is not numeric")
+  if(!is.numeric(y[[latitude_y]])) {
+    stop("The provided latitude_y variable is not numeric")
   }
 
-  if(any(is.na(y[[y_latitude]]))) {
-    stop("The provided y_latitude variable contains NAs")
+  if(any(is.na(y[[latitude_y]]))) {
+    stop("The provided latitude_y variable contains NAs")
   }
 
 }
@@ -102,60 +102,60 @@ check_coords_ddist_xy <- function(x,
                                   y) {
 
   # -- x
-  if(base::max(x$x_longitude) > 180) {
-    stop("Inputdata 'x' contains invalid x_longitude coordinates, one or more values > 180")
+  if(base::max(x$longitude_x) > 180) {
+    stop("Inputdata 'x' contains invalid longitude_x coordinates, one or more values > 180")
   }
 
-  if(base::min(x$x_longitude) < -180) {
-    stop("Inputdata 'x' contains invalid x_longitude coordinates, one or more values < -180")
+  if(base::min(x$longitude_x) < -180) {
+    stop("Inputdata 'x' contains invalid longitude_x coordinates, one or more values < -180")
   }
 
-  if(base::max(x$x_latitude) > 90) {
-    stop("Inputdata 'x' contains invalid x_latitude coordinates, one or more values > 90")
+  if(base::max(x$latitude_x) > 90) {
+    stop("Inputdata 'x' contains invalid latitude_x coordinates, one or more values > 90")
   }
 
-  if(base::min(x$x_latitude) < -90) {
-    stop("Inputdata 'x' contains invalid x_latitude coordinates, one or more values < -90")
+  if(base::min(x$latitude_x) < -90) {
+    stop("Inputdata 'x' contains invalid latitude_x coordinates, one or more values < -90")
   }
 
   # -- y
-  if(base::max(y$y_longitude) > 180) {
-    stop("Inputdata 'y' contains invalid y_longitude coordinates, one or more values > 180")
+  if(base::max(y$longitude_y) > 180) {
+    stop("Inputdata 'y' contains invalid longitude_y coordinates, one or more values > 180")
   }
 
-  if(base::min(y$y_longitude) < -180) {
-    stop("Inputdata 'y' contains invalid y_longitude coordinates, one or more values < -180")
+  if(base::min(y$longitude_y) < -180) {
+    stop("Inputdata 'y' contains invalid longitude_y coordinates, one or more values < -180")
   }
 
-  if(base::max(y$y_latitude) > 90) {
-    stop("Inputdata 'y' contains invalid y_latitude coordinates, one or more values > 90")
+  if(base::max(y$latitude_y) > 90) {
+    stop("Inputdata 'y' contains invalid latitude_y coordinates, one or more values > 90")
   }
 
-  if(base::min(y$y_latitude) < -90) {
-    stop("Inputdata 'y' contains invalid y_latitude coordinates, one or more values < -90")
+  if(base::min(y$latitude_y) < -90) {
+    stop("Inputdata 'y' contains invalid latitude_y coordinates, one or more values < -90")
   }
 
 }
 
 
 #' @noRd
-check_crs_orig_xy <- function(x_crs,
-                              y_crs) {
+check_crs_orig_xy <- function(crs_x,
+                              crs_y) {
 
-  if(!is.numeric(x_crs)){
-    stop("Provided y_crs is not numeric")
+  if(!is.numeric(crs_x)){
+    stop("Provided crs_y is not numeric")
   }
 
-  if(!is.numeric(y_crs)){
-    stop("Provided x_crs is not numeric")
+  if(!is.numeric(crs_y)){
+    stop("Provided crs_x is not numeric")
   }
 
-  if(!x_crs %in% c(rgdal::make_EPSG()$code))  {
-    stop("Provided x_crs is not valid, see rgdal::make_EPSG()")
+  if(!crs_x %in% c(rgdal::make_EPSG()$code))  {
+    stop("Provided crs_x is not valid, see rgdal::make_EPSG()")
   }
 
-  if(!y_crs %in% c(rgdal::make_EPSG()$code))  {
-    stop("Provided y_crs is not valid, see rgdal::make_EPSG()")
+  if(!crs_y %in% c(rgdal::make_EPSG()$code))  {
+    stop("Provided crs_y is not valid, see rgdal::make_EPSG()")
   }
 
 }
@@ -193,31 +193,31 @@ check_equal_crs <- function(x,
 #' @noRd
 check_data_xy_sf <- function(x,
                              y,
-                             x_id,
-                             y_id) {
+                             id_x,
+                             id_y) {
 
-  if(is.null(x_id)) { # is.data.frame(data) &&
-    stop("No x_id variable provided")
+  if(is.null(id_x)) { # is.data.frame(data) &&
+    stop("No id_x variable provided")
   }
 
-  if(is.null(y_id)) { # is.data.frame(data) &&
-    stop("No y_id variable provided")
+  if(is.null(id_y)) { # is.data.frame(data) &&
+    stop("No id_y variable provided")
   }
 
-  if(!x_id %in% names(x)) {
+  if(!id_x %in% names(x)) {
     stop("The provided id variable is not present in data.")
   }
 
-  if(!y_id %in% names(y)) {
+  if(!id_y %in% names(y)) {
     stop("The provided id variable is not present in data.")
   }
 
-  if(any(duplicated(x[[x_id]]))) {
-    stop("ID (x_id) does not uniquely identify rows, duplicates exist")
+  if(any(duplicated(x[[id_x]]))) {
+    stop("ID (id_x) does not uniquely identify rows, duplicates exist")
   }
 
-  if(any(duplicated(y[[y_id]]))) {
-    stop("ID (y_id) does not uniquely identify rows, duplicates exist")
+  if(any(duplicated(y[[id_y]]))) {
+    stop("ID (id_y) does not uniquely identify rows, duplicates exist")
   }
 
 

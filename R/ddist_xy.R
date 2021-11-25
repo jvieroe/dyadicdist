@@ -4,14 +4,14 @@
 #'
 #' @param x an object of class `data.frame` or `tibble`.
 #' @param y an object of class `data.frame` or `tibble`.
-#' @param x_id a variable uniquely idenfiying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
-#' @param y_id a variable uniquely idenfiying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
-#' @param x_longitude name of the numeric longitude variable in data `x`. Defaults to "longitude"
-#' @param x_latitude name of the numeric latitude variable in data `x`. Defaults to "latitude"
-#' @param y_longitude name of the numeric longitude variable in data `y`. Defaults to "longitude"
-#' @param y_latitude name of the numeric latitude variable in data `y`. Defaults to "latitude"
-#' @param x_crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `x`. Defaults to 4326.
-#' @param y_crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `y`. Defaults to 4326.
+#' @param id_x a variable uniquely idenfiying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
+#' @param id_y a variable uniquely idenfiying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
+#' @param longitude_x name of the numeric longitude variable in data `x`. Defaults to "longitude"
+#' @param latitude_x name of the numeric latitude variable in data `x`. Defaults to "latitude"
+#' @param longitude_y name of the numeric longitude variable in data `y`. Defaults to "longitude"
+#' @param latitude_y name of the numeric latitude variable in data `y`. Defaults to "latitude"
+#' @param crs_x a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `x`. Defaults to 4326.
+#' @param crs_y a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `y`. Defaults to 4326.
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS. See `rgdal::make_EPSG()` or \url{https://epsg.org/home.html}
 #' @return a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
@@ -21,61 +21,61 @@
 
 ddist_xy <- function(x = NULL,
                      y = NULL,
-                     x_id = NULL,
-                     y_id = NULL,
-                     x_longitude = longitude,
-                     x_latitude = latitude,
-                     y_longitude = longitude,
-                     y_latitude = latitude,
-                     x_crs = 4326,
-                     y_crs = 4326,
+                     id_x = NULL,
+                     id_y = NULL,
+                     longitude_x = "longitude",
+                     latitude_x = "latitude",
+                     longitude_y = "longitude",
+                     latitude_y = "latitude",
+                     crs_x = 4326,
+                     crs_y = 4326,
                      crs_transform = FALSE,
                      new_crs = NULL) {
 
-  check_crs_orig_xy(x_crs = x_crs,
-                    y_crs = y_crs)
+  check_crs_orig_xy(crs_x = crs_x,
+                    crs_y = crs_y)
 
   check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)
 
   check_data_xy(x = x,
                 y = y,
-                x_id = x_id,
-                y_id = y_id,
-                x_longitude = x_longitude,
-                x_latitude = x_latitude,
-                y_longitude = y_longitude,
-                y_latitude = y_latitude)
+                id_x = id_x,
+                id_y = id_y,
+                longitude_x = longitude_x,
+                latitude_x = latitude_x,
+                longitude_y = longitude_y,
+                latitude_y = latitude_y)
 
 
   # -- x
-  if (x_longitude != "longitude") {
+  if (longitude_x != "longitude") {
 
     x <- x %>%
-      dplyr::rename(longitude = !!rlang::sym(x_longitude))
+      dplyr::rename(longitude = !!rlang::sym(longitude_x))
 
   }
 
-  if (x_latitude != "latitude") {
+  if (latitude_x != "latitude") {
 
     x <- x %>%
-      dplyr::rename(latitude = !!rlang::sym(x_latitude))
+      dplyr::rename(latitude = !!rlang::sym(latitude_x))
 
   }
 
 
   # -- y
-  if (y_longitude != "longitude") {
+  if (longitude_y != "longitude") {
 
     y <- y %>%
-      dplyr::rename(longitude = !!rlang::sym(y_longitude))
+      dplyr::rename(longitude = !!rlang::sym(longitude_y))
 
   }
 
-  if (y_latitude != "latitude") {
+  if (latitude_y != "latitude") {
 
     y <- y %>%
-      dplyr::rename(latitude = !!rlang::sym(y_latitude))
+      dplyr::rename(latitude = !!rlang::sym(latitude_y))
 
   }
 
@@ -85,12 +85,12 @@ ddist_xy <- function(x = NULL,
   x <- x %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
     sf::st_as_sf(coords = c("longitude", "latitude"),
-                 crs = x_crs)
+                 crs = crs_x)
 
   y <- y %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
     sf::st_as_sf(coords = c("longitude", "latitude"),
-                 crs = y_crs)
+                 crs = crs_y)
 
   if (crs_transform == TRUE) {
 
@@ -112,12 +112,12 @@ ddist_xy <- function(x = NULL,
 
 
   x_temp <- x %>%
-    dplyr::distinct(!!rlang::sym(x_id),
+    dplyr::distinct(!!rlang::sym(id_x),
                     .keep_all = TRUE) %>%
     dplyr::mutate(row_id = dplyr::row_number())
 
   y_temp <- y %>%
-    dplyr::distinct(!!rlang::sym(y_id),
+    dplyr::distinct(!!rlang::sym(id_y),
                     .keep_all = TRUE) %>%
     dplyr::mutate(row_id = dplyr::row_number())
 
@@ -167,9 +167,9 @@ ddist_xy <- function(x = NULL,
                        ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
     dplyr::rename_with(.cols = tidyselect::ends_with(".y"),
                        ~ stringr::str_replace_all(., '\\.y', '_2')) %>%
-    dplyr::mutate(id1 := !!rlang::sym(paste0(x_id,
+    dplyr::mutate(id1 := !!rlang::sym(paste0(id_x,
                                              "_1")),
-                  id2 := !!rlang::sym(paste0(y_id,
+                  id2 := !!rlang::sym(paste0(id_y,
                                              "_2"))) %>%
     dplyr::mutate(
       match_id = base::paste(.data$id1,

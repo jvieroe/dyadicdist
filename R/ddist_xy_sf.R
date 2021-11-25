@@ -4,8 +4,8 @@
 #'
 #' @param x an object of class `data.frame` or `tibble`.
 #' @param y an object of class `data.frame` or `tibble`.
-#' @param x_id a variable uniquely idenfiying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
-#' @param y_id a variable uniquely idenfiying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
+#' @param id_x a variable uniquely idenfiying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
+#' @param id_y a variable uniquely idenfiying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS. See `rgdal::make_EPSG()` or \url{https://epsg.org/home.html}
 #' @return a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
@@ -15,8 +15,8 @@
 
 ddist_xy_sf <- function(x = NULL,
                         y = NULL,
-                        x_id = NULL,
-                        y_id = NULL,
+                        id_x = NULL,
+                        id_y = NULL,
                         crs_transform = FALSE,
                         new_crs = NULL) {
 
@@ -25,8 +25,8 @@ ddist_xy_sf <- function(x = NULL,
 
   check_data_xy_sf(x = x,
                    y = y,
-                   x_id = x_id,
-                   y_id = y_id)
+                   id_x = id_x,
+                   id_y = id_y)
 
 
   if (crs_transform == TRUE) {
@@ -49,12 +49,12 @@ ddist_xy_sf <- function(x = NULL,
 
 
   x_temp <- x %>%
-    dplyr::distinct(!!rlang::sym(x_id),
+    dplyr::distinct(!!rlang::sym(id_x),
                     .keep_all = TRUE) %>%
     dplyr::mutate(row_id = dplyr::row_number())
 
   y_temp <- y %>%
-    dplyr::distinct(!!rlang::sym(y_id),
+    dplyr::distinct(!!rlang::sym(id_y),
                     .keep_all = TRUE) %>%
     dplyr::mutate(row_id = dplyr::row_number())
 
@@ -104,9 +104,9 @@ ddist_xy_sf <- function(x = NULL,
                        ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
     dplyr::rename_with(.cols = tidyselect::ends_with(".y"),
                        ~ stringr::str_replace_all(., '\\.y', '_2')) %>%
-    dplyr::mutate(id1 := !!rlang::sym(paste0(x_id,
+    dplyr::mutate(id1 := !!rlang::sym(paste0(id_x,
                                              "_1")),
-                  id2 := !!rlang::sym(paste0(y_id,
+                  id2 := !!rlang::sym(paste0(id_y,
                                              "_2"))) %>%
     dplyr::mutate(
       match_id = base::paste(.data$id1,
