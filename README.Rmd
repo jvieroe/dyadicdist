@@ -146,10 +146,10 @@ The `ddist_xy*()` functions performs the same underlying task but takes __two__ 
 
 
 
-## CRS transformations
-By default `ddist()` assumes unprojected coordinates in basic latitude/longitude format (EPSG code `4326`) when converting the raw data provided in the `data` argument to a spatial feature. This is consistent with the default when converting latitude/longitude data to spatial features in the `sf` package (see `sf::st_as_sf()`). You can apply a different CRS by providing a valid EPSG code of type `numeric` with the `crs` argument.
+# CRS transformations
+By default `ddist()` and `ddist_xy()` assume unprojected coordinates in basic latitude/longitude format (EPSG code `4326`) when converting the raw data provided in the `data` argument to a spatial feature. This is consistent with the default when converting latitude/longitude data to spatial features in the `sf` package (see `sf::st_as_sf()`). You can apply a different CRS by providing a valid EPSG code of type `numeric` with the `crs` argument.
 
-Additionally, `ddist()` allows you to transform the CRS before calculating dyadic distances using the `crs_transform` and `new_crs` arguments:
+Additionally, `ddist*()` allows you to transform the CRS before calculating dyadic distances using the `crs_transform` and `new_crs` arguments:
 
 ```{r, warning=F, message=F}
 ddist(cities,
