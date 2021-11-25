@@ -1,6 +1,6 @@
 Package: dyadicdist
 Title: Easy Calculation of Dyadic Geodesic Distances
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Jeppe",
            family = "Vierø",
