@@ -137,6 +137,13 @@ ddist_xy_sf <- function(x = NULL,
   #
   # }
 
+  dist_long <- dist_long %>%
+    dplyr::select(-c(.data$id1, .data$id2,
+                     .data$row_id_1,
+                     .data$row_id_2)) %>%
+    tibble::tibble()
+
+
   return(dist_long)
 
 }
