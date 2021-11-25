@@ -1,5 +1,5 @@
 Package: dyadicdist
-Title: Easy Calculation of Dyadic Geodesic Distances.
+Title: Easy Calculation of Dyadic Geodesic Distances
 Version: 0.1.0
 Authors@R: 
     person(given = "Jeppe",
