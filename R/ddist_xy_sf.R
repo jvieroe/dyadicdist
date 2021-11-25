@@ -6,12 +6,6 @@
 #' @param y an object of class `data.frame` or `tibble`.
 #' @param x_id a variable uniquely idenfiying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
 #' @param y_id a variable uniquely idenfiying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
-#' @param x_longitude name of the numeric longitude variable in data `x`. Defaults to "longitude"
-#' @param x_latitude name of the numeric latitude variable in data `x`. Defaults to "latitude"
-#' @param y_longitude name of the numeric longitude variable in data `y`. Defaults to "longitude"
-#' @param y_latitude name of the numeric latitude variable in data `y`. Defaults to "latitude"
-#' @param x_crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `x`. Defaults to 4326.
-#' @param y_crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `y`. Defaults to 4326.
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS. See `rgdal::make_EPSG()` or \url{https://epsg.org/home.html}
 #' @return a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
@@ -29,27 +23,11 @@ ddist_xy_sf <- function(x = NULL,
   check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)
 
-  check_data_xy(x = x,
-                y = y,
-                x_id = x_id,
-                y_id = y_id,
-                x_longitude = x_longitude,
-                x_latitude = x_latitude,
-                y_longitude = y_longitude,
-                y_latitude = y_latitude)
+  check_data_xy_sf(x = x,
+                   y = y,
+                   x_id = x_id,
+                   y_id = y_id)
 
-  check_data_sf(data = data,
-                id = id)
-
-  x <- x %>%
-    dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
-    sf::st_as_sf(coords = c("longitude", "latitude"),
-                 crs = x_crs)
-
-  y <- y %>%
-    dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
-    sf::st_as_sf(coords = c("longitude", "latitude"),
-                 crs = y_crs)
 
   if (crs_transform == TRUE) {
 
