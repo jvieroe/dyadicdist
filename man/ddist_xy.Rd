@@ -2,7 +2,7 @@
 % Please edit documentation in R/ddist_xy.R
 \name{ddist_xy}
 \alias{ddist_xy}
-\title{Create dyads of points i and j and calculate distances}
+\title{Calculate dyadic distances between points \code{i} and \code{j} from separate datasets}
 \usage{
 ddist_xy(
   x = NULL,
@@ -48,7 +48,7 @@ ddist_xy(
 a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
 }
 \description{
-This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
+This function calculates the geodesic distance between any dyads (pairs of points \code{i} and \code{j}) from datasets \code{x} and \code{y} and stores the result in a long tibble
 }
 \author{
 Jeppe Vierø

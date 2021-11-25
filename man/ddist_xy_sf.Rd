@@ -2,7 +2,7 @@
 % Please edit documentation in R/ddist_xy_sf.R
 \name{ddist_xy_sf}
 \alias{ddist_xy_sf}
-\title{Create dyads of points i and j and calculate distances}
+\title{Calculate dyadic distances between points \code{i} and \code{j} from separate spatial datasets}
 \usage{
 ddist_xy_sf(
   x = NULL,
@@ -14,9 +14,9 @@ ddist_xy_sf(
 )
 }
 \arguments{
-\item{x}{an object of class \code{data.frame} or \code{tibble}.}
+\item{x}{an object of class \code{sf} (\verb{"sf" "data.frame"} or \verb{"sf" "tbl_df" "tbl" "data.frame"})}
 
-\item{y}{an object of class \code{data.frame} or \code{tibble}.}
+\item{y}{an object of class \code{sf} (\verb{"sf" "data.frame"} or \verb{"sf" "tbl_df" "tbl" "data.frame"})}
 
 \item{id_x}{a variable uniquely idenfiying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
 
@@ -30,7 +30,7 @@ ddist_xy_sf(
 a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
 }
 \description{
-This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
+This function calculates the geodesic distance between any dyads (pairs of points \code{i} and \code{j}) from datasets \code{x} and \code{y} and stores the result in a long tibble
 }
 \author{
 Jeppe Vierø

@@ -1,9 +1,9 @@
-#' Create dyads of points i and j and calculate distances
+#' Calculate dyadic distances between points `i` and `j` from separate spatial datasets
 #'
-#' This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
+#' This function calculates the geodesic distance between any dyads (pairs of points `i` and `j`) from datasets `x` and `y` and stores the result in a long tibble
 #'
-#' @param x an object of class `data.frame` or `tibble`.
-#' @param y an object of class `data.frame` or `tibble`.
+#' @param x an object of class `sf` (`"sf" "data.frame"` or `"sf" "tbl_df" "tbl" "data.frame"`)
+#' @param y an object of class `sf` (`"sf" "data.frame"` or `"sf" "tbl_df" "tbl" "data.frame"`)
 #' @param id_x a variable uniquely idenfiying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
 #' @param id_y a variable uniquely idenfiying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
