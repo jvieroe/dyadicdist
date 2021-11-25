@@ -28,12 +28,10 @@ opposed to a wide `matrix`.
 This is still a development version. Please don’t hesitate to let me
 know of any errors and/or deficiencies you might come across.
 
-## Quick example
+### Quick example
 
-A simple example with no additional illustrates the workings of
-`ddist()`. It takes as input a `data.frame` or a `tibble` and returns a
-`tibble` with dyadic distances for any combination of points i and j
-(see more below)
+A simple example with illustrates the purpose of `ddist()` and the
+derived functions: `ddist_sf()`, `ddist_xy()`, and `ddist_xy_sf()`.
 
 ``` r
 library(tidyverse)
