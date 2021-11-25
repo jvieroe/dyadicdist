@@ -26,9 +26,6 @@ ddist_xy_sf <- function(x = NULL,
                         crs_transform = FALSE,
                         new_crs = NULL) {
 
-  check_crs_orig_xy(x_crs = x_crs,
-                    y_crs = y_crs)
-
   check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)
 
@@ -41,40 +38,8 @@ ddist_xy_sf <- function(x = NULL,
                 y_longitude = y_longitude,
                 y_latitude = y_latitude)
 
-
-  # -- x
-  if (x_longitude != "longitude") {
-
-    x <- x %>%
-      dplyr::rename(longitude = !!rlang::sym(x_longitude))
-
-  }
-
-  if (x_latitude != "latitude") {
-
-    x <- x %>%
-      dplyr::rename(latitude = !!rlang::sym(x_latitude))
-
-  }
-
-
-  # -- y
-  if (y_longitude != "longitude") {
-
-    y <- y %>%
-      dplyr::rename(longitude = !!rlang::sym(y_longitude))
-
-  }
-
-  if (y_latitude != "latitude") {
-
-    y <- y %>%
-      dplyr::rename(latitude = !!rlang::sym(y_latitude))
-
-  }
-
-  check_coords_ddist_xy(x = x,
-                        y = y)
+  check_data_sf(data = data,
+                id = id)
 
   x <- x %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%

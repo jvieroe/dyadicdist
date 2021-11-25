@@ -190,3 +190,130 @@ check_equal_crs <- function(x,
 }
 
 
+#' @noRd
+check_data_xy_sf <- function(x,
+                             y,
+                             x_id,
+                             y_id) {
+
+  if(is.null(x_id)) { # is.data.frame(data) &&
+    stop("No x_id variable provided")
+  }
+
+  if(is.null(y_id)) { # is.data.frame(data) &&
+    stop("No y_id variable provided")
+  }
+
+  if(!x_id %in% names(x)) {
+    stop("The provided id variable is not present in data.")
+  }
+
+  if(!y_id %in% names(y)) {
+    stop("The provided id variable is not present in data.")
+  }
+
+  if(any(duplicated(x[[x_id]]))) {
+    stop("ID (x_id) does not uniquely identify rows, duplicates exist")
+  }
+
+  if(any(duplicated(y[[y_id]]))) {
+    stop("ID (y_id) does not uniquely identify rows, duplicates exist")
+  }
+
+
+  if (class(x)[1] != "sf") {
+    stop("Inputdata 'x' must be an object of class sf. Use dyadicdist::ddist_xy()")
+  }
+
+  if (class(y)[1] != "sf") {
+    stop("Inputdata 'y' must be an object of class sf. Use dyadicdist::ddist_xy()")
+  }
+
+
+  if (!class(x$geometry)[1] %in% c("sfc_POINT", "sfc")) {
+    stop("Inputdata 'x' is spatial but its spatial geometry must be of class sfc_POINT")
+  }
+
+  if (!class(y$geometry)[1] %in% c("sfc_POINT", "sfc")) {
+    stop("Inputdata 'y' is spatial but its spatial geometry must be of class sfc_POINT")
+  }
+
+
+  if (any(sf::st_is_valid(x) == FALSE)) {
+    stop("Inputdata 'x' contains invalid geometries")
+  }
+
+  if (any(sf::st_is_valid(y) == FALSE)) {
+    stop("Inputdata 'y' contains invalid geometries")
+  }
+
+  if (sf::st_bbox(x)[1] > 180) {
+    stop("Inputdata 'x' contains invalid longitude coordinates, one or more values > 180")
+  }
+
+  if (sf::st_bbox(x)[1] < -180) {
+    stop("Inputdata 'x' contains invalid longitude coordinates, one or more values < -180")
+  }
+
+  if (sf::st_bbox(x)[2] > 90) {
+    stop("Inputdata 'x' contains invalid latitude coordinates, one or more values > 90")
+  }
+
+  if (sf::st_bbox(x)[2] < -90) {
+    stop("Inputdata 'x' contains invalid latitude coordinates, one or more values < -90")
+  }
+
+  if (sf::st_bbox(x)[3] > 180) {
+    stop("Inputdata 'x' contains invalid longitude coordinates, one or more values > 180")
+  }
+
+  if (sf::st_bbox(x)[3] < -180) {
+    stop("Inputdata 'x' contains invalid longitude coordinates, one or more values < -180")
+  }
+
+  if (sf::st_bbox(x)[4] > 90) {
+    stop("Inputdata 'x' contains invalid latitude coordinates, one or more values > 90")
+  }
+
+  if (sf::st_bbox(x)[4] < -90) {
+    stop("Inputdata 'x' contains invalid latitude coordinates, one or more values < -90")
+  }
+
+  if (sf::st_bbox(y)[1] > 180) {
+    stop("Inputdata 'y' contains invalid longitude coordinates, one or more values > 180")
+  }
+
+  if (sf::st_bbox(y)[1] < -180) {
+    stop("Inputdata 'y' contains invalid longitude coordinates, one or more values < -180")
+  }
+
+  if (sf::st_bbox(y)[2] > 90) {
+    stop("Inputdata 'y' contains invalid latitude coordinates, one or more values > 90")
+  }
+
+  if (sf::st_bbox(y)[2] < -90) {
+    stop("Inputdata 'y' contains invalid latitude coordinates, one or more values < -90")
+  }
+
+  if (sf::st_bbox(y)[3] > 180) {
+    stop("Inputdata 'y' contains invalid longitude coordinates, one or more values > 180")
+  }
+
+  if (sf::st_bbox(y)[3] < -180) {
+    stop("Inputdata 'y' contains invalid longitude coordinates, one or more values < -180")
+  }
+
+  if (sf::st_bbox(y)[4] > 90) {
+    stop("Inputdata 'y' contains invalid latitude coordinates, one or more values > 90")
+  }
+
+  if (sf::st_bbox(y)[4] < -90) {
+    stop("Inputdata 'y' contains invalid latitude coordinates, one or more values < -90")
+  }
+
+
+}
+
+
+
+

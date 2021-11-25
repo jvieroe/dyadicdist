@@ -29,8 +29,7 @@ ddist_sf <- function(data = NULL,
                      diagonal = TRUE,
                      duplicates = TRUE) {
 
-  check_crs_sf(data = data,
-               crs_transform = crs_transform,
+  check_crs_sf(crs_transform = crs_transform,
                new_crs = new_crs)
 
   check_data_sf(data = data,
