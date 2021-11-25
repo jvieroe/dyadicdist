@@ -195,9 +195,16 @@ Both of these inclusions are optional, however.
     `duplicates = FALSE`
     -   returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads
 
-## `ddist_xy()`
+## `ddist_xy()` and `ddist_xy_sf()`: dual data inputs
 
-## `ddist_xy_sf()`
+`ddist()` and `ddist_sf()` take as a data input a single `data.frame` or
+`tibble` and returns dyads and dyadic distances between each
+observation.
+
+The `ddist_xy*()` functions performs the same underlying task but takes
+**two** data inputs, `x` and `y`. For each input you need to specify id
+as well as longitude/latitude variables (the latter defaulting to
+`"longitude"` and `"latitude"`)
 
 ## CRS transformations
 

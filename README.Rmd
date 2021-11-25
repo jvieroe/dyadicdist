@@ -138,9 +138,13 @@ Both of these inclusions are optional, however.
 
 
 
-## `ddist_xy()`
+## `ddist_xy()` and `ddist_xy_sf()`: dual data inputs
 
-## `ddist_xy_sf()`
+`ddist()` and `ddist_sf()` take as a data input a single `data.frame` or `tibble` and returns dyads and dyadic distances between each observation.
+
+The `ddist_xy*()` functions performs the same underlying task but takes __two__ data inputs, `x` and `y`. For each input you need to specify id as well as longitude/latitude variables (the latter defaulting to `"longitude"` and `"latitude"`)
+
+
 
 ## CRS transformations
 By default `ddist()` assumes unprojected coordinates in basic latitude/longitude format (EPSG code `4326`) when converting the raw data provided in the `data` argument to a spatial feature. This is consistent with the default when converting latitude/longitude data to spatial features in the `sf` package (see `sf::st_as_sf()`). You can apply a different CRS by providing a valid EPSG code of type `numeric` with the `crs` argument.
