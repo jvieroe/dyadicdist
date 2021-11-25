@@ -144,7 +144,7 @@ ddist <- function(data = NULL,
               c(
                 .data$row_id_1,
                 .data$row_id_2)
-              ),
+            ),
             collapse = "_")
       ) %>%
       dplyr::distinct(.data$tmp,
