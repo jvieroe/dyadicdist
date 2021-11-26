@@ -4,8 +4,8 @@
 #'
 #' @param x an object of class `data.frame` or `tibble`.
 #' @param y an object of class `data.frame` or `tibble`.
-#' @param id_x a variable uniquely idenfiying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
-#' @param id_y a variable uniquely idenfiying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
+#' @param id_x a variable uniquely identifying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
+#' @param id_y a variable uniquely identifying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
 #' @param longitude_x name of the numeric longitude variable in data `x`. Defaults to "longitude"
 #' @param latitude_x name of the numeric latitude variable in data `x`. Defaults to "latitude"
 #' @param longitude_y name of the numeric longitude variable in data `y`. Defaults to "longitude"

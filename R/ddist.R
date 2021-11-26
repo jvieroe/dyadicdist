@@ -3,7 +3,7 @@
 #' This function calculates the geodesic distance between any dyads (pairs of points) and stores the result in a long tibble, a opposed to a wide matrix.
 #'
 #' @param data an object of class `data.frame` or `tibble`.
-#' @param id a variable uniquely idenfiying geospatial points. Can be of type numeric, integer, character, or factor
+#' @param id a variable uniquely identifying geospatial points. Can be of type numeric, integer, character, or factor
 #' @param longitude name of the numeric longitude variable. Defaults to "longitude"
 #' @param latitude name of the numeric latitude variable. Defaults to "latitude"
 #' @param crs a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates. Defaults to 4326.
