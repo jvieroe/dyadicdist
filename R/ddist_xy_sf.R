@@ -105,9 +105,7 @@ ddist_xy_sf <- function(x = NULL,
       dplyr::mutate(
         match_id = base::paste(.data$id1,
                                .data$id2,
-                               sep = "_"))
-
-    dist_long_fin <- dist_long %>%
+                               sep = "_")) %>%
       dplyr::select(-c(.data$id1, .data$id2,
                        .data$row_id_1,
                        .data$row_id_2)) %>%
@@ -121,9 +119,7 @@ ddist_xy_sf <- function(x = NULL,
       dplyr::mutate(
         match_id = base::paste(.data$id1,
                                .data$id2,
-                               sep = "_"))
-
-    dist_long_fin <- dist_long %>%
+                               sep = "_")) %>%
       dplyr::select(-c(.data$id1, .data$id2,
                        .data$row_id_1,
                        .data$row_id_2)) %>%
