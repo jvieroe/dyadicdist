@@ -104,45 +104,18 @@ ddist_xy_sf <- function(x = NULL,
                        ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
     dplyr::rename_with(.cols = tidyselect::ends_with(".y"),
                        ~ stringr::str_replace_all(., '\\.y', '_2')) %>%
-    dplyr::mutate(id1 := !!rlang::sym(paste0(id_x,
-                                             "_1")),
-                  id2 := !!rlang::sym(paste0(id_y,
-                                             "_2"))) %>%
+    dplyr::mutate(id1 := !!rlang::sym(id_x),
+                  id2 := !!rlang::sym(id_y)) %>%
     dplyr::mutate(
       match_id = base::paste(.data$id1,
                              .data$id2,
                              sep = "_"))
-
-  # if (duplicates == FALSE) {
-  #
-  #   dist_long <- dist_long %>%
-  #     dplyr::rowwise() %>%
-  #     dplyr::mutate(
-  #       tmp =
-  #         base::paste(
-  #           base::sort(
-  #             c(
-  #               .data$row_id_1,
-  #               .data$row_id_2)
-  #           ),
-  #           collapse = "_")
-  #     ) %>%
-  #     dplyr::distinct(.data$tmp,
-  #                     .keep_all = T) %>%
-  #     dplyr::select(-.data$tmp)
-  #
-  # } else if (duplicates == TRUE) {
-  #
-  #   dist_long <- dist_long
-  #
-  # }
 
   dist_long <- dist_long %>%
     dplyr::select(-c(.data$id1, .data$id2,
                      .data$row_id_1,
                      .data$row_id_2)) %>%
     tibble::tibble()
-
 
   return(dist_long)
 
