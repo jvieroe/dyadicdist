@@ -156,7 +156,8 @@ ca <- cities %>%
 ddist_xy(x = fl,
          y = ca,
          id_x = "id",
-         id_y = "id_var")
+         id_y = "id_var") %>% 
+  head(5)
 
 ```
 

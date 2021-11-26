@@ -95,40 +95,44 @@ ddist_xy_sf <- function(x = NULL,
     tibble::tibble() %>%
     dplyr::select(-.data$geometry)
 
+  dist_long <- dist_long %>%
+    dplyr::left_join(x_temp,
+                     by = c("row_id_1" = "row_id")) %>%
+    dplyr::left_join(y_temp,
+                     by = c("row_id_2" = "row_id")) %>%
+    dplyr::rename_with(.cols = tidyselect::ends_with(".x"),
+                       ~ stringr::str_replace_all(., '\\.x', '_1')) %>%
+    dplyr::rename_with(.cols = tidyselect::ends_with(".y"),
+                       ~ stringr::str_replace_all(., '\\.y', '_2'))
+
   if (id_x == id_y) {
 
-    dist_long_fin <- dist_long %>%
+    dist_long <- dist_long %>%
       dplyr::mutate(id1 := !!rlang::sym(paste0(id_x,
                                                "_1")),
                     id2 := !!rlang::sym(paste0(id_y,
-                                               "_2"))) %>%
-      dplyr::mutate(
-        match_id = base::paste(.data$id1,
-                               .data$id2,
-                               sep = "_")) %>%
-      dplyr::select(-c(.data$id1, .data$id2,
-                       .data$row_id_1,
-                       .data$row_id_2)) %>%
-      tibble::tibble()
+                                               "_2")))
 
   } else if (id_x != id_y) {
 
-    dist_long_fin <- dist_long %>%
+    dist_long <- dist_long %>%
       dplyr::mutate(id1 := !!rlang::sym(id_x),
-                    id2 := !!rlang::sym(id_y)) %>%
-      dplyr::mutate(
-        match_id = base::paste(.data$id1,
-                               .data$id2,
-                               sep = "_")) %>%
-      dplyr::select(-c(.data$id1, .data$id2,
-                       .data$row_id_1,
-                       .data$row_id_2)) %>%
-      tibble::tibble()
+                    id2 := !!rlang::sym(id_y))
 
   }
 
+  dist_long <- dist_long %>%
+    dplyr::mutate(
+      match_id = base::paste(.data$id1,
+                             .data$id2,
+                             sep = "_")) %>%
+    dplyr::select(-c(.data$id1, .data$id2,
+                     .data$row_id_1,
+                     .data$row_id_2)) %>%
+    tibble::tibble()
 
-  return(dist_long_fin)
+
+  return(dist_long)
 
 
 }
