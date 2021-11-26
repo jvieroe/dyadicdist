@@ -99,43 +99,39 @@ check_data_xy <- function(x,
 
 #' @noRd
 check_coords_ddist_xy <- function(x,
-                                  y,
-                                  longitude_x,
-                                  latitude_x,
-                                  longitude_y,
-                                  latitude_y) {
+                                  y) {
 
   # -- x
-  if(base::max(x$longitude_x) > 180) {
+  if(base::max(x$longitude) > 180) {
     stop("Inputdata 'x' contains invalid longitude_x coordinates, one or more values > 180")
   }
 
-  if(base::min(x$longitude_x) < -180) {
+  if(base::min(x$longitude) < -180) {
     stop("Inputdata 'x' contains invalid longitude_x coordinates, one or more values < -180")
   }
 
-  if(base::max(x$latitude_x) > 90) {
+  if(base::max(x$latitude) > 90) {
     stop("Inputdata 'x' contains invalid latitude_x coordinates, one or more values > 90")
   }
 
-  if(base::min(x$latitude_x) < -90) {
+  if(base::min(x$latitude) < -90) {
     stop("Inputdata 'x' contains invalid latitude_x coordinates, one or more values < -90")
   }
 
   # -- y
-  if(base::max(y$longitude_y) > 180) {
+  if(base::max(y$longitude) > 180) {
     stop("Inputdata 'y' contains invalid longitude_y coordinates, one or more values > 180")
   }
 
-  if(base::min(y$longitude_y) < -180) {
+  if(base::min(y$longitude) < -180) {
     stop("Inputdata 'y' contains invalid longitude_y coordinates, one or more values < -180")
   }
 
-  if(base::max(y$latitude_y) > 90) {
+  if(base::max(y$latitude) > 90) {
     stop("Inputdata 'y' contains invalid latitude_y coordinates, one or more values > 90")
   }
 
-  if(base::min(y$latitude_y) < -90) {
+  if(base::min(y$latitude) < -90) {
     stop("Inputdata 'y' contains invalid latitude_y coordinates, one or more values < -90")
   }
 
