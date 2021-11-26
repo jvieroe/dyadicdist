@@ -114,7 +114,7 @@ ddist(cities,
 #> #   match_id <chr>
 ```
 
-As a default, latitude/longitude are specified as `"latitude"` and
+As a default, `latitude`/`longitude` are specified as `"latitude"` and
 `"longitude"`, respectively, and don’t need manual inputs. If necessary
 their variable names can be specified in the `ddist()` call:
 
@@ -171,10 +171,8 @@ the same optional arguments as `ddist()`.
 ## Output specification for `ddist()` and `ddist_sf()`
 
 By default, `ddist()` and `ddist_sf()` return the full list of dyadic
-distances between any points i and j, including j = i.
-
-In total, this amount to `nrow(data) * nrow(data)` dyads and includes by
-default:
+distances between any points i and j, including j = i. In total, this
+amount to `nrow(data) * nrow(data)` dyads and includes by default:
 
 -   dyads between any observation and itself, i.e. dyads of type (i,i)
     (see example above)
@@ -184,13 +182,12 @@ Both of these inclusions are optional, however.
 
 -   Sort out (i,i) dyads (the diagonal in a distance matrix) by
     specifying `diagonal = FALSE`
-    -   returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads
+    <!-- + returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads -->
 -   Sort out duplicated dyads by specifying `duplicates = FALSE`
-    -   returns a `tibble` with
-        `(nrow(data) * (nrow(data)-1)/2)+nrow(data)` dyads
+    <!-- + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)+nrow(data)` dyads -->
 -   Sort out both by specifying `diagonal = FALSE` **and**
     `duplicates = FALSE`
-    -   returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads
+    <!-- + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads -->
 
 ## `ddist_xy()` and `ddist_xy_sf()`: dual data inputs
 

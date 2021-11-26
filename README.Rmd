@@ -90,7 +90,7 @@ ddist(cities,
       id = "id")
 
 ```
-As a default, latitude/longitude are specified as `"latitude"` and `"longitude"`, respectively, and don't need manual inputs. If necessary their variable names can be specified in the `ddist()` call:
+As a default, `latitude`/`longitude` are specified as `"latitude"` and `"longitude"`, respectively, and don't need manual inputs. If necessary their variable names can be specified in the `ddist()` call:
 
 ```{r, warning=F, message=F}
 cities %>%
@@ -123,9 +123,7 @@ With the exception of `crs`, `longitude`, and `latitude` (all of which are inher
 
 
 ## Output specification for `ddist()` and `ddist_sf()`
-By default, `ddist()` and `ddist_sf()` return the full list of dyadic distances between any points i and j, including j = i. 
-
-In total, this amount to `nrow(data) * nrow(data)` dyads and includes by default:
+By default, `ddist()` and `ddist_sf()` return the full list of dyadic distances between any points i and j, including j = i. In total, this amount to `nrow(data) * nrow(data)` dyads and includes by default:
 
 * dyads between any observation and itself, i.e. dyads of type (i,i) (see example above)
 * duplicated dyads, i.e. both (i,j) and (j,i)
@@ -133,11 +131,11 @@ In total, this amount to `nrow(data) * nrow(data)` dyads and includes by default
 Both of these inclusions are optional, however. 
 
 * Sort out (i,i) dyads (the diagonal in a distance matrix) by specifying `diagonal = FALSE`
-    + returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads
+    <!-- + returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads -->
 * Sort out duplicated dyads by specifying `duplicates = FALSE`
-    + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)+nrow(data)` dyads
+    <!-- + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)+nrow(data)` dyads -->
 * Sort out both by specifying `diagonal = FALSE` __and__ `duplicates = FALSE`
-    + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads
+    <!-- + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads -->
 
 
 
