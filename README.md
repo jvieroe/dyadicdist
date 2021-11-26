@@ -96,22 +96,17 @@ either `numeric`, `integer`, `factor`, or `character`).
 
 ``` r
 ddist(cities,
-      id = "id")
-#> # A tibble: 10,000 x 11
-#>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
-#>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
-#>  1       0  m              Schenectady NY      USA         275 Schenect~ NY     
-#>  2   31869. m              Schenectady NY      USA         275 Saratoga~ NY     
-#>  3  204716. m              Schenectady NY      USA         275 Rye       NY     
-#>  4  133700. m              Schenectady NY      USA         275 Rome      NY     
-#>  5   24559. m              Schenectady NY      USA         275 Renssela~ NY     
-#>  6  213131. m              Schenectady NY      USA         275 Plattsbu~ NY     
-#>  7  169132. m              Schenectady NY      USA         275 Peekskill NY     
-#>  8  144114. m              Schenectady NY      USA         275 Oneida    NY     
-#>  9  210578. m              Schenectady NY      USA         275 New Roch~ NY     
-#> 10  211070. m              Schenectady NY      USA         275 Mount Ve~ NY     
-#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
-#> #   match_id <chr>
+      id = "id") %>% 
+  head(5)
+#> # A tibble: 5 x 11
+#>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
+#>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
+#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
+#> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
+#> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
+#> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
+#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
 As a default, `latitude`/`longitude` are specified as `"latitude"` and
@@ -196,11 +191,68 @@ Both of these inclusions are optional, however.
 observation.
 
 The `ddist_xy*()` functions performs the same underlying task but takes
-**two** data inputs, `x` and `y`. For each input you need to specify id
-as well as longitude/latitude variables (the latter defaulting to
-`"longitude"` and `"latitude"`)
+**two** data inputs, `x` and `y`. For each input you need to specify an
+id variable (`id_x` and `id_y`) as well as longitude/latitude variables
+(both defaulting to `"longitude"` and `"latitude"`)
+
+``` r
+fl <- cities %>%
+  filter(state == "FL")
+
+ca <- cities %>% 
+  filter(state == "CA") %>% 
+  rename(id_var = id)
+
+ddist_xy(x = fl,
+         y = ca,
+         id_x = "id",
+         id_y = "id_var") %>% 
+  head(5)
+#> # A tibble: 5 x 11
+#>   distance distance_units city_1        state_1 country_1    id city_2   state_2
+#>      <dbl> <chr>          <chr>         <chr>   <chr>     <int> <chr>    <chr>  
+#> 1 3639194. m              Madeira Beach FL      USA         224 South L~ CA     
+#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint~ CA     
+#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu~ CA     
+#> 4 3338749. m              Madeira Beach FL      USA         224 Vista    CA     
+#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat~ CA     
+#> # ... with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
+```
+
+As with `ddist()`, we can apply the `ddist_xy()` function on spatial
+objects of class `sf` too:
+
+``` r
+fl <- cities %>%
+  filter(state == "FL") %>% 
+  st_as_sf(coords = c("longitude", "latitude"),
+           crs = 4326)
+
+ca <- cities %>% 
+  filter(state == "CA") %>% 
+  rename(id_var = id) %>% 
+  st_as_sf(coords = c("longitude", "latitude"),
+           crs = 4326)
+
+ddist_xy_sf(x = fl,
+            y = ca,
+            id_x = "id",
+            id_y = "id_var") %>% 
+  head(5)
+#> # A tibble: 5 x 11
+#>   distance distance_units city_1        state_1 country_1    id city_2   state_2
+#>      <dbl> <chr>          <chr>         <chr>   <chr>     <int> <chr>    <chr>  
+#> 1 3639194. m              Madeira Beach FL      USA         224 South L~ CA     
+#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint~ CA     
+#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu~ CA     
+#> 4 3338749. m              Madeira Beach FL      USA         224 Vista    CA     
+#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat~ CA     
+#> # ... with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
+```
 
 # CRS transformations
+
+## Raw coordinates
 
 By default `ddist()` and `ddist_xy()` assume unprojected coordinates in
 basic latitude/longitude format (EPSG code `4326`) when converting the
@@ -210,7 +262,9 @@ spatial features in the `sf` package (see `sf::st_as_sf()`). You can
 apply a different CRS by providing a valid EPSG code of type `numeric`
 with the `crs` argument.
 
-Additionally, `ddist*()` allows you to transform the CRS before
+## Transformations
+
+All `ddist*()` functions allow you to transform the CRS *before*
 calculating dyadic distances using the `crs_transform` and `new_crs`
 arguments:
 

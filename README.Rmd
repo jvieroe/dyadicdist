@@ -87,7 +87,8 @@ Beyond the `data` argument it requires the specification of `latitude` and `long
 
 ```{r, warning=F, message=F}
 ddist(cities,
-      id = "id")
+      id = "id") %>% 
+  head(5)
 
 ```
 As a default, `latitude`/`longitude` are specified as `"latitude"` and `"longitude"`, respectively, and don't need manual inputs. If necessary their variable names can be specified in the `ddist()` call:
@@ -161,10 +162,34 @@ ddist_xy(x = fl,
 
 ```
 
+As with `ddist()`, we can apply the `ddist_xy()` function on spatial objects of class `sf` too:
+
+```{r, warning=F, message=F}
+fl <- cities %>%
+  filter(state == "FL") %>% 
+  st_as_sf(coords = c("longitude", "latitude"),
+           crs = 4326)
+
+ca <- cities %>% 
+  filter(state == "CA") %>% 
+  rename(id_var = id) %>% 
+  st_as_sf(coords = c("longitude", "latitude"),
+           crs = 4326)
+
+ddist_xy_sf(x = fl,
+            y = ca,
+            id_x = "id",
+            id_y = "id_var") %>% 
+  head(5)
+```
 # CRS transformations
+
+## Raw coordinates
 By default `ddist()` and `ddist_xy()` assume unprojected coordinates in basic latitude/longitude format (EPSG code `4326`) when converting the raw data provided in the `data` argument to a spatial feature. This is consistent with the default when converting latitude/longitude data to spatial features in the `sf` package (see `sf::st_as_sf()`). You can apply a different CRS by providing a valid EPSG code of type `numeric` with the `crs` argument.
 
-Additionally, `ddist*()` allows you to transform the CRS before calculating dyadic distances using the `crs_transform` and `new_crs` arguments:
+## Transformations
+
+All `ddist*()` functions allow you to transform the CRS _before_ calculating dyadic distances using the `crs_transform` and `new_crs` arguments:
 
 ```{r, warning=F, message=F}
 ddist(cities,
