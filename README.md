@@ -28,7 +28,7 @@ opposed to a wide `matrix`.
 This is still a development version. Please don’t hesitate to let me
 know of any errors and/or deficiencies you might come across.
 
-### Quick example
+## Quick example
 
 A simple example with illustrates the purpose of `ddist()` and the
 derived functions: `ddist_sf()`, `ddist_xy()`, and `ddist_xy_sf()`.
@@ -197,7 +197,7 @@ Both of these inclusions are optional, however.
 
 ## `ddist_xy()` and `ddist_xy_sf()`: dual data inputs
 
-`ddist()` and `ddist_sf()` take as a data input a single `data.frame` or
+`ddist()` and `ddist_sf()` take as input a single `data.frame` or
 `tibble` and returns dyads and dyadic distances between each
 observation.
 

@@ -35,7 +35,7 @@ The purpose of `dyadicdist` is to provide quick and easy calculation of dyadic d
 
 This is still a development version. Please don't hesitate to let me know of any errors and/or deficiencies you might come across.
 
-### Quick example
+## Quick example
 A simple example with illustrates the purpose of `ddist()` and the derived functions: `ddist_sf()`, `ddist_xy()`, and `ddist_xy_sf()`. 
 
 ```{r, warning=F, message=F}
@@ -140,7 +140,7 @@ Both of these inclusions are optional, however.
 
 ## `ddist_xy()` and `ddist_xy_sf()`: dual data inputs
 
-`ddist()` and `ddist_sf()` take as a data input a single `data.frame` or `tibble` and returns dyads and dyadic distances between each observation.
+`ddist()` and `ddist_sf()` take as input a single `data.frame` or `tibble` and returns dyads and dyadic distances between each observation.
 
 The `ddist_xy*()` functions performs the same underlying task but takes __two__ data inputs, `x` and `y`. For each input you need to specify id as well as longitude/latitude variables (the latter defaulting to `"longitude"` and `"latitude"`)
 
