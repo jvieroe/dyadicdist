@@ -81,7 +81,9 @@ cities <- dyadicdist::cities
 
 
 ## `ddist()`
-`ddist()` takes as input a `data.frame` or a `tibble` and returns a `tibble` with dyadic distances for any combination of points i and j (see more below). Beyond the `data` argument it requires specified latitude and longitude variables as well as a unique id variable, which can be either `numeric`, `integer`, `factor`, or `character`.
+`ddist()` takes as input a `data.frame` or a `tibble` and returns a `tibble` with dyadic distances for any combination of points i and j (see more below).
+
+Beyond the `data` argument it requires the specification of `latitude` and `longitude` as well as a unique `id` indicator (the latter can be either `numeric`, `integer`, `factor`, or `character`).
 
 ```{r, warning=F, message=F}
 ddist(cities,
@@ -113,7 +115,8 @@ cities %>%
            coords = c("longitude", "latitude"),
            crs = 4326) %>%
   ddist_sf(.,
-           id = "id")
+           id = "id") %>%
+  head(5)
 
 ```
 With the exception of `crs`, `longitude`, and `latitude` (all of which are inherently provided in an object of class `sf`), `ddist_sf()` takes the same optional arguments as `ddist()`.

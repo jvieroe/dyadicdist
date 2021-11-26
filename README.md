@@ -88,9 +88,11 @@ cities <- dyadicdist::cities
 
 `ddist()` takes as input a `data.frame` or a `tibble` and returns a
 `tibble` with dyadic distances for any combination of points i and j
-(see more below). Beyond the `data` argument it requires specified
-latitude and longitude variables as well as a unique id variable, which
-can be either `numeric`, `integer`, `factor`, or `character`.
+(see more below).
+
+Beyond the `data` argument it requires the specification of `latitude`
+and `longitude` as well as a unique `id` indicator (the latter can be
+either `numeric`, `integer`, `factor`, or `character`).
 
 ``` r
 ddist(cities,
@@ -149,22 +151,17 @@ cities %>%
            coords = c("longitude", "latitude"),
            crs = 4326) %>%
   ddist_sf(.,
-           id = "id")
-#> # A tibble: 10,000 x 11
-#>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
-#>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
-#>  1       0  m              Schenectady NY      USA         275 Schenect~ NY     
-#>  2   31869. m              Schenectady NY      USA         275 Saratoga~ NY     
-#>  3  204716. m              Schenectady NY      USA         275 Rye       NY     
-#>  4  133700. m              Schenectady NY      USA         275 Rome      NY     
-#>  5   24559. m              Schenectady NY      USA         275 Renssela~ NY     
-#>  6  213131. m              Schenectady NY      USA         275 Plattsbu~ NY     
-#>  7  169132. m              Schenectady NY      USA         275 Peekskill NY     
-#>  8  144114. m              Schenectady NY      USA         275 Oneida    NY     
-#>  9  210578. m              Schenectady NY      USA         275 New Roch~ NY     
-#> 10  211070. m              Schenectady NY      USA         275 Mount Ve~ NY     
-#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
-#> #   match_id <chr>
+           id = "id") %>%
+  head(5)
+#> # A tibble: 5 x 11
+#>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
+#>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
+#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
+#> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
+#> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
+#> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
+#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
 With the exception of `crs`, `longitude`, and `latitude` (all of which
