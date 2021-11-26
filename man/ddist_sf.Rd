@@ -16,7 +16,7 @@ ddist_sf(
 \arguments{
 \item{data}{an object of class \code{sf} (\verb{"sf" "data.frame"} or \verb{"sf" "tbl_df" "tbl" "data.frame"})}
 
-\item{id}{a variable uniquely idenfiying geospatial points. Can be of type numeric, integer, character, or factor}
+\item{id}{a variable uniquely identifying geospatial points. Can be of type numeric, integer, character, or factor}
 
 \item{crs_transform}{a logical value indicating whether to transform the CRS. Defaults to FALSE}
 

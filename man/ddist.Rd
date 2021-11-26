@@ -19,7 +19,7 @@ ddist(
 \arguments{
 \item{data}{an object of class \code{data.frame} or \code{tibble}.}
 
-\item{id}{a variable uniquely idenfiying geospatial points. Can be of type numeric, integer, character, or factor}
+\item{id}{a variable uniquely identifying geospatial points. Can be of type numeric, integer, character, or factor}
 
 \item{longitude}{name of the numeric longitude variable. Defaults to "longitude"}
 

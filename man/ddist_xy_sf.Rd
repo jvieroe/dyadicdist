@@ -18,9 +18,9 @@ ddist_xy_sf(
 
 \item{y}{an object of class \code{sf} (\verb{"sf" "data.frame"} or \verb{"sf" "tbl_df" "tbl" "data.frame"})}
 
-\item{id_x}{a variable uniquely idenfiying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
+\item{id_x}{a variable uniquely identifying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
 
-\item{id_y}{a variable uniquely idenfiying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
+\item{id_y}{a variable uniquely identifying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
 
 \item{crs_transform}{a logical value indicating whether to transform the CRS. Defaults to FALSE}
 

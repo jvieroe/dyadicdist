@@ -24,9 +24,9 @@ ddist_xy(
 
 \item{y}{an object of class \code{data.frame} or \code{tibble}.}
 
-\item{id_x}{a variable uniquely idenfiying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
+\item{id_x}{a variable uniquely identifying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
 
-\item{id_y}{a variable uniquely idenfiying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
+\item{id_y}{a variable uniquely identifying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
 
 \item{longitude_x}{name of the numeric longitude variable in data \code{x}. Defaults to "longitude"}
 
