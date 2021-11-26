@@ -80,7 +80,11 @@ ddist_xy <- function(x = NULL,
   }
 
   check_coords_ddist_xy(x = x,
-                        y = y)
+                        y = y,
+                        longitude_x = longitude_x,
+                        latitude_x = latitude_x,
+                        longitude_y = longitude_y,
+                        latitude_y = latitude_y)
 
   x <- x %>%
     dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%

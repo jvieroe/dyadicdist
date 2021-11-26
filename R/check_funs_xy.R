@@ -99,7 +99,11 @@ check_data_xy <- function(x,
 
 #' @noRd
 check_coords_ddist_xy <- function(x,
-                                  y) {
+                                  y,
+                                  longitude_x,
+                                  latitude_x,
+                                  longitude_y,
+                                  latitude_y) {
 
   # -- x
   if(base::max(x$longitude_x) > 180) {
