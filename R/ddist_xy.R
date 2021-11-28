@@ -24,7 +24,7 @@ ddist_xy <- function(x = NULL,
                      crs_transform = FALSE,
                      new_crs = NULL) {
 
-  check_raw_cinput(id = id,
+  check_raw_cinput(ids = ids,
                    coords_x = coords_x,
                    coords_y = coords_y,
                    crs = crs)
