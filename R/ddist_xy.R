@@ -48,6 +48,15 @@ ddist_xy <- function(x = NULL,
   crs_x <- crs[1]
   crs_y <- crs[2]
 
+  check_cinput(id_x = id_x,
+               id_y = id_y,
+               longitude_x = longitude_x,
+               latitude_x = latitude_x,
+               longitude_y = longitude_y,
+               latitude_y = latitude_y,
+               crs_x = crs_x,
+               crs_y = crs_y)
+
   check_crs_orig_xy(crs_x = crs_x,
                     crs_y = crs_y)
 
