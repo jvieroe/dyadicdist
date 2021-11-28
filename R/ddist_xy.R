@@ -4,14 +4,10 @@
 #'
 #' @param x an object of class `data.frame` or `tibble`.
 #' @param y an object of class `data.frame` or `tibble`.
-#' @param id_x a variable uniquely identifying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
-#' @param id_y a variable uniquely identifying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
-#' @param longitude_x name of the numeric longitude variable in data `x`. Defaults to "longitude"
-#' @param latitude_x name of the numeric latitude variable in data `x`. Defaults to "latitude"
-#' @param longitude_y name of the numeric longitude variable in data `y`. Defaults to "longitude"
-#' @param latitude_y name of the numeric latitude variable in data `y`. Defaults to "latitude"
-#' @param crs_x a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `x`. Defaults to 4326.
-#' @param crs_y a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `y`. Defaults to 4326.
+#' @param ids variables uniquely identifying geospatial points in data `x` and `y`. Can be of type numeric, integer, character, or factor
+#' @param coords_x names of the numeric coordinate variables in data `x`. Defaults to c("longitude", "latitude")
+#' @param coords_y names of the numeric coordinate variables in data `y`. Defaults to c("longitude", "latitude")
+#' @param crs valid EPSG's for your coordinates in data `x` and `y`. Defaults to c(4326, 4326).
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS. See `rgdal::make_EPSG()` or \url{https://epsg.org/home.html}
 #' @return a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
@@ -21,16 +17,38 @@
 
 ddist_xy <- function(x = NULL,
                      y = NULL,
-                     id_x = NULL,
-                     id_y = NULL,
-                     longitude_x = "longitude",
-                     latitude_x = "latitude",
-                     longitude_y = "longitude",
-                     latitude_y = "latitude",
-                     crs_x = 4326,
-                     crs_y = 4326,
+                     ids = NULL,
+                     coords_x = c("longitude", "latitude"),
+                     coords_y = c("longitude", "latitude"),
+                     crs = c(4326, 4326),
                      crs_transform = FALSE,
                      new_crs = NULL) {
+
+  check_raw_cinput(ids = ids,
+                   coords_x = coords_x,
+                   coords_y = coords_y,
+                   crs = crs)
+
+  id_x <- ids[1]
+  id_y <- ids[2]
+
+  longitude_x <- coords_x[1]
+  longitude_y <- coords_y[1]
+
+  latitude_x <- coords_x[2]
+  latitude_y <- coords_y[2]
+
+  crs_x <- crs[1]
+  crs_y <- crs[2]
+
+  check_cinput(id_x = id_x,
+               id_y = id_y,
+               longitude_x = longitude_x,
+               latitude_x = latitude_x,
+               longitude_y = longitude_y,
+               latitude_y = latitude_y,
+               crs_x = crs_x,
+               crs_y = crs_y)
 
   check_crs_orig_xy(crs_x = crs_x,
                     crs_y = crs_y)

@@ -315,5 +315,103 @@ check_data_xy_sf <- function(x,
 }
 
 
+#' @noRd
+check_raw_cinput <- function(ids,
+                             coords_x,
+                             coords_y,
+                             crs) {
+
+  if(base::length(ids) < 2){
+    stop("Too few IDs provided")
+  }
+
+  if(base::length(ids) > 2){
+    stop("Too many IDs provided")
+  }
+
+  if(base::length(coords_x) < 2){
+    stop("Too few coordinate names (data 'x') provided")
+  }
+
+  if(base::length(coords_x) > 2){
+    stop("Too many coordinate names (data 'x') provided")
+  }
+
+  if(base::length(coords_x) < 2){
+    stop("Too few coordinate names (data 'y') provided")
+  }
+
+  if(base::length(coords_x) > 2){
+    stop("Too many coordinate names (data 'y') provided")
+  }
+
+  if(base::length(crs) < 2){
+    stop("Too few crs specifications provided")
+  }
+
+  if(base::length(crs) > 2){
+    stop("Too many crs specifications names provided")
+  }
+
+}
+
+
+#' @noRd
+check_cinput <- function(id_x,
+                         id_y,
+                         longitude_x,
+                         latitude_x,
+                         longitude_y,
+                         latitude_y,
+                         crs_x,
+                         crs_y) {
+
+  if(is.na(id_x) | is.null(id_x)){
+    stop("No id_x variable provided")
+  }
+
+  if(is.na(id_y) | is.null(id_y)){
+    stop("No id_y variable provided")
+  }
+
+  if(is.na(longitude_x) | is.null(longitude_x)){
+    stop("No longitude_x variable provided")
+  }
+
+  if(is.na(longitude_y) | is.null(longitude_y)){
+    stop("No longitude_y variable provided")
+  }
+
+  if(is.na(latitude_x) | is.null(latitude_x)){
+    stop("No latitude_x variable provided")
+  }
+
+  if(is.na(latitude_y) | is.null(latitude_y)){
+    stop("No latitude_y variable provided")
+  }
+
+  if(is.na(crs_x) | is.null(crs_x)){
+    stop("No crs_x variable provided")
+  }
+
+  if(is.na(crs_y) | is.null(crs_y)){
+    stop("No crs_y variable provided")
+  }
+
+}
+
+#' @noRd
+check_cinput_sf <- function(id_x,
+                            id_y) {
+
+  if(is.na(id_x) | is.null(id_x)){
+    stop("No id_x variable provided")
+  }
+
+  if(is.na(id_y) | is.null(id_y)){
+    stop("No id_y variable provided")
+  }
+
+}
 
 

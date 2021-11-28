@@ -4,8 +4,7 @@
 #'
 #' @param x an object of class `sf` (`"sf" "data.frame"` or `"sf" "tbl_df" "tbl" "data.frame"`)
 #' @param y an object of class `sf` (`"sf" "data.frame"` or `"sf" "tbl_df" "tbl" "data.frame"`)
-#' @param id_x a variable uniquely identifying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
-#' @param id_y a variable uniquely identifying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
+#' @param ids variables uniquely identifying geospatial points in data `x` and `y`. Can be of type numeric, integer, character, or factor
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS. See `rgdal::make_EPSG()` or \url{https://epsg.org/home.html}
 #' @return a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
@@ -15,10 +14,23 @@
 
 ddist_xy_sf <- function(x = NULL,
                         y = NULL,
-                        id_x = NULL,
-                        id_y = NULL,
+                        ids = NULL,
                         crs_transform = FALSE,
                         new_crs = NULL) {
+
+  if(base::length(ids) < 2){
+    stop("Too few IDs provided")
+  }
+
+  if(base::length(ids) > 2){
+    stop("Too many IDs provided")
+  }
+
+  id_x <- ids[1]
+  id_y <- ids[2]
+
+  check_cinput_sf(id_x = id_x,
+                  id_y = id_y)
 
   check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)
