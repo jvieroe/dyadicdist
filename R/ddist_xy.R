@@ -4,14 +4,10 @@
 #'
 #' @param x an object of class `data.frame` or `tibble`.
 #' @param y an object of class `data.frame` or `tibble`.
-#' @param id_x a variable uniquely identifying geospatial points in data `x`. Can be of type numeric, integer, character, or factor
-#' @param id_y a variable uniquely identifying geospatial points in data `y`. Can be of type numeric, integer, character, or factor
-#' @param longitude_x name of the numeric longitude variable in data `x`. Defaults to "longitude"
-#' @param latitude_x name of the numeric latitude variable in data `x`. Defaults to "latitude"
-#' @param longitude_y name of the numeric longitude variable in data `y`. Defaults to "longitude"
-#' @param latitude_y name of the numeric latitude variable in data `y`. Defaults to "latitude"
-#' @param crs_x a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `x`. Defaults to 4326.
-#' @param crs_y a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data `y`. Defaults to 4326.
+#' @param id variables uniquely identifying geospatial points in data `x` and `y`. Can be of type numeric, integer, character, or factor
+#' @param longitude names of the numeric longitude variables in data `x` and `y`. Defaults to c("longitude", "longitude")
+#' @param latitude names of the numeric latitude variables in data `x` and `y`. Defaults to c("latitude", "latitude")
+#' @param crs valid EPSG's for your coordinates in data `x` and `y`. Defaults to c(4326, 4326).
 #' @param crs_transform a logical value indicating whether to transform the CRS. Defaults to FALSE
 #' @param new_crs a valid EPSG for a new CRS. See `rgdal::make_EPSG()` or \url{https://epsg.org/home.html}
 #' @return a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
