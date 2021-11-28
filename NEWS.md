@@ -1,13 +1,22 @@
-# dyadicdist 0.3.0
+## version 0.3.0
+
+---
+
+
+### New input format for dual data functions
+
+- Changed the input format to e.g. ids = c(...)
+
 
 ## version 0.2.1
 
 ---
 
 
-### Bugfixes
+### Bug fixes
 
-- Bug fixes related to dual data inputs
+- Added functionality: dual data input
+- Bug fixes
 
 
 ## version 0.2.0
@@ -15,10 +24,10 @@
 ---
 
 
-### Package launch
+### Dual data inputs
 
-- Bug fixes
 - Added functionality: dual data input
+- Bug fixes
 
 
 ## version 0.1.0
