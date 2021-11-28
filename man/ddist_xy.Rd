@@ -20,17 +20,17 @@ ddist_xy(
 
 \item{y}{an object of class \code{data.frame} or \code{tibble}.}
 
+\item{ids}{variables uniquely identifying geospatial points in data \code{x} and \code{y}. Can be of type numeric, integer, character, or factor}
+
+\item{coords_x}{names of the numeric coordinate variables in data \code{x}. Defaults to c("longitude", "latitude")}
+
+\item{coords_y}{names of the numeric coordinate variables in data \code{y}. Defaults to c("longitude", "latitude")}
+
 \item{crs}{valid EPSG's for your coordinates in data \code{x} and \code{y}. Defaults to c(4326, 4326).}
 
 \item{crs_transform}{a logical value indicating whether to transform the CRS. Defaults to FALSE}
 
 \item{new_crs}{a valid EPSG for a new CRS. See \code{rgdal::make_EPSG()} or \url{https://epsg.org/home.html}}
-
-\item{id}{variables uniquely identifying geospatial points in data \code{x} and \code{y}. Can be of type numeric, integer, character, or factor}
-
-\item{longitude}{names of the numeric longitude variables in data \code{x} and \code{y}. Defaults to c("longitude", "longitude")}
-
-\item{latitude}{names of the numeric latitude variables in data \code{x} and \code{y}. Defaults to c("latitude", "latitude")}
 }
 \value{
 a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator

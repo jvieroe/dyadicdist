@@ -17,11 +17,11 @@ ddist_xy_sf(
 
 \item{y}{an object of class \code{sf} (\verb{"sf" "data.frame"} or \verb{"sf" "tbl_df" "tbl" "data.frame"})}
 
+\item{ids}{variables uniquely identifying geospatial points in data \code{x} and \code{y}. Can be of type numeric, integer, character, or factor}
+
 \item{crs_transform}{a logical value indicating whether to transform the CRS. Defaults to FALSE}
 
 \item{new_crs}{a valid EPSG for a new CRS. See \code{rgdal::make_EPSG()} or \url{https://epsg.org/home.html}}
-
-\item{id}{variables uniquely identifying geospatial points in data \code{x} and \code{y}. Can be of type numeric, integer, character, or factor}
 }
 \value{
 a long \link[tibble]{tibble} with dyads and dyadic distances incl. a distance unit indicator
