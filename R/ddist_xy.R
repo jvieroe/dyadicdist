@@ -21,16 +21,32 @@
 
 ddist_xy <- function(x = NULL,
                      y = NULL,
-                     id_x = NULL,
-                     id_y = NULL,
-                     longitude_x = "longitude",
-                     latitude_x = "latitude",
-                     longitude_y = "longitude",
-                     latitude_y = "latitude",
-                     crs_x = 4326,
-                     crs_y = 4326,
+                     id = NULL,
+                     longitude = c("longitude", "longitude"),
+                     latitude = c("latitude", "latitude"),
+                     crs = c(4326, 4326),
+                     # id_x = NULL,
+                     # id_y = NULL,
+                     # longitude_x = "longitude",
+                     # latitude_x = "latitude",
+                     # longitude_y = "longitude",
+                     # latitude_y = "latitude",
+                     # crs_x = 4326,
+                     # crs_y = 4326,
                      crs_transform = FALSE,
                      new_crs = NULL) {
+
+  id_x <- id[1]
+  id_y <- id[2]
+
+  longitude_x <- longitude[1]
+  longitude_y <- longitude[2]
+
+  latitude_x <- latitude[1]
+  latitude_y <- latitude[2]
+
+  crs_x <- crs[1]
+  crs_y <- crs[2]
 
   check_crs_orig_xy(crs_x = crs_x,
                     crs_y = crs_y)
