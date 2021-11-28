@@ -316,8 +316,7 @@ check_data_xy_sf <- function(x,
 
 
 #' @noRd
-check_raw_cinput <- function(id_x,
-                             id_y,
+check_raw_cinput <- function(id,
                              longitude,
                              latitude,
                              crs) {
