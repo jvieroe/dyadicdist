@@ -15,10 +15,23 @@
 
 ddist_xy_sf <- function(x = NULL,
                         y = NULL,
-                        id_x = NULL,
-                        id_y = NULL,
+                        id = NULL,
                         crs_transform = FALSE,
                         new_crs = NULL) {
+
+  if(base::length(id) < 2){
+    stop("Too few IDs provided")
+  }
+
+  if(base::length(id) > 2){
+    stop("Too many IDs provided")
+  }
+
+  id_x <- id[1]
+  id_y <- id[2]
+
+  check_cinput_sf(id_x = id_x,
+                  id_y = id_y)
 
   check_crs_xy(crs_transform = crs_transform,
                new_crs = new_crs)

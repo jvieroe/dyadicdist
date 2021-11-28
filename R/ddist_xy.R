@@ -28,6 +28,11 @@ ddist_xy <- function(x = NULL,
                      crs_transform = FALSE,
                      new_crs = NULL) {
 
+  check_raw_cinput(id = id,
+                   longitude = longitude,
+                   latitude = latitude,
+                   crs = crs)
+
   id_x <- id[1]
   id_y <- id[2]
 

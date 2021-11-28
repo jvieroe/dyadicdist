@@ -316,10 +316,52 @@ check_data_xy_sf <- function(x,
 
 
 #' @noRd
+check_raw_cinput <- function(id_x,
+                             id_y,
+                             longitude,
+                             latitude,
+                             crs) {
+
+  if(base::length(id) < 2){
+    stop("Too few IDs provided")
+  }
+
+  if(base::length(id) > 2){
+    stop("Too many IDs provided")
+  }
+
+  if(base::length(longitude) < 2){
+    stop("Too few longitude names provided")
+  }
+
+  if(base::length(longitude) > 2){
+    stop("Too many longitude names provided")
+  }
+
+  if(base::length(latitude) < 2){
+    stop("Too few latitude names provided")
+  }
+
+  if(base::length(latitude) > 2){
+    stop("Too many latitude names provided")
+  }
+
+  if(base::length(crs) < 2){
+    stop("Too few crs specifications provided")
+  }
+
+  if(base::length(crs) > 2){
+    stop("Too many crs specifications names provided")
+  }
+
+}
+
+
+#' @noRd
 check_cinput <- function(id_x,
                          id_y,
                          longitude_x,
-                         latitude,
+                         latitude_x,
                          longitude_y,
                          latitude_y,
                          crs_x,
@@ -357,7 +399,19 @@ check_cinput <- function(id_x,
     stop("No crs_y variable provided")
   }
 
+}
 
+#' @noRd
+check_cinput_sf <- function(id_x,
+                            id_y) {
+
+  if(is.na(id_x) | is.null(id_x)){
+    stop("No id_x variable provided")
+  }
+
+  if(is.na(id_y) | is.null(id_y)){
+    stop("No id_y variable provided")
+  }
 
 }
 
