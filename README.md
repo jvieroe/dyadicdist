@@ -31,8 +31,9 @@ know of any errors and/or deficiencies you might come across.
 
 ## Quick example
 
-A simple example with illustrates the purpose of `ddist()` and the
-derived functions: `ddist_sf()`, `ddist_xy()`, and `ddist_xy_sf()`.
+A simple example illustrates the purpose of `dyadicdist` and its four
+main functions: `ddist()`, `ddist_sf()`, `ddist_xy()`, and
+`ddist_xy_sf()`:
 
 ``` r
 library(tidyverse)
@@ -62,6 +63,9 @@ ddist(data = df,
 ```
 
 ## Installation
+
+At the moment, `dyadicdist` is under review at
+[CRAN](https://cran.r-project.org) and is thus not yet available.
 
 You can install the development version from
 [GitHub](https://github.com/) with:
@@ -206,8 +210,7 @@ ca <- cities %>%
 
 ddist_xy(x = fl,
          y = ca,
-         id_x = "id",
-         id_y = "id_var") %>% 
+         ids = c("id", "id_var")) %>% 
   head(5)
 #> # A tibble: 5 × 11
 #>   distance distance_units city_1        state_1 country_1    id city_2   state_2
@@ -237,8 +240,7 @@ ca <- cities %>%
 
 ddist_xy_sf(x = fl,
             y = ca,
-            id_x = "id",
-            id_y = "id_var") %>% 
+            ids = c("id", "id_var")) %>% 
   head(5)
 #> # A tibble: 5 × 11
 #>   distance distance_units city_1        state_1 country_1    id city_2   state_2
