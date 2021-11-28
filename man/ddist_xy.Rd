@@ -7,14 +7,10 @@
 ddist_xy(
   x = NULL,
   y = NULL,
-  id_x = NULL,
-  id_y = NULL,
-  longitude_x = "longitude",
-  latitude_x = "latitude",
-  longitude_y = "longitude",
-  latitude_y = "latitude",
-  crs_x = 4326,
-  crs_y = 4326,
+  id = NULL,
+  longitude = c("longitude", "longitude"),
+  latitude = c("latitude", "latitude"),
+  crs = c(4326, 4326),
   crs_transform = FALSE,
   new_crs = NULL
 )
@@ -24,21 +20,13 @@ ddist_xy(
 
 \item{y}{an object of class \code{data.frame} or \code{tibble}.}
 
-\item{id_x}{a variable uniquely identifying geospatial points in data \code{x}. Can be of type numeric, integer, character, or factor}
+\item{id}{variables uniquely identifying geospatial points in data \code{x} and \code{y}. Can be of type numeric, integer, character, or factor}
 
-\item{id_y}{a variable uniquely identifying geospatial points in data \code{y}. Can be of type numeric, integer, character, or factor}
+\item{longitude}{names of the numeric longitude variables in data \code{x} and \code{y}. Defaults to c("longitude", "longitude")}
 
-\item{longitude_x}{name of the numeric longitude variable in data \code{x}. Defaults to "longitude"}
+\item{latitude}{names of the numeric latitude variables in data \code{x} and \code{y}. Defaults to c("latitude", "latitude")}
 
-\item{latitude_x}{name of the numeric latitude variable in data \code{x}. Defaults to "latitude"}
-
-\item{longitude_y}{name of the numeric longitude variable in data \code{y}. Defaults to "longitude"}
-
-\item{latitude_y}{name of the numeric latitude variable in data \code{y}. Defaults to "latitude"}
-
-\item{crs_x}{a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data \code{x}. Defaults to 4326.}
-
-\item{crs_y}{a valid EPSG for a valid Coordinate Reference System (CRS) for your coordinates in data \code{y}. Defaults to 4326.}
+\item{crs}{valid EPSG's for your coordinates in data \code{x} and \code{y}. Defaults to c(4326, 4326).}
 
 \item{crs_transform}{a logical value indicating whether to transform the CRS. Defaults to FALSE}
 
