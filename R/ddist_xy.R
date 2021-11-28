@@ -17,26 +17,26 @@
 
 ddist_xy <- function(x = NULL,
                      y = NULL,
-                     id = NULL,
-                     longitude = c("longitude", "longitude"),
-                     latitude = c("latitude", "latitude"),
+                     ids = NULL,
+                     coords_x = c("longitude", "latitude"),
+                     coords_y = c("longitude", "latitude"),
                      crs = c(4326, 4326),
                      crs_transform = FALSE,
                      new_crs = NULL) {
 
   check_raw_cinput(id = id,
-                   longitude = longitude,
-                   latitude = latitude,
+                   coords_x = coords_x,
+                   coords_y = coords_y,
                    crs = crs)
 
-  id_x <- id[1]
-  id_y <- id[2]
+  id_x <- ids[1]
+  id_y <- ids[2]
 
-  longitude_x <- longitude[1]
-  longitude_y <- longitude[2]
+  longitude_x <- coords_x[1]
+  longitude_y <- coords_y[1]
 
-  latitude_x <- latitude[1]
-  latitude_y <- latitude[2]
+  latitude_x <- coords_x[2]
+  latitude_y <- coords_y[2]
 
   crs_x <- crs[1]
   crs_y <- crs[2]

@@ -316,33 +316,33 @@ check_data_xy_sf <- function(x,
 
 
 #' @noRd
-check_raw_cinput <- function(id,
-                             longitude,
-                             latitude,
+check_raw_cinput <- function(ids,
+                             coords_x,
+                             coords_y,
                              crs) {
 
-  if(base::length(id) < 2){
+  if(base::length(ids) < 2){
     stop("Too few IDs provided")
   }
 
-  if(base::length(id) > 2){
+  if(base::length(ids) > 2){
     stop("Too many IDs provided")
   }
 
-  if(base::length(longitude) < 2){
-    stop("Too few longitude names provided")
+  if(base::length(coords_x) < 2){
+    stop("Too few coordinate names (data 'x') provided")
   }
 
-  if(base::length(longitude) > 2){
-    stop("Too many longitude names provided")
+  if(base::length(coords_x) > 2){
+    stop("Too many coordinate names (data 'x') provided")
   }
 
-  if(base::length(latitude) < 2){
-    stop("Too few latitude names provided")
+  if(base::length(coords_x) < 2){
+    stop("Too few coordinate names (data 'y') provided")
   }
 
-  if(base::length(latitude) > 2){
-    stop("Too many latitude names provided")
+  if(base::length(coords_x) > 2){
+    stop("Too many coordinate names (data 'y') provided")
   }
 
   if(base::length(crs) < 2){
