@@ -10,8 +10,8 @@
 Releases](https://img.shields.io/github/downloads/jvieroe/dyadicdist/total.svg)]()
 <!-- [![](https://img.shields.io/badge/lifecycle-stable-chartreuse.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) -->
 [![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![License: GPL
-(\>= 3)](https://img.shields.io/badge/license-GPL%20\(%3E=%203\)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20\(%3E=%203\))
+[![License: GPL (>=
+3)](https://img.shields.io/badge/license-GPL%20(%3E=%203)-blue.svg)](https://cran.r-project.org/web/licenses/GPL%20(%3E=%203))
 [![](https://img.shields.io/github/last-commit/jvieroe/dyadicdist.svg)](https://github.com/jvieroe/dyadicdist/commits/main)
 <!-- [![Travis build status](https://travis-ci.org/jvieroe/dyadicdist.svg?branch=main)](https://travis-ci.org/jvieroe/dyadicdist) -->
 
@@ -48,7 +48,7 @@ df <- tibble::tribble(
 
 ddist(data = df,
       id = "idvar")
-#> # A tibble: 9 × 7
+#> # A tibble: 9 x 7
 #>   distance distance_units city_name_1 idvar_1 city_name_2 idvar_2 match_id
 #>      <dbl> <chr>          <chr>         <dbl> <chr>         <dbl> <chr>   
 #> 1       0  m              copenhagen        5 copenhagen        5 5_5     
@@ -103,20 +103,20 @@ either `numeric`, `integer`, `factor`, or `character`).
 ddist(cities,
       id = "id") %>% 
   head(5)
-#> # A tibble: 5 × 11
+#> # A tibble: 5 x 11
 #>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
 #>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
-#> 1       0  m              Schenectady NY      USA         275 Schenecta… NY     
-#> 2   31869. m              Schenectady NY      USA         275 Saratoga … NY     
+#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
 #> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
 #> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
 #> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
-#> # … with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
+#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
-As a default, `latitude`/`longitude` are specified as `"latitude"` and
-`"longitude"`, respectively, and don’t need manual inputs. If necessary
-their variable names can be specified in the `ddist()` call:
+As a default, `latitude` and `longitude` are specified as `"latitude"`
+and `"longitude"`, respectively, and don’t need manual inputs. If
+necessary their variable names can be specified in the `ddist()` call:
 
 ``` r
 cities %>%
@@ -127,15 +127,15 @@ cities %>%
         latitude = "lat",
         longitude = "lon") %>%
   head(5)
-#> # A tibble: 5 × 11
+#> # A tibble: 5 x 11
 #>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
 #>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
-#> 1       0  m              Schenectady NY      USA         275 Schenecta… NY     
-#> 2   31869. m              Schenectady NY      USA         275 Saratoga … NY     
+#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
 #> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
 #> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
 #> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
-#> # … with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
+#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
 ## `ddist_sf()`: spatial input data
@@ -153,15 +153,15 @@ cities %>%
   ddist_sf(.,
            id = "id") %>%
   head(5)
-#> # A tibble: 5 × 11
+#> # A tibble: 5 x 11
 #>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
 #>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
-#> 1       0  m              Schenectady NY      USA         275 Schenecta… NY     
-#> 2   31869. m              Schenectady NY      USA         275 Saratoga … NY     
+#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
 #> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
 #> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
 #> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
-#> # … with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
+#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
 With the exception of `crs`, `longitude`, and `latitude` (all of which
@@ -174,19 +174,19 @@ By default, `ddist()` and `ddist_sf()` return the full list of dyadic
 distances between any points i and j, including j = i. In total, this
 amount to `nrow(data) * nrow(data)` dyads and includes by default:
 
-  - dyads between any observation and itself, i.e. dyads of type (i,i)
+-   dyads between any observation and itself, i.e. dyads of type (i,i)
     (see example above)
-  - duplicated dyads, i.e. both (i,j) and (j,i)
+-   duplicated dyads, i.e. both (i,j) and (j,i)
 
 Both of these inclusions are optional, however.
 
-  - Sort out (i,i) dyads (the diagonal in a distance matrix) by
+-   Sort out (i,i) dyads (the diagonal in a distance matrix) by
     specifying `diagonal = FALSE`
     <!-- + returns a `tibble` with `nrow(data) * (nrow(data)-1)` dyads -->
-  - Sort out duplicated dyads by specifying `duplicates = FALSE`
+-   Sort out duplicated dyads by specifying `duplicates = FALSE`
     <!-- + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)+nrow(data)` dyads -->
-  - Sort out both by specifying `diagonal = FALSE` **and** `duplicates =
-    FALSE`
+-   Sort out both by specifying `diagonal = FALSE` **and**
+    `duplicates = FALSE`
     <!-- + returns a `tibble` with `(nrow(data) * (nrow(data)-1)/2)` dyads -->
 
 ## `ddist_xy()` and `ddist_xy_sf()`: dual data inputs
@@ -212,15 +212,15 @@ ddist_xy(x = fl,
          y = ca,
          ids = c("id", "id_var")) %>% 
   head(5)
-#> # A tibble: 5 × 11
+#> # A tibble: 5 x 11
 #>   distance distance_units city_1        state_1 country_1    id city_2   state_2
 #>      <dbl> <chr>          <chr>         <chr>   <chr>     <int> <chr>    <chr>  
-#> 1 3639194. m              Madeira Beach FL      USA         224 South L… CA     
-#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint… CA     
-#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu… CA     
+#> 1 3639194. m              Madeira Beach FL      USA         224 South L~ CA     
+#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint~ CA     
+#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu~ CA     
 #> 4 3338749. m              Madeira Beach FL      USA         224 Vista    CA     
-#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat… CA     
-#> # … with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
+#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat~ CA     
+#> # ... with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
 ```
 
 As with `ddist()`, we can apply the `ddist_xy()` function on spatial
@@ -242,15 +242,15 @@ ddist_xy_sf(x = fl,
             y = ca,
             ids = c("id", "id_var")) %>% 
   head(5)
-#> # A tibble: 5 × 11
+#> # A tibble: 5 x 11
 #>   distance distance_units city_1        state_1 country_1    id city_2   state_2
 #>      <dbl> <chr>          <chr>         <chr>   <chr>     <int> <chr>    <chr>  
-#> 1 3639194. m              Madeira Beach FL      USA         224 South L… CA     
-#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint… CA     
-#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu… CA     
+#> 1 3639194. m              Madeira Beach FL      USA         224 South L~ CA     
+#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint~ CA     
+#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu~ CA     
 #> 4 3338749. m              Madeira Beach FL      USA         224 Vista    CA     
-#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat… CA     
-#> # … with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
+#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat~ CA     
+#> # ... with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
 ```
 
 # CRS transformations
@@ -276,20 +276,20 @@ ddist(cities,
       id = "id",
       crs_transform = T,
       new_crs = 3359)
-#> # A tibble: 10,000 × 11
+#> # A tibble: 10,000 x 11
 #>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
 #>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
-#>  1       0  US_survey_foot Schenectady NY      USA         275 Schenect… NY     
-#>  2  105468. US_survey_foot Schenectady NY      USA         275 Saratoga… NY     
+#>  1       0  US_survey_foot Schenectady NY      USA         275 Schenect~ NY     
+#>  2  105468. US_survey_foot Schenectady NY      USA         275 Saratoga~ NY     
 #>  3  675517. US_survey_foot Schenectady NY      USA         275 Rye       NY     
 #>  4  443781. US_survey_foot Schenectady NY      USA         275 Rome      NY     
-#>  5   81318. US_survey_foot Schenectady NY      USA         275 Renssela… NY     
-#>  6  706757. US_survey_foot Schenectady NY      USA         275 Plattsbu… NY     
+#>  5   81318. US_survey_foot Schenectady NY      USA         275 Renssela~ NY     
+#>  6  706757. US_survey_foot Schenectady NY      USA         275 Plattsbu~ NY     
 #>  7  558267. US_survey_foot Schenectady NY      USA         275 Peekskill NY     
 #>  8  478389. US_survey_foot Schenectady NY      USA         275 Oneida    NY     
-#>  9  694798. US_survey_foot Schenectady NY      USA         275 New Roch… NY     
-#> 10  696411. US_survey_foot Schenectady NY      USA         275 Mount Ve… NY     
-#> # … with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
+#>  9  694798. US_survey_foot Schenectady NY      USA         275 New Roch~ NY     
+#> 10  696411. US_survey_foot Schenectady NY      USA         275 Mount Ve~ NY     
+#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
 #> #   match_id <chr>
 ```
 
@@ -305,8 +305,8 @@ and
 
 # Acknowledgements
 
-  - The R Core Team for developing and maintaining the language
-  - The authors of the amazing `sf` package. `sf` has greatly reduced
+-   The R Core Team for developing and maintaining the language
+-   The authors of the amazing `sf` package. `sf` has greatly reduced
     barriers to entry for anyone working with spatial data in `R` and
     those who wish to do so
     <!-- + Edzer Pebesma ([edzer](https://github.com/edzer)) -->
@@ -322,5 +322,5 @@ and
     <!-- + Thomas Lin Pedersen ([thomasp85](https://github.com/thomasp85)) -->
     <!-- + Dan Baston ([dbaston](https://github.com/dbaston)) -->
     <!-- + Dewey Dunnington ([paleolimbot](https://github.com/paleolimbot)) -->
-  - [LatLong.net](https://www.latlong.net/category/cities-236-15.html)
+-   [LatLong.net](https://www.latlong.net/category/cities-236-15.html)
     for the `dyadicdist::cities` data

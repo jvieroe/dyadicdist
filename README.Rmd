@@ -94,7 +94,7 @@ ddist(cities,
   head(5)
 
 ```
-As a default, `latitude`/`longitude` are specified as `"latitude"` and `"longitude"`, respectively, and don't need manual inputs. If necessary their variable names can be specified in the `ddist()` call:
+As a default, `latitude` and `longitude` are specified as `"latitude"` and `"longitude"`, respectively, and don't need manual inputs. If necessary their variable names can be specified in the `ddist()` call:
 
 ```{r, warning=F, message=F}
 cities %>%
