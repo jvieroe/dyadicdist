@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jvieroe@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This package allows you to calculate geodesic distances between dyads of observations in a fast and straight-forward fashion.
+Description: This package allows you to calculate geodesic distances between dyads in a fast and straight-forward fashion.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
