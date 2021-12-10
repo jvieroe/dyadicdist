@@ -1,5 +1,13 @@
 # dyadicdist 0.3.1
 
+## version 0.3.1
+
+---
+
+### Bug fixes
+- Fixed a bug related to CRS validations
+
+
 ## version 0.3.0
 
 ---
