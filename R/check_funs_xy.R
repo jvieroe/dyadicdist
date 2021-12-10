@@ -205,11 +205,11 @@ check_data_xy_sf <- function(x,
   }
 
   if(!id_x %in% names(x)) {
-    stop("The provided id variable is not present in data.")
+    stop("The provided id variable is not present in data 'x'")
   }
 
   if(!id_y %in% names(y)) {
-    stop("The provided id variable is not present in data.")
+    stop("The provided id variable is not present in data 'y'")
   }
 
   if(any(duplicated(x[[id_x]]))) {
