@@ -183,7 +183,7 @@ check_crs_xy <- function(crs_transform,
 check_equal_crs <- function(x,
                             y) {
 
-  if(readr::parse_number(sf::st_crs(x)[[1]]) != readr::parse_number(sf::st_crs(y)[[1]])){
+  if(readr::parse_number(sf::st_crs(x)[[2]]) != readr::parse_number(sf::st_crs(y)[[2]])){
     stop("Data 'x' and 'y' have different CRS'. Transform using crs_transform and new_crs")
   }
 
