@@ -107,6 +107,14 @@ check_crs <- function(crs_transform,
 check_data_sf <- function(data,
                           id) {
 
+  if (class(data)[1] != "sf") {
+    stop("Inputdata must be an object of class sf. Use dyadicdist::ddist()")
+  }
+
+  if (!class(data$geometry)[1] %in% c("sfc_POINT", "sfc")) {
+    stop("Inputdata is spatial but its spatial geometry must be of class sfc_POINT")
+  }
+
   if(is.null(id)) { # is.data.frame(data) &&
     stop("No id variable provided")
   }
@@ -117,14 +125,6 @@ check_data_sf <- function(data,
 
   if(any(duplicated(data[[id]]))) {
     stop("ID does not uniquely identify rows, duplicates exist")
-  }
-
-  if (class(data)[1] != "sf") {
-    stop("Inputdata must be an object of class sf. Use dyadicdist::ddist()")
-  }
-
-  if (!class(data$geometry)[1] %in% c("sfc_POINT", "sfc")) {
-    stop("Inputdata is spatial but its spatial geometry must be of class sfc_POINT")
   }
 
   if (any(sf::st_is_valid(data) == FALSE)) {
