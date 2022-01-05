@@ -84,7 +84,20 @@ ddist_xy_sf <- function(x = NULL,
   dist_long <- dist_mat %>%
     tidyr::pivot_longer(cols = everything(),
                         names_to = "temp",
-                        values_to = "distance") %>%
+                        values_to = "distance")
+
+  if(base::nrow(dist_long) == 1) {
+
+    dist_long <- dist_long %>%
+      dplyr::mutate(temp = "V1")
+
+  } else if (base::nrow(dist_long) > 1) {
+
+    dist_long <- dist_long
+
+  }
+
+  dist_long <- dist_long %>%
     dplyr::mutate(
       row_id_1 = base::sort(
         base::rep(
