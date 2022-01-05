@@ -62,7 +62,7 @@ ddist <- function(data = NULL,
   check_coords_ddist(data = data)
 
   data <- data %>%
-    dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
+    dplyr::filter(!is.na(.data$longitude) & !is.na(.data$latitude)) %>%
     sf::st_as_sf(coords = c("longitude", "latitude"),
                  crs = crs)
 

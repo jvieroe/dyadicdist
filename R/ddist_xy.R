@@ -101,12 +101,12 @@ ddist_xy <- function(x = NULL,
                         y = y)
 
   x <- x %>%
-    dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
+    dplyr::filter(!is.na(.data$longitude) & !is.na(.data$latitude)) %>%
     sf::st_as_sf(coords = c("longitude", "latitude"),
                  crs = crs_x)
 
   y <- y %>%
-    dplyr::filter(!is.na(longitude) & !is.na(latitude)) %>%
+    dplyr::filter(!is.na(.data$longitude) & !is.na(.data$latitude)) %>%
     sf::st_as_sf(coords = c("longitude", "latitude"),
                  crs = crs_y)
 
