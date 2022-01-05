@@ -42,6 +42,15 @@ check_data_xy <- function(x,
     stop("ID (id_y) does not uniquely identify rows, duplicates exist")
   }
 
+  if(any(is.na(x[[id]]))) {
+    stop("The provided ID variable contains NAs in data 'x'")
+  }
+
+  if(any(is.na(y[[id]]))) {
+    stop("The provided ID variable contains NAs in data 'y'")
+  }
+
+
   # -- x
 
   if(!longitude_x %in% names(x)) {
@@ -218,6 +227,14 @@ check_data_xy_sf <- function(x,
 
   if(any(duplicated(y[[id_y]]))) {
     stop("ID (id_y) does not uniquely identify rows, duplicates exist")
+  }
+
+  if(any(is.na(x[[id]]))) {
+    stop("The provided ID variable contains NAs in data 'x'")
+  }
+
+  if(any(is.na(y[[id]]))) {
+    stop("The provided ID variable contains NAs in data 'y'")
   }
 
 

@@ -21,6 +21,10 @@ check_data <- function(data,
     stop("ID does not uniquely identify rows, duplicates exist")
   }
 
+  if(any(is.na(data[[id]]))) {
+    stop("The provided ID variable contains NAs")
+  }
+
   if(!longitude %in% names(data)) {
     stop("The provided longitude variable is not present in data.")
   }
@@ -125,6 +129,10 @@ check_data_sf <- function(data,
 
   if(any(duplicated(data[[id]]))) {
     stop("ID does not uniquely identify rows, duplicates exist")
+  }
+
+  if(any(is.na(data[[id]]))) {
+    stop("The provided ID variable contains NAs")
   }
 
   if (any(sf::st_is_valid(data) == FALSE)) {
