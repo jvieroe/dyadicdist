@@ -34,6 +34,26 @@ dup_sf <- rbind(df_sf,
 
 mat <- df %>% as.matrix()
 
+df_na_id <- df %>%
+  mutate(id = ifelse(city == "Kansas City",
+                     NA,
+                     id))
+
+df_na_lat <- df %>%
+  mutate(latitude = ifelse(city == "Kansas City",
+                           NA,
+                           latitude))
+
+df_na_lon <- df %>%
+  mutate(longitude = ifelse(city == "Kansas City",
+                            NA,
+                            longitude))
+
+df_sf_na_id <- df_sf %>%
+  mutate(id = ifelse(city == "Kansas City",
+                     NA,
+                     id))
+
 
 
 test_that(
@@ -100,9 +120,23 @@ test_that(
                                       id = "test"),
                  regexp = "The provided id variable is not present in data.")
 
+  }
+)
+
+test_that(
+  "NAs in ID(s) not allowed", {
+
+    expect_error(dyadicdist::ddist(data = df_na_id,
+                                   id = "id"),
+                 regexp = "The provided ID variable contains NAs")
+
+    expect_error(dyadicdist::ddist_sf(data = df_sf_na_id,
+                                      id = "id"),
+                 regexp = "The provided ID variable contains NAs")
 
   }
 )
+
 
 test_that(
   "check quality of spatial data in ddist_sf()", {
