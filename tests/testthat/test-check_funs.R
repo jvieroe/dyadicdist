@@ -49,11 +49,37 @@ df_na_lon <- df %>%
                             NA,
                             longitude))
 
+df_char_lat <- df %>%
+  mutate(latitude = as.character(latitude))
+
+df_char_lon <- df %>%
+  mutate(longitude = as.character(longitude))
+
+
 df_sf_na_id <- df_sf %>%
   mutate(id = ifelse(city == "Kansas City",
                      NA,
                      id))
 
+df_lo_lon <- df %>%
+  mutate(longitude = ifelse(city == "Kansas City",
+                            -181,
+                            longitude))
+
+df_hi_lon <- df %>%
+  mutate(longitude = ifelse(city == "Kansas City",
+                            181,
+                            longitude))
+
+df_lo_lat <- df %>%
+  mutate(latitude = ifelse(city == "Kansas City",
+                            -91,
+                            longitude))
+
+df_hi_lat <- df %>%
+  mutate(latitude = ifelse(city == "Kansas City",
+                            91,
+                            longitude))
 
 
 test_that(
@@ -139,15 +165,70 @@ test_that(
 
 
 test_that(
-  "check quality of spatial data in ddist_sf()", {
+  "check quality of coords", {
+
+    expect_error(dyadicdist::ddist(data = df_na_lat,
+                                   id = "id"),
+                 regexp = "The provided latitude variable contains NAs")
+
+    expect_error(dyadicdist::ddist(data = df_na_lon,
+                                   id = "id"),
+                 regexp = "The provided longitude variable contains NAs")
+
+    expect_error(dyadicdist::ddist(data = df_char_lon,
+                                   id = "id"),
+                 regexp = "The provided longitude variable is not numeric")
+
+    expect_error(dyadicdist::ddist(data = df_char_lat,
+                                   id = "id"),
+                 regexp = "The provided latitude variable is not numeric")
+
+    expect_error(dyadicdist::ddist(data = df_lo_lat,
+                                   id = "id"),
+                 regexp = "Inputdata contains invalid latitude coordinates, one or more values < -90")
+
+    expect_error(dyadicdist::ddist(data = df_hi_lat,
+                                   id = "id"),
+                 regexp = "Inputdata contains invalid latitude coordinates, one or more values > 90")
+
+    expect_error(dyadicdist::ddist(data = df_lo_lon,
+                                   id = "id"),
+                 regexp = "Inputdata contains invalid longitude coordinates, one or more values < -180")
+
+    expect_error(dyadicdist::ddist(data = df_hi_lon,
+                                   id = "id"),
+                 regexp = "Inputdata contains invalid longitude coordinates, one or more values > 180")
+
+
+  }
+
+)
+
+
+
+
+test_that(
+  "check CRS inputs", {
 
     expect_error(dyadicdist::ddist(data = df,
-                                   id = "id"),
-                 regexp = "The provided id variable is not present in data.")
+                                   id = "id",
+                                   crs = "4326"),
+                 regexp = "Provided CRS is not numeric")
 
-    expect_error(dyadicdist::ddist_sf(data = df_sf,
-                                      id = "id"),
-                 regexp = "The provided id variable is not present in data.")
+    expect_error(dyadicdist::ddist(data = df,
+                                   id = "id",
+                                   crs = 43266),
+                 regexp = "Provided CRS is not valid, see rgdal::make_EPSG()")
+
+    expect_error(dyadicdist::ddist(data = df,
+                                   id = "id",
+                                   crs = 1),
+                 regexp = "Provided CRS is not valid, see rgdal::make_EPSG()")
+
+    expect_error(dyadicdist::ddist(data = df,
+                                   id = "id",
+                                   crs = 156),
+                 regexp = "Provided CRS is not valid, see rgdal::make_EPSG()")
 
 
   }
