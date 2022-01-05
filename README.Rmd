@@ -205,7 +205,17 @@ For a list of supported CRS transformations, see `rgdal::make_EPSG()`.
 Note that the choice of CRS may impact your results considerably. For more information on choosing an appropriate CRS, see [here](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/), [here](https://docs.qgis.org/3.4/en/docs/gentle_gis_introduction/coordinate_reference_systems.html), [here](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf), and [here](http://www.geo.hunter.cuny.edu/~jochen/gtech201/lectures/lec6concepts/map%20coordinate%20systems/how%20to%20choose%20a%20projection.htm)
 
 
-
+# Citation
+```
+@Manual{R-dyadicdist,
+  title = {dyadicdist: Easy Calculation of Dyadic Geodesic
+    Distances},
+  author = {Jeppe Vierø},
+  year = {2022},
+  note = {R package version 0.3.1},
+  url = {https://github.com/jvieroe/dyadicdist},
+}
+```
 
 # Acknowledgements
 

@@ -302,6 +302,17 @@ more information on choosing an appropriate CRS, see
 and
 [here](http://www.geo.hunter.cuny.edu/~jochen/gtech201/lectures/lec6concepts/map%20coordinate%20systems/how%20to%20choose%20a%20projection.htm)
 
+# Citation
+
+    @Manual{R-dyadicdist,
+      title = {dyadicdist: Easy Calculation of Dyadic Geodesic
+        Distances},
+      author = {Jeppe Vierø},
+      year = {2022},
+      note = {R package version 0.3.1},
+      url = {https://github.com/jvieroe/dyadicdist},
+    }
+
 # Acknowledgements
 
 -   The R Core Team for developing and maintaining the language
