@@ -1,1 +1,1 @@
-utils::globalVariables(c("id1", "id2"))
+utils::globalVariables(c("id1", "id2", "."))
