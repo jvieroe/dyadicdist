@@ -108,11 +108,11 @@ test_that(
   "check quality of spatial data in ddist_sf()", {
 
     expect_error(dyadicdist::ddist(data = df,
-                                   id = "test"),
+                                   id = "id"),
                  regexp = "The provided id variable is not present in data.")
 
     expect_error(dyadicdist::ddist_sf(data = df_sf,
-                                      id = "test"),
+                                      id = "id"),
                  regexp = "The provided id variable is not present in data.")
 
 

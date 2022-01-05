@@ -15,10 +15,11 @@
 <!-- [![Travis build status](https://travis-ci.org/jvieroe/dyadicdist.svg?branch=main)](https://travis-ci.org/jvieroe/dyadicdist) -->
 
 Master branch status:
+[![](https://img.shields.io/badge/devel%20version-0.3.1-dodgerblue.svg)](https://github.com/jvieroe/dyadicdist)
 [![R-CMD-check](https://github.com/jvieroe/dyadicdist/workflows/R-CMD-check/badge.svg)](https://github.com/jvieroe/dyadicdist/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/jvieroe/dyadicdist/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jvieroe/dyadicdist?branch=main)
-[![codecov](https://codecov.io/gh/jvieroe/dyadicdist/branch/main/graph/badge.svg?token=598BA6G2TX)](https://codecov.io/gh/jvieroe/dyadicdist)
+<!--[![codecov](https://codecov.io/gh/jvieroe/dyadicdist/branch/main/graph/badge.svg?token=598BA6G2TX)](https://codecov.io/gh/jvieroe/dyadicdist)-->
 <!-- badges: end -->
 
 # Introduction
