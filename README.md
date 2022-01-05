@@ -16,6 +16,8 @@
 
 Master branch status:
 [![R-CMD-check](https://github.com/jvieroe/dyadicdist/workflows/R-CMD-check/badge.svg)](https://github.com/jvieroe/dyadicdist/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/jvieroe/dyadicdist/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jvieroe/dyadicdist?branch=main)
 <!-- badges: end -->
 
 # Introduction
@@ -47,7 +49,7 @@ df <- tibble::tribble(
 
 ddist(data = df,
       id = "idvar")
-#> # A tibble: 9 x 7
+#> # A tibble: 9 × 7
 #>   distance distance_units city_name_1 idvar_1 city_name_2 idvar_2 match_id
 #>      <dbl> <chr>          <chr>         <dbl> <chr>         <dbl> <chr>   
 #> 1       0  m              copenhagen        5 copenhagen        5 5_5     
@@ -102,15 +104,15 @@ either `numeric`, `integer`, `factor`, or `character`).
 ddist(cities,
       id = "id") %>% 
   head(5)
-#> # A tibble: 5 x 11
+#> # A tibble: 5 × 11
 #>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
 #>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
-#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
-#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
+#> 1       0  m              Schenectady NY      USA         275 Schenecta… NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga … NY     
 #> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
 #> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
 #> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
-#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
+#> # … with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
 As a default, `latitude` and `longitude` are specified as `"latitude"`
@@ -126,15 +128,15 @@ cities %>%
         latitude = "lat",
         longitude = "lon") %>%
   head(5)
-#> # A tibble: 5 x 11
+#> # A tibble: 5 × 11
 #>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
 #>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
-#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
-#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
+#> 1       0  m              Schenectady NY      USA         275 Schenecta… NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga … NY     
 #> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
 #> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
 #> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
-#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
+#> # … with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
 ## `ddist_sf()`: spatial input data
@@ -152,15 +154,15 @@ cities %>%
   ddist_sf(.,
            id = "id") %>%
   head(5)
-#> # A tibble: 5 x 11
+#> # A tibble: 5 × 11
 #>   distance distance_units city_1      state_1 country_1  id_1 city_2     state_2
 #>      <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>      <chr>  
-#> 1       0  m              Schenectady NY      USA         275 Schenecta~ NY     
-#> 2   31869. m              Schenectady NY      USA         275 Saratoga ~ NY     
+#> 1       0  m              Schenectady NY      USA         275 Schenecta… NY     
+#> 2   31869. m              Schenectady NY      USA         275 Saratoga … NY     
 #> 3  204716. m              Schenectady NY      USA         275 Rye        NY     
 #> 4  133700. m              Schenectady NY      USA         275 Rome       NY     
 #> 5   24559. m              Schenectady NY      USA         275 Rensselaer NY     
-#> # ... with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
+#> # … with 3 more variables: country_2 <chr>, id_2 <int>, match_id <chr>
 ```
 
 With the exception of `crs`, `longitude`, and `latitude` (all of which
@@ -211,15 +213,15 @@ ddist_xy(x = fl,
          y = ca,
          ids = c("id", "id_var")) %>% 
   head(5)
-#> # A tibble: 5 x 11
+#> # A tibble: 5 × 11
 #>   distance distance_units city_1        state_1 country_1    id city_2   state_2
 #>      <dbl> <chr>          <chr>         <chr>   <chr>     <int> <chr>    <chr>  
-#> 1 3639194. m              Madeira Beach FL      USA         224 South L~ CA     
-#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint~ CA     
-#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu~ CA     
+#> 1 3639194. m              Madeira Beach FL      USA         224 South L… CA     
+#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint… CA     
+#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu… CA     
 #> 4 3338749. m              Madeira Beach FL      USA         224 Vista    CA     
-#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat~ CA     
-#> # ... with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
+#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat… CA     
+#> # … with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
 ```
 
 As with `ddist()`, we can apply the `ddist_xy()` function on spatial
@@ -241,15 +243,15 @@ ddist_xy_sf(x = fl,
             y = ca,
             ids = c("id", "id_var")) %>% 
   head(5)
-#> # A tibble: 5 x 11
+#> # A tibble: 5 × 11
 #>   distance distance_units city_1        state_1 country_1    id city_2   state_2
 #>      <dbl> <chr>          <chr>         <chr>   <chr>     <int> <chr>    <chr>  
-#> 1 3639194. m              Madeira Beach FL      USA         224 South L~ CA     
-#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint~ CA     
-#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu~ CA     
+#> 1 3639194. m              Madeira Beach FL      USA         224 South L… CA     
+#> 2 3552612. m              Madeira Beach FL      USA         224 Carpint… CA     
+#> 3 3522633. m              Madeira Beach FL      USA         224 Port Hu… CA     
 #> 4 3338749. m              Madeira Beach FL      USA         224 Vista    CA     
-#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat~ CA     
-#> # ... with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
+#> 5 3823367. m              Madeira Beach FL      USA         224 San Mat… CA     
+#> # … with 3 more variables: country_2 <chr>, id_var <int>, match_id <chr>
 ```
 
 # CRS transformations
@@ -275,20 +277,20 @@ ddist(cities,
       id = "id",
       crs_transform = T,
       new_crs = 3359)
-#> # A tibble: 10,000 x 11
+#> # A tibble: 10,000 × 11
 #>    distance distance_units city_1      state_1 country_1  id_1 city_2    state_2
 #>       <dbl> <chr>          <chr>       <chr>   <chr>     <int> <chr>     <chr>  
-#>  1       0  US_survey_foot Schenectady NY      USA         275 Schenect~ NY     
-#>  2  105468. US_survey_foot Schenectady NY      USA         275 Saratoga~ NY     
+#>  1       0  US_survey_foot Schenectady NY      USA         275 Schenect… NY     
+#>  2  105468. US_survey_foot Schenectady NY      USA         275 Saratoga… NY     
 #>  3  675517. US_survey_foot Schenectady NY      USA         275 Rye       NY     
 #>  4  443781. US_survey_foot Schenectady NY      USA         275 Rome      NY     
-#>  5   81318. US_survey_foot Schenectady NY      USA         275 Renssela~ NY     
-#>  6  706757. US_survey_foot Schenectady NY      USA         275 Plattsbu~ NY     
+#>  5   81318. US_survey_foot Schenectady NY      USA         275 Renssela… NY     
+#>  6  706757. US_survey_foot Schenectady NY      USA         275 Plattsbu… NY     
 #>  7  558267. US_survey_foot Schenectady NY      USA         275 Peekskill NY     
 #>  8  478389. US_survey_foot Schenectady NY      USA         275 Oneida    NY     
-#>  9  694798. US_survey_foot Schenectady NY      USA         275 New Roch~ NY     
-#> 10  696411. US_survey_foot Schenectady NY      USA         275 Mount Ve~ NY     
-#> # ... with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
+#>  9  694798. US_survey_foot Schenectady NY      USA         275 New Roch… NY     
+#> 10  696411. US_survey_foot Schenectady NY      USA         275 Mount Ve… NY     
+#> # … with 9,990 more rows, and 3 more variables: country_2 <chr>, id_2 <int>,
 #> #   match_id <chr>
 ```
 

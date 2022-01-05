@@ -20,5 +20,6 @@ Depends:
 Imports: 
     magrittr (>= 2.0.1), dplyr (>= 1.0.7), sf (>= 1.0.3), tidyr (>= 1.1.4), tibble (>= 3.1.5), rgdal (>= 1.5.27), readr (>= 2.0.2), stringr (>= 1.4.0), rlang (>= 0.4.12), tidyselect (>= 1.1.1)
 Suggests: 
+    covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
