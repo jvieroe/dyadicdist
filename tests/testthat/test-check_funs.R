@@ -81,7 +81,7 @@ df_hi_lat <- df %>%
                             91,
                             longitude))
 
-df_char_
+
 
 
 # df_sf_lo_lon <- df_lo_lon %>%
