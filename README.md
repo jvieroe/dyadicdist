@@ -304,9 +304,16 @@ and
 
 # Citation
 
-    @Manual{R-dyadicdist,
-      title = {dyadicdist: Easy Calculation of Dyadic Geodesic
-        Distances},
+If you use `dyadicdist` for a publication, feel free to cite the package
+accordingly:
+
+> Vierø, Jeppe (2022). dyadicdist: Compute Dyadic Distances. R package
+> version 0.3.1
+
+The `BibTeX`entry for the (current version of the) package is:
+
+    @Manual{
+      title = {dyadicdist: Compute Dyadic Distances},
       author = {Jeppe Vierø},
       year = {2022},
       note = {R package version 0.3.1},
