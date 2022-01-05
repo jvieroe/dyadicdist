@@ -108,7 +108,6 @@ check_crs <- function(crs_transform,
     stop("New CRS is not valid, see rgdal::make_EPSG()")
   }
 
-
 }
 
 
