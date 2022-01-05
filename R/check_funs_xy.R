@@ -177,6 +177,10 @@ check_crs_xy <- function(crs_transform,
     stop("No new CRS provided")
   }
 
+  if(crs_transform == FALSE && !is.null(new_crs)) {
+    warning("New CRS is ignored, use crs_transform == TRUE")
+  }
+
   if(crs_transform == TRUE && !is.numeric(new_crs)) {
     stop("New CRS is not numeric")
   }

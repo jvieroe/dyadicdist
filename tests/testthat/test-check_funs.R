@@ -82,6 +82,24 @@ df_hi_lat <- df %>%
                             longitude))
 
 
+df_sf_lo_lon <- df_lo_lon %>%
+  sf::st_as_sf(coords = c("longitude", "latitude"),
+               crs = 4326)
+
+df_sf_hi_lon <- df_hi_lon %>%
+  sf::st_as_sf(coords = c("longitude", "latitude"),
+               crs = 4326)
+
+
+df_sf_lo_lat <- df_lo_lat %>%
+  sf::st_as_sf(coords = c("longitude", "latitude"),
+               crs = 4326)
+
+df_sf_hi_lat <- df_hi_lat %>%
+  sf::st_as_sf(coords = c("longitude", "latitude"),
+               crs = 4326)
+
+
 test_that(
   "only data.frames/tibbles allowed as input data in ddist()", {
 
@@ -233,3 +251,107 @@ test_that(
 
   }
 )
+
+
+test_that(
+  "check CRS transformation inputs", {
+
+    expect_error(dyadicdist::ddist(data = df,
+                                   id = "id",
+                                   crs_transform = TRUE),
+                 regexp = "No new CRS provided")
+
+    expect_error(dyadicdist::ddist(data = df,
+                                   id = "id",
+                                   crs_transform = TRUE,
+                                   new_crs = "4326"),
+                 regexp = "New CRS is not numeric")
+
+    expect_error(dyadicdist::ddist(data = df,
+                                   id = "id",
+                                   crs_transform = TRUE,
+                                   new_crs = 43266),
+                 regexp = "New CRS is not valid, see rgdal::make_EPSG()")
+
+    expect_error(dyadicdist::ddist(data = df,
+                                   id = "id",
+                                   crs_transform = TRUE,
+                                   new_crs = 20),
+                 regexp = "New CRS is not valid, see rgdal::make_EPSG()")
+
+
+    expect_error(dyadicdist::ddist(data = df,
+                                   id = "id",
+                                   crs_transform = TRUE,
+                                   new_crs = 145),
+                 regexp = "New CRS is not valid, see rgdal::make_EPSG()")
+
+
+  }
+)
+
+
+# test_that(
+#   "check quality of spatial inputs", {
+#
+#     expect_error(dyadicdist::ddist_sf(data = df_sf_lo_lat,
+#                                       id = "id"))
+#
+#     expect_error(dyadicdist::ddist_sf(data = df_sf_hi_lat,
+#                                       id = "id"))
+#
+#     expect_error(dyadicdist::ddist_sf(data = df_sf_lo_lon,
+#                                       id = "id"))
+#
+#     expect_error(dyadicdist::ddist_sf(data = df_sf_hi_lon,
+#                                       id = "id"))
+#
+#   }
+# )
+
+test_that(
+  "check CR inputs for spatial inputs", {
+
+    expect_error(dyadicdist::ddist_sf(data = df_sf,
+                                      id = "id",
+                                      crs_transform = TRUE),
+                 regexp = "No new CRS provided")
+
+    expect_error(dyadicdist::ddist_sf(data = df_sf,
+                                   id = "id",
+                                   crs_transform = TRUE,
+                                   new_crs = "4326"),
+                 regexp = "New CRS is not numeric")
+
+    expect_error(dyadicdist::ddist_sf(data = df_sf,
+                                   id = "id",
+                                   crs_transform = TRUE,
+                                   new_crs = 43266),
+                 regexp = "New CRS is not valid, see rgdal::make_EPSG()")
+
+    expect_error(dyadicdist::ddist_sf(data = df_sf,
+                                   id = "id",
+                                   crs_transform = TRUE,
+                                   new_crs = 20),
+                 regexp = "New CRS is not valid, see rgdal::make_EPSG()")
+
+
+    expect_error(dyadicdist::ddist_sf(data = df_sf,
+                                   id = "id",
+                                   crs_transform = TRUE,
+                                   new_crs = 145),
+                 regexp = "New CRS is not valid, see rgdal::make_EPSG()")
+
+
+    expect_warning(dyadicdist::ddist_sf(data = df_sf,
+                                      id = "id",
+                                      crs_transform = FALSE,
+                                      new_crs = 4326),
+                 regexp = "New CRS is ignored, use crs_transform == TRUE")
+
+
+  }
+)
+
+
+
