@@ -8,6 +8,8 @@ Authors@R:
            email = "jvieroe@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: This package allows you to calculate geodesic distances between dyads in a fast and straight-forward fashion.
+URL: https://github.com/jvieroe/dyadicdist
+Date: 2022-01-05
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
