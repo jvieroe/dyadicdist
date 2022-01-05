@@ -29,6 +29,7 @@ knitr::opts_chunk$set(
 
 Master branch status: [![R-CMD-check](https://github.com/jvieroe/dyadicdist/workflows/R-CMD-check/badge.svg)](https://github.com/jvieroe/dyadicdist/actions)
 [![Codecov test coverage](https://codecov.io/gh/jvieroe/dyadicdist/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jvieroe/dyadicdist?branch=main)
+[![codecov](https://codecov.io/gh/jvieroe/dyadicdist/branch/main/graph/badge.svg?token=598BA6G2TX)](https://codecov.io/gh/jvieroe/dyadicdist)
 <!-- badges: end -->
 
 # Introduction
