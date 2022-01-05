@@ -97,7 +97,7 @@ check_crs <- function(crs_transform,
   }
 
   if(crs_transform == FALSE && !is.null(new_crs)) {
-    warning("New CRS is ignored, use crs_transform == TRUE")
+    warning("New CRS is ignored, use crs_transform = TRUE")
   }
 
   if(crs_transform == TRUE && !is.numeric(new_crs)) {
@@ -187,7 +187,7 @@ check_crs_sf <- function(crs_transform,
   }
 
   if(crs_transform == FALSE && !is.null(new_crs)) {
-    warning("New CRS is ignored, use crs_transform == TRUE")
+    warning("New CRS is ignored, use crs_transform = TRUE")
   }
 
   if(crs_transform == TRUE && !is.numeric(new_crs)) {

@@ -342,12 +342,11 @@ test_that(
                                    new_crs = 145),
                  regexp = "New CRS is not valid, see rgdal::make_EPSG()")
 
-
-    expect_warning(dyadicdist::ddist_sf(data = df_sf,
+    expect_error(dyadicdist::ddist_sf(data = df_sf,
                                       id = "id",
                                       crs_transform = FALSE,
                                       new_crs = 4326),
-                 regexp = "New CRS is ignored, use crs_transform == TRUE")
+                 regexp = "New CRS is ignored, use crs_transform = TRUE")
 
 
   }
