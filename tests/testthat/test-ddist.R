@@ -41,3 +41,26 @@ test_that("output dimensions work", {
 })
 
 
+test_that("distance units work", {
+  expect_equal(dyadicdist::ddist(df,
+                                      id = "id") %>%
+                 pull(distance_units) %>%
+                 unique(),
+               "m")
+})
+
+test_that("distance units work", {
+  expect_equal(dyadicdist::ddist(df,
+                                 id = "id",
+                                 crs_transform = TRUE,
+                                 new_crs = 3359) %>%
+                 pull(distance_units) %>%
+                 unique(),
+               "US_survey_foot")
+})
+
+
+
+
+dd <- ddist(df, id = "id",
+            crs_transform = T, new_crs = 3359)
