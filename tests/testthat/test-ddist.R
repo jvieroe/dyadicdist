@@ -15,7 +15,6 @@ test_that("output dimensions work", {
 })
 
 
-
 test_that("output dimensions work", {
   expect_equal(nrow(dyadicdist::ddist(cities,
                                       id = "id",
