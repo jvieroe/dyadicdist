@@ -44,3 +44,4 @@ test_that("distance units work", {
                  unique(),
                "US_survey_foot")
 })
+
