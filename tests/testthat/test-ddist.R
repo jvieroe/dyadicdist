@@ -6,7 +6,20 @@ library(magrittr)
 df <- dyadicdist::cities
 
 
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+test_that("output dimensions work", {
+  expect_equal(nrow(dyadicdist::ddist(cities,
+                                      id = "id",
+                                      diagonal = TRUE,
+                                      duplicates = TRUE)),
+               nrow(df) * nrow(df))
 })
 
+
+
+test_that("output dimensions work", {
+  expect_equal(nrow(dyadicdist::ddist(cities,
+                                      id = "id",
+                                      diagonal = FALSE,
+                                      duplicates = TRUE)),
+               (nrow(df) * nrow(df)) - nrow(df))
+})
