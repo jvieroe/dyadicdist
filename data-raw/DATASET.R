@@ -1,5 +1,7 @@
 ## code to prepare `cities` dataset goes here
+library(dplyr)
 library(magrittr)
+library(tibble)
 
 city_url <- "https://www.latlong.net/category/cities-236-15.html"
 
