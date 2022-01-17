@@ -1,4 +1,4 @@
-context("Test input data")
+context("Test ddist_sf")
 
 library(dplyr)
 library(magrittr)

@@ -1,3 +1,13 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
-})
+context("Test ddisy_xy_sf")
+
+library(dplyr)
+library(magrittr)
+
+df <- dyadicdist::cities
+
+df_1 <- df %>%
+  filter(state == "CA")
+
+df_2 <- df %>%
+  filter(state == "TX")
+
