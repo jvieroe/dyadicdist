@@ -1,5 +1,3 @@
-context("Test ddist")
-
 library(dplyr)
 library(magrittr)
 library(tibble)
@@ -61,4 +59,5 @@ test_that("distance units work", {
                "US_survey_foot")
 })
 
+rm(df)
 

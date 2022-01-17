@@ -1,5 +1,3 @@
-context("Test input data")
-
 library(dplyr)
 library(magrittr)
 library(tibble)
@@ -381,4 +379,9 @@ test_that(
 #
 #   }
 # )
+
+
+rm(df, df_1, df_2, df_char_lat, df_char_lon, df_hi_lat, df_hi_lon,
+   df_lo_lat, df_lo_lon, df_na_id, df_na_lat, df_na_lon, df_sf,
+   df_sf_1, df_sf_2, dup, dup_sf, kc, kc_sf, df_sf_na_id, mat)
 

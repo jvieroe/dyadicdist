@@ -1,5 +1,3 @@
-context("Test ddist_sf")
-
 library(dplyr)
 library(magrittr)
 library(tibble)
