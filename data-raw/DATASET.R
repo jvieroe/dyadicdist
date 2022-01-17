@@ -36,5 +36,85 @@ cities <- cities %>%
 usethis::use_data(cities, overwrite = TRUE, internal = FALSE)
 
 
-## code to prepare `us` dataset goes here
+## code to prepare test data goes here
+df <- dyadicdist::cities
+
+df_sf <- df %>%
+  sf::st_as_sf(coords = c("longitude", "latitude"),
+               crs = 4326)
+
+df_1 <- df %>%
+  filter(state == "CA")
+
+df_2 <- df %>%
+  filter(state == "TX")
+
+df_sf_1 <- df_sf %>%
+  filter(state == "CA")
+
+df_sf_2 <- df_sf %>%
+  filter(state == "TX")
+
+kc <- df %>%
+  filter(city == "Kansas City")
+
+kc_sf <- df_sf %>%
+  filter(city == "Kansas City")
+
+dup <- rbind(df,
+             kc)
+
+dup_sf <- rbind(df_sf,
+                kc_sf)
+
+mat <- df %>% as.matrix()
+
+df_na_id <- df %>%
+  mutate(id = ifelse(city == "Kansas City",
+                     NA,
+                     id))
+
+df_na_lat <- df %>%
+  mutate(latitude = ifelse(city == "Kansas City",
+                           NA,
+                           latitude))
+
+df_na_lon <- df %>%
+  mutate(longitude = ifelse(city == "Kansas City",
+                            NA,
+                            longitude))
+
+df_char_lat <- df %>%
+  mutate(latitude = as.character(latitude))
+
+df_char_lon <- df %>%
+  mutate(longitude = as.character(longitude))
+
+
+df_sf_na_id <- df_sf %>%
+  mutate(id = ifelse(city == "Kansas City",
+                     NA,
+                     id))
+
+df_lo_lon <- df %>%
+  mutate(longitude = ifelse(city == "Kansas City",
+                            -181,
+                            longitude))
+
+df_hi_lon <- df %>%
+  mutate(longitude = ifelse(city == "Kansas City",
+                            181,
+                            longitude))
+
+df_lo_lat <- df %>%
+  mutate(latitude = ifelse(city == "Kansas City",
+                           -91,
+                           longitude))
+
+df_hi_lat <- df %>%
+  mutate(latitude = ifelse(city == "Kansas City",
+                           91,
+                           longitude))
+
+
 
