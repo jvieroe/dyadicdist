@@ -1,6 +1,8 @@
 context("Test ddisy_xy_sf")
 
-library(tidyverse)
+library(dplyr)
+library(magrittr)
+library(tibble)
 
 df <- dyadicdist::cities
 

@@ -2,6 +2,8 @@ context("Test ddist_xy_sf")
 
 library(dplyr)
 library(magrittr)
+library(tibble)
+
 
 df <- dyadicdist::cities
 df <- df %>%

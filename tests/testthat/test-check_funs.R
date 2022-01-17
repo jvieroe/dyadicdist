@@ -2,8 +2,10 @@ context("Test input data")
 
 library(dplyr)
 library(magrittr)
+library(tibble)
 
 df <- dyadicdist::cities
+
 df_sf <- df %>%
   sf::st_as_sf(coords = c("longitude", "latitude"),
                crs = 4326)

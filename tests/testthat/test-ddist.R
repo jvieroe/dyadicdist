@@ -2,6 +2,8 @@ context("Test ddist")
 
 library(dplyr)
 library(magrittr)
+library(tibble)
+
 
 df <- dyadicdist::cities
 
@@ -60,7 +62,3 @@ test_that("distance units work", {
 })
 
 
-
-
-dd <- ddist(df, id = "id",
-            crs_transform = T, new_crs = 3359)
