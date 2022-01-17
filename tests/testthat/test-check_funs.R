@@ -1,4 +1,3 @@
-readRDS(system.file("testdata", "mat.rds", package = "dyadicdist"))
 
 test_that(
   "only data.frames/tibbles allowed as input data in ddist()", {
