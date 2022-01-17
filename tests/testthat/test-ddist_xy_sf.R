@@ -1,31 +1,15 @@
-# library(dplyr)
-# library(magrittr)
-# library(tibble)
-#
-#
-# df <- dyadicdist::cities
-# df <- df %>%
-#   sf::st_as_sf(coords = c("longitude", "latitude"),
-#                crs = 4326)
-#
-# ca <- df %>%
-#   filter(state == "CA")
-#
-# tx <- df %>%
-#   filter(state == "TX")
-#
 #
 # test_that("output dimensions work", {
-#   expect_equal(nrow(dyadicdist::ddist_xy_sf(ca,
-#                                             tx,
+#   expect_equal(nrow(dyadicdist::ddist_xy_sf(readRDS(system.file("testdata", "df_sf_1.rds", package = "dyadicdist")),
+#                                             readRDS(system.file("testdata", "df_sf_2.rds", package = "dyadicdist")),
 #                                             ids = c("id", "id"))),
-#                nrow(ca) * nrow(tx))
+#                nrow(readRDS(system.file("testdata", "df_sf_1.rds", package = "dyadicdist"))) * nrow(readRDS(system.file("testdata", "df_sf_2.rds", package = "dyadicdist"))))
 # })
 #
 #
 # test_that("distance units work", {
-#   expect_equal(dyadicdist::ddist_xy_sf(ca,
-#                                        tx,
+#   expect_equal(dyadicdist::ddist_xy_sf(readRDS(system.file("testdata", "df_sf_1.rds", package = "dyadicdist")),
+#                                        readRDS(system.file("testdata", "df_sf_2.rds", package = "dyadicdist")),
 #                                        ids = c("id", "id")) %>%
 #                  pull(distance_units) %>%
 #                  unique(),
@@ -33,8 +17,8 @@
 # })
 #
 # test_that("distance units work", {
-#   expect_equal(dyadicdist::ddist_xy_sf(ca,
-#                                        tx,
+#   expect_equal(dyadicdist::ddist_xy_sf(readRDS(system.file("testdata", "df_sf_1.rds", package = "dyadicdist")),
+#                                        readRDS(system.file("testdata", "df_sf_2.rds", package = "dyadicdist")),
 #                                        ids = c("id", "id"),
 #                                        crs_transform = TRUE,
 #                                        new_crs = 3359) %>%

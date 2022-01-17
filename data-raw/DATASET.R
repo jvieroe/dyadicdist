@@ -37,9 +37,10 @@ cities <- cities %>%
 
 usethis::use_data(cities, overwrite = TRUE, internal = FALSE)
 
+rm(cities)
 
 ## code to prepare test data goes here
-df <- cities
+df <- dyadicdist::cities
 
 saveRDS(df,
         "inst/testdata/df.rds")
@@ -60,7 +61,7 @@ saveRDS(df_1,
         "inst/testdata/df_1.rds")
 
 df_2 <- df %>%
-  filter(state == "TX")
+  filter(state == "CO")
 
 saveRDS(df_2,
         "inst/testdata/df_2.rds")
@@ -71,8 +72,9 @@ df_sf_1 <- df_sf %>%
 saveRDS(df_sf_1,
         "inst/testdata/df_sf_1.rds")
 
+table(df_sf$state)
 df_sf_2 <- df_sf %>%
-  filter(state == "TX")
+  filter(state == "CO")
 
 saveRDS(df_sf_2,
         "inst/testdata/df_sf_2.rds")
