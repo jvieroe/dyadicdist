@@ -43,52 +43,107 @@ df_sf <- df %>%
   sf::st_as_sf(coords = c("longitude", "latitude"),
                crs = 4326)
 
+saveRDS(df_sf,
+        "inst/extdata/df_sf.rds")
+
+
 df_1 <- df %>%
   filter(state == "CA")
+
+saveRDS(df_1,
+        "inst/extdata/df_1.rds")
 
 df_2 <- df %>%
   filter(state == "TX")
 
+saveRDS(df_2,
+        "inst/extdata/df_2.rds")
+
 df_sf_1 <- df_sf %>%
   filter(state == "CA")
+
+saveRDS(df_sf_1,
+        "inst/extdata/df_sf_1.rds")
 
 df_sf_2 <- df_sf %>%
   filter(state == "TX")
 
+saveRDS(df_sf_2,
+        "inst/extdata/df_sf_2.rds")
+
+
 kc <- df %>%
   filter(city == "Kansas City")
+
+saveRDS(kc,
+        "inst/extdata/kc.rds")
 
 kc_sf <- df_sf %>%
   filter(city == "Kansas City")
 
+saveRDS(kc_sf,
+        "inst/extdata/kc_sf.rds")
+
 dup <- rbind(df,
              kc)
+
+saveRDS(dup,
+        "inst/extdata/dup.rds")
+
 
 dup_sf <- rbind(df_sf,
                 kc_sf)
 
+saveRDS(dup_sf,
+        "inst/extdata/dup_sf.rds")
+
+
 mat <- df %>% as.matrix()
 
+saveRDS(mat,
+        "inst/extdata/mat.rds")
+
+###################################################
 df_na_id <- df %>%
   mutate(id = ifelse(city == "Kansas City",
                      NA,
                      id))
+
+saveRDS(df_na_id,
+        "inst/extdata/df_na_id.rds")
+
+
 
 df_na_lat <- df %>%
   mutate(latitude = ifelse(city == "Kansas City",
                            NA,
                            latitude))
 
+saveRDS(df_na_lat,
+        "inst/extdata/df_na_lat.rds")
+
+
 df_na_lon <- df %>%
   mutate(longitude = ifelse(city == "Kansas City",
                             NA,
                             longitude))
 
+saveRDS(df_na_lon,
+        "inst/extdata/df_na_lon.rds")
+
+
 df_char_lat <- df %>%
   mutate(latitude = as.character(latitude))
 
+saveRDS(df_char_lat,
+        "inst/extdata/df_char_lat.rds")
+
+
 df_char_lon <- df %>%
   mutate(longitude = as.character(longitude))
+
+saveRDS(df_char_lon,
+        "inst/extdata/df_char_lon.rds")
 
 
 df_sf_na_id <- df_sf %>%
@@ -96,25 +151,44 @@ df_sf_na_id <- df_sf %>%
                      NA,
                      id))
 
+saveRDS(df_sf_na_id,
+        "inst/extdata/df_sf_na_id.rds")
+
+
 df_lo_lon <- df %>%
   mutate(longitude = ifelse(city == "Kansas City",
                             -181,
                             longitude))
+
+saveRDS(df_lo_lon,
+        "inst/extdata/df_lo_lon.rds")
+
 
 df_hi_lon <- df %>%
   mutate(longitude = ifelse(city == "Kansas City",
                             181,
                             longitude))
 
+saveRDS(df_hi_lon,
+        "inst/extdata/df_hi_lon.rds")
+
+
 df_lo_lat <- df %>%
   mutate(latitude = ifelse(city == "Kansas City",
                            -91,
                            longitude))
+
+saveRDS(df_lo_lat,
+        "inst/extdata/df_lo_lat.rds")
+
 
 df_hi_lat <- df %>%
   mutate(latitude = ifelse(city == "Kansas City",
                            91,
                            longitude))
 
+
+saveRDS(df_hi_lat,
+        "inst/extdata/df_hi_lat.rds")
 
 
