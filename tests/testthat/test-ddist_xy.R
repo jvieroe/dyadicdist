@@ -1,21 +1,20 @@
 context("Test ddisy_xy_sf")
 
-library(dplyr)
 library(tidyverse)
 
 df <- dyadicdist::cities
 
-df_1 <- df %>%
+ca <- df %>%
   filter(state == "CA")
 
-df_2 <- df %>%
+tx <- df %>%
   filter(state == "TX")
 
 test_that("output dimensions work", {
-  expect_equal(nrow(dyadicdist::ddist_xy(df_1,
-                                         df_2,
+  expect_equal(nrow(dyadicdist::ddist_xy(ca,
+                                         tx,
                                          ids = c("id", "id"))),
-               nrow(df_1) * nrow(df_2))
+               nrow(ca) * nrow(tx))
 })
 
 
