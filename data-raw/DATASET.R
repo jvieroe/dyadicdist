@@ -103,7 +103,7 @@ mat <- df %>% as.matrix()
 saveRDS(mat,
         "inst/extdata/mat.rds")
 
-###################################################
+
 df_na_id <- df %>%
   mutate(id = ifelse(city == "Kansas City",
                      NA,
@@ -191,4 +191,4 @@ df_hi_lat <- df %>%
 saveRDS(df_hi_lat,
         "inst/extdata/df_hi_lat.rds")
 
-
+rm(list=ls())
